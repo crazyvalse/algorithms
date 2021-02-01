@@ -1,9 +1,26 @@
 # algorithms
-数据结构算法相关
 
-https://juejin.cn/post/6900698814093459463?utm_source=gold_browser_extension
+## 计划
 
-https://blog.csdn.net/sinat_17775997/article/details/84099731
+### 2.1 - 2.7: js 基础手写
 
-- 梳理6大排序算法： https://juejin.cn/post/6856546833025237006
-- 前端面试必备-40道LeetCode经典面试算法题 https://juejin.cn/post/6844903971270688781
+#### 2.1
+
+关键目标：
+
+- [x] new
+- [ ] 创建对象
+- [ ] 继承
+- [ ] 防抖
+- [ ] 节流
+- [ ] 去重
+- [ ] 类型判断
+
+### 2.8 - 2.14 算法
+
+## 推荐文章
+
+- https://juejin.cn/post/6900698814093459463?utm_source=gold_browser_extension
+- https://blog.csdn.net/sinat_17775997/article/details/84099731
+- 梳理 6 大排序算法： https://juejin.cn/post/6856546833025237006
+- 前端面试必备-40 道 LeetCode 经典面试算法题 https://juejin.cn/post/6844903971270688781
