@@ -39,11 +39,10 @@
 - [x] 函数组合
 - [x] 函数记忆
 - [ ] 递归
-- [ ] 乱序
+- [x] 乱序
 - [ ] generator
 - [ ] class
 - [ ] defineProperty 与 proxy
-
 
 ### 2.8 - 2.14 算法
 
