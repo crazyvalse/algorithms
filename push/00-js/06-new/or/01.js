@@ -18,7 +18,6 @@ Otaku.prototype.sayYourName = function () {
 // console.log(person.name) // Kevin
 // console.log(person.habit) // Games
 // console.log(person.strength) // 60
-//
 // person.sayYourName() // I am Kevin
 
 // 1. 初步实现能够使用私有变量
@@ -33,9 +32,4 @@ function ObjectFactory() {
   return typeof result === 'object' ? result : obj
 }
 
-const p = ObjectFactory(Otaku, 'zac', 10)
-
-console.info(p.name)
-console.info(p.age)
-console.info(p.strength)
-p.sayYourName()
+module.exports = ObjectFactory

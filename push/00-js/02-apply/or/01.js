@@ -16,13 +16,3 @@ Function.prototype.myApply = function (context, arr) {
   delete context[fn]
   return result
 }
-
-var obj = {
-  value: 1
-}
-
-function bar(name) {
-  return this.value + ' ' + name
-}
-
-console.info(bar.myApply(obj, ['zac']))
