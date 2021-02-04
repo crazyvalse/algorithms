@@ -12,13 +12,13 @@
 // }
 //
 
-function flatten(array) {
+module.exports = function flatten(array) {
   return array.reduce((pre, cur) => {
     return pre.concat(Array.isArray(cur) ? flatten(cur) : cur)
   }, [])
 }
 
-console.info(flatten([1, 2, [3, 4, [5]]]))
+// console.info(flatten([1, 2, [3, 4, [5]]]))
 
 // 第三版
 // console.info(([1, 2, [3, 4, [5]]].flat(Infinity)))

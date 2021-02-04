@@ -1,4 +1,4 @@
-// 1. 开始执行一次，之后不执行知道 wait 时间后
+// 1. 开始执行一次，之后不执行直到 wait 时间后
 // function throttle(fn, time) {
 //   let previous = 0
 //   let context, args

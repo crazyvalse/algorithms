@@ -10,18 +10,4 @@ function deepClone(obj) {
   return newObj
 }
 
-const obj = {
-  a: 1,
-  b: 2,
-  c: {
-    d: 3
-  }
-}
-
-const obj2 = deepClone(obj)
-
-console.info(obj2)
-
-obj2.c = 4
-
-console.info(obj, obj2)
+module.exports = deepClone

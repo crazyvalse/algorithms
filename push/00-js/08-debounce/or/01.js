@@ -61,13 +61,17 @@
 
 // 第六版：取消
 
-function debounce(fn, time) {
+function debounce(fn, time, immediate) {
   let timer
   function debounced() {
     const context = this
     const args = arguments
     if (timer) {
       clearTimeout(timer)
+    }
+
+    if (immediate && !timer) {
+      cb.apply(this, args)
     }
 
     timer = setTimeout(() => {
@@ -81,34 +85,4 @@ function debounce(fn, time) {
   return debounced
 }
 
-function cb(name) {
-  console.info('-----------')
-  return name
-}
-
-const go = debounce(cb, 1000)
-go('zac')
-//
-// (go('zac'))
-//
-// setTimeout(() => {
-//   go(1)
-// }, 500)
-//
-// setTimeout(() => {
-//   go(2)
-// }, 1000)
-//
-// setTimeout(() => {
-//   go(3)
-// }, 1500)
-//
-// setTimeout(() => {
-//   go(4)
-// }, 2000)
-//
-// setTimeout(() => {
-//   go(5)
-// }, 2500)
-
-go.cancel()
+module.exports = debounce
