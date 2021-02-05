@@ -6,7 +6,7 @@ function subCurry(fn) {
   }
 }
 
-function curry(fn, length) {
+module.exports = function curry(fn, length) {
   length = length || fn.length
   const slice = Array.prototype.slice
   return function () {
@@ -18,16 +18,7 @@ function curry(fn, length) {
       // 返回一个封装了前面参数的方法
       return curry(subCurry.apply(this, combined), length - arguments.length)
     } else {
-      return fn.apply(this.arguments)
+      return fn.apply(this, arguments)
     }
   }
 }
-
-var fn = curry(function (a, b, c) {
-  return [a, b, c]
-})
-
-// console.info(fn('a', 'b', 'c')) // ["a", "b", "c"]
-console.info(fn('a', 'b')('c')) // ["a", "b", "c"]
-// console.info(fn('a')('b')('c')) // ["a", "b", "c"]
-// console.info(fn('a')('b', 'c')) // ["a", "b", "c"]

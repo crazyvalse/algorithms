@@ -1,4 +1,4 @@
-function shuffle(a) {
+module.exports = function shuffle(a) {
   var j, x, i
   for (i = a.length; i; i--) {
     j = Math.floor(Math.random() * i)
