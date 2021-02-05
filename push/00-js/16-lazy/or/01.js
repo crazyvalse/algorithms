@@ -45,6 +45,7 @@ setTimeout(() => {
 // > 避免了污染全局；但是没有解决需要一次判断的问题
 
 // 4. 惰函数
+
 let foo = function () {
   let t = new Date()
   foo = function () {
@@ -53,10 +54,12 @@ let foo = function () {
   return foo()
 }
 
-console.info(foo())
-setTimeout(() => {
-  console.info(foo())
-}, 3000)
+module.exports = foo
+
+// console.info(foo())
+// setTimeout(() => {
+//   console.info(foo())
+// }, 3000)
 
 /************************ 更多应用 *************************/
 
@@ -70,15 +73,15 @@ setTimeout(() => {
 //   }
 // }
 
-function addEvent (type, el, fn) {
-  if (window.addEventListener) {
-    addEvent = function (type, el, fn) {
-      el.addEventListener(type, fn, false);
-    }
-  }
-  else if(window.attachEvent){
-    addEvent = function (type, el, fn) {
-      el.attachEvent('on' + type, fn);
-    }
-  }
-}
+// function addEvent (type, el, fn) {
+//   if (window.addEventListener) {
+//     addEvent = function (type, el, fn) {
+//       el.addEventListener(type, fn, false);
+//     }
+//   }
+//   else if(window.attachEvent){
+//     addEvent = function (type, el, fn) {
+//       el.attachEvent('on' + type, fn);
+//     }
+//   }
+// }
