@@ -46,8 +46,11 @@ module.exports = function (array) {
 
   const walk = (array, left, right) => {
     if (left < right) {
+      // 先找到基线
       const pivot = sortAndFindPivot(array, left, right)
+      // walk 前面的
       walk(array, left, pivot)
+      // walk 后面的
       walk(array, pivot + 1, right)
     }
     return array

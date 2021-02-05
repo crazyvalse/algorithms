@@ -1,30 +1,44 @@
-/*
-快速排序
-1. const flag = array[0]
-2. array[i] < flag left.push(array[i])
-3. array[i] > flag right.push(array[i])
-
-边界 array.length < 2
-walk(left.concat(flag, walk(right)))
- */
-function sort(array) {
-  const walk = (array) => {
-    if (array.length < 2) {
-      return array
-    }
-    const flag = array[0]
-    const left = []
-    const right = []
-    for (let i = 1, len = array.length; i < len; i++) {
-      if (array[i] < flag) {
-        left.push(array[i])
-      } else {
-        right.push(array[i])
-      }
-    }
-    return walk(left).concat(flag, walk(right))
-  }
-  return walk(array)
+function swap(array, a, b) {
+  ;[array[a], array[b]] = [array[b], array[a]]
 }
 
-module.exports = sort
+/**
+ * 1. 返回 Pivot 的索引
+ * 2. 以 array[left] 作为基准，if(array[i] < flag) array[point++] <> array[i] 交换位置
+ * 3. array[left] 与 array[point -1] 交换位置
+ */
+const sortAndFindPivot = function (array, left, right) {
+  if (Array.isArray(array) && array.length < 2) {
+    return array
+  }
+  const pivot = array[left]
+  let next = left + 1
+  for (let i = left + 1; i <= right; i++) {
+    if (array[i] < pivot) {
+      swap(array, next, i)
+      next++
+    }
+  }
+  swap(array, left, next - 1)
+  return next - 1
+}
+
+/**
+ * 1. 先拿到pivot
+ * 2. 以pivot为基准，前面是 left, pivot，pivot + 1， right，后面选取pivot的时候需要选择一个有意义的所以不能是 pivot
+ * @param array
+ */
+function sort(array) {
+  const walk = function (array, left, right) {
+    if (left < right) {
+      const pivot = sortAndFindPivot(array, left, right)
+      walk(array, left, pivot)
+      walk(array, pivot + 1, right)
+    }
+    return array
+  }
+  return walk(array, 0, array.length - 1)
+}
+
+module.exports.sortAndFindPivot = sortAndFindPivot
+module.exports.sort = sort
