@@ -12,7 +12,6 @@ function lcs(word1, word2) {
       lcsarr[i][j] = 0
     }
   }
-  console.info(lcsarr)
   for (let i = 0; i <= word1.length; i++) {
     for (let j = 0; j <= word2.length; j++) {
       if (i === 0 || j === 0) {

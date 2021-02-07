@@ -8,5 +8,4 @@ function reverse(array) {
   return array
 }
 
-console.info(reverse([1, 2, 3, 4, 5]))
-console.info(reverse([1, 2, 3, 4, 5, 6]))
+module.exports = reverse

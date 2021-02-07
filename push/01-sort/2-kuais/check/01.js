@@ -18,15 +18,19 @@ function swap(array, a, b) {
  * return pivot - 1
  */
 const sortAndFindPivot = function (array, left, right) {
+  if (Array.isArray(array) && array.length < 2) {
+    return array
+  }
   const pivot = array[left]
   let next = left + 1
-  for (let i = left + 1; i < right; i++) {
+  for (let i = left + 1; i <= right; i++) {
     if (pivot > array[i]) {
-      swap(array, next++, i)
+      swap(array, next, i)
+      next++
     }
   }
-  swap(array, left, pivot - 1)
-  return pivot - 1
+  swap(array, left, next - 1)
+  return next - 1
 }
 
 /**
@@ -36,7 +40,7 @@ const sortAndFindPivot = function (array, left, right) {
  */
 function sort(array) {
   const walk = function (array, left, right) {
-    if (left <= right) {
+    if (left < right) {
       const pivot = sortAndFindPivot(array, left, right)
       walk(array, left, pivot)
       walk(array, pivot + 1, right)
