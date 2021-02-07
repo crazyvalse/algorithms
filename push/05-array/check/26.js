@@ -13,27 +13,31 @@
 你不需要考虑数组中超出新长度后面的元素。
 
  */
-
 /**
- * 本身这个是排序后的数组
- * 因此可以使用快慢指针，排序前几个位置
- * 慢指针指定未重复的数组
- * 快指针寻找 不等于慢指针的数据
- * @param nums
+ * 1. 返回一个数字
+ * 2. 指定一个指针 point 为后面去重数组的长度
+ * 3. next 指向下一个数字
+ *  - 当 array(next) === array(point) next ++
+ *  - 当
+ *
+ *  pivot = 0 // 去重后数组的长度
+ *  flag = array[pivot]
+ *  for next = 1,...,array.length next++
+ *    if(array[pivot] !== array[next]){
+ *      array[++pivot] = array[next]
+ *    }
+ * 最后返回 point
+ * @param array
  */
-var removeDuplicates = function (nums) {
-  if (nums.length < 2) {
-    return nums.length
-  }
-  let index = 0
-  let pointer = 1
-  while (pointer < nums.length) {
-    if (nums[index] !== nums[pointer]) {
-      nums[++index] = nums[pointer]
+function removeDuplicates(array) {
+  let pivot = 0
+
+  for (let i = 1; i < array.length; i++) {
+    if (array[pivot] !== array[i]) {
+      array[++pivot] = array[i]
     }
-    pointer++
   }
-  return index + 1
+  return pivot + 1
 }
 
 module.exports = removeDuplicates
