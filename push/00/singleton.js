@@ -18,11 +18,12 @@ Singleton.getSingleton = function (name) {
 }
 
 const a = Singleton.getSingleton('zac')
-const b = Singleton.getSingleton('zac')
+const b = Singleton.getSingleton()
 
 Singleton.getSingleton = 1
 
-const c = Singleton.getSingleton('zac')
+const c = Singleton.getSingleton()
 
 console.info(a === b)
 console.info(c)
+console.info(a.name, b.name, c.name)
