@@ -11,11 +11,44 @@
  输出：[[1,5]]
  解释：区间 [1,4] 和 [4,5] 可被视为重叠区间。
 
+ [[1, 9], [2, 5], [19, 20], [10, 11], [12, 20], [0, 3], [0, 1], [0, 2]]
+ ------------------------------------------------------------------------------------------------------------------------
+ 我们用数组 merged 存储最终的答案。
+ 首先，我们将列表中的区间按照左端点升序排序。然后我们将第一个区间加入 merged 数组中，并按顺序依次考虑之后的每个区间：
+ 如果当前区间的左端点在数组 merged 中最后一个区间的右端点之后，那么它们不会重合，我们可以直接将这个区间加入数组 merged 的末尾；
+ 否则，它们重合，我们需要用当前区间的右端点更新数组 merged 中最后一个区间的右端点，将其置为二者的较大值。
+
  * @param {number[][]} intervals
  * @return {number[][]}
  */
 const merge = function (intervals) {
-
+  intervals.sort((a, b) => a[0] - b[0])
+  const merged = []
+  let l, r
+  for (let i = 0; i < intervals.length; i++) {
+    l = intervals[i][0]
+    r = intervals[i][1]
+    if (merged.length === 0 || merged[merged.length - 1][1] < l) {
+      merged.push([l, r])
+    } else {
+      // merged中的r = merged中的 r 或者 intervals 中的 r
+      merged[merged.length - 1][1] = Math.max(merged[merged.length - 1][1], r)
+    }
+  }
+  return merged
 }
+
+console.info(
+  merge([
+    [1, 9],
+    [2, 5],
+    [19, 20],
+    [10, 11],
+    [12, 20],
+    [0, 3],
+    [0, 1],
+    [0, 2]
+  ])
+)
 
 module.exports = merge
