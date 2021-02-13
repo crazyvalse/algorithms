@@ -34,3 +34,5 @@ dist
 .editorconfig
 .babelrc
 .eslintrc.js
+
+*.test.js
