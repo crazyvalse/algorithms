@@ -18,25 +18,27 @@
  如果当前区间的左端点在数组 merged 中最后一个区间的右端点之后，那么它们不会重合，我们可以直接将这个区间加入数组 merged 的末尾；
  否则，它们重合，我们需要用当前区间的右端点更新数组 merged 中最后一个区间的右端点，将其置为二者的较大值。
 
+ 主要的思想就是
+  - 如果 array[i][0] 相同，只需要找到 array[i][1] 最大的那个即可
+  - 如果不同，判断 merge[merge.length - 1][1] (右侧) < array[i][0] 新开一个，否则 判断 array[i][1] 与 merge[merge.length - 1][1] 最大的一个
+
+ 1. 排序
+ 2. 遍历排序后的数组
+  -
  * @param {number[][]} intervals
  * @return {number[][]}
  */
 const merge = function (intervals) {
+  intervals.sort((a, b) => a[0] - b[0])
   const merged = []
+  for (let i = 0, length = intervals.length; i < length; i++) {
+    if (merged.length === 0 || merged[merged.length - 1][1] < intervals[i][0]) {
+      merged.push(intervals[i])
+    } else {
+      merged[merged.length - 1][1] = Math.max(intervals[i][1], merged[merged.length - 1][1])
+    }
+  }
   return merged
 }
-
-console.info(
-  merge([
-    [1, 9],
-    [2, 5],
-    [19, 20],
-    [10, 11],
-    [12, 20],
-    [0, 3],
-    [0, 1],
-    [0, 2]
-  ])
-)
 
 module.exports = merge
