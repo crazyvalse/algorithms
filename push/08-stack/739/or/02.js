@@ -11,6 +11,7 @@
  *      result[index] = i - index
  *      index = stack.pop()
  *    }
+ * 同类型的题： 42 接雨水
  * @param T
  * @returns {any[]}
  */
