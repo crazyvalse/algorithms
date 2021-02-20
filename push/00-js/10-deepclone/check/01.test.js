@@ -34,4 +34,6 @@ test('测试 deepClone', () => {
       d: 3
     }
   })
+
+  expect(1).toEqual(1)
 })
