@@ -1,12 +1,12 @@
 test('test lazy', (done) => {
   let foo = function () {
-    const now = Date.now()
-
+    let t = Date.now()
     foo = function () {
-      return now
+      return t
     }
     return foo()
   }
+
   const start = foo()
 
   setTimeout(() => {
