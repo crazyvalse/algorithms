@@ -5,18 +5,18 @@
  * 返回一个function
  * 1. 改变 this 的指向 - apply
  * 2. 缓存参数
- * 3. bind后的function也适用于对象 - 返回一个新的function
- * 变成对象之后 1. context 变了；2. prototype
+ * 3. bind后的function也适用于对象
  */
 Function.prototype.myBind = function (context) {
-  const args = Array.prototype.slice.call(arguments, 1)
+  const slice = Array.prototype.slice
   const fn = this
-  function inner() {
-    const currentArgs = args.concat(Array.prototype.slice.call(arguments))
-    // 这里需要是 fn
-    return fn.apply(this instanceof fn ? this : context, currentArgs)
+  const preparedArgs = slice.call(arguments, 1)
+
+  function InnerFn() {
+    // 如果是对象还得是 this，context 只是预存的值
+    return fn.apply(this instanceof fn ? this : context, preparedArgs.concat(slice.call(arguments)))
   }
 
-  inner.prototype = Object.create(fn.prototype)
-  return inner
+  InnerFn.prototype = Object.create(fn.prototype)
+  return InnerFn
 }

@@ -9,20 +9,23 @@
  * 注意处理arguments
  * @param context
  */
-// 第一个参数是 context 后面的是实际传入的参数
+/**
+ * 1. call的第一个参数是 context
+ * 2. 后面的是真正的参数
+ * 3. context调用call本身的方法
+ * 思路：
+ * 1.在context上面创建一个属性 = fn
+ * 2. 调用这个方法
+ * 3. 删掉这个属性
+ * 4. 返回值
+ * @param context
+ */
 Function.prototype.myCall = function (context) {
   context = context || global
-  context.__fn__ = this
-  // 拼接 context.__fn__(arguments[1], ..., arguments[arguments.length-1])
-
-  const args = []
-  for (let i = 1, length = arguments.length; i < length; i++) {
-    args[i] = 'arguments[' + i + ']'
-  }
-
-  const result = eval('context.__fn__(' + args + ')')
-
-  delete context.__fn__
-
+  let fnName = Symbol()
+  context[fnName] = this
+  const args = Array.from({ length: arguments.length - 1 }, (value, index) => `arguments[${index + 1}]`)
+  const result = eval(`context[fnName](${args})`)
+  delete context[fnName]
   return result
 }

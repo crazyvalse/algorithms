@@ -1,25 +1,20 @@
 /**
- * 1. apply 第一个参数是 context
- * 2. apply 第二个参数是 array
- * 3. apply return 一个执行结果
- *
- * 思路 把 this 挂载到context上面执行，并删掉这个 this 后 return结果
+ * 思路是把 方法挂在context上面执行
+ * 1. 在context上面创建一个fn
+ * 2. 拼接字符串
+ * 3. 调用fn
+ * 4. 删除fn
+ * 5. 返回结果
  */
 Function.prototype.myApply = function (context, args) {
-  let result
   context = context || global
-  args = Array.isArray(args) ? args : []
-  const fnName = '__fn__' + Date.now()
+  const fnName = Symbol()
   context[fnName] = this
-  // 执行
 
-  const _args = []
-  for (let i = 0, length = args.length; i < length; i++) {
-    _args[i] = 'args[' + i + ']'
-    // 拼接字符串
-  }
+  const params = Array.isArray(args) ? args.map((val, index) => 'args[' + index + ']') : ''
 
-  result = eval('context[fnName](' + _args + ')')
+  const result = eval(`context[fnName](${params})`)
+
   delete context[fnName]
 
   return result
