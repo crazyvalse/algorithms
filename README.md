@@ -100,13 +100,22 @@
 - [x] 01-call
 - [x] 02-apply
 - [x] 03-bind
-- [ ] 04-prototype
-- [ ] 05-field
-- [ ] 06-new
-- [ ] 07-extends
-- [ ] 08-debounce
-- [ ] 09-throttle
-- [ ] 10-deepclone
+- [x] 04-prototype
+- [x] 05-field
+- [x] 06-new
+- [x] 07-extends
+- [x] 08-debounce
+- [x] 09-throttle
+- [x] 10-deepclone
+- [x] 11-findIndex
+- [x] 12-findLastIndex
+- [x] 13-flat
+- [x] 14-partial
+- [x] 15-curry
+- [x] 16-lazy
+- [x] 17-compose
+- [x] 18-memorize
+- [x] 19-shuffle
 
 ## 推荐文章
 
