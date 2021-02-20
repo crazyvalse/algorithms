@@ -1,8 +1,11 @@
 module.exports = function flatten(array) {
   if (!Array.isArray(array)) {
-    throw new Error('param is not array!')
+    return array
   }
-  return array.reduce((pre, cur) => {
-    return pre.concat(Array.isArray(cur) ? flatten(cur) : cur)
-  }, [])
+
+  let result = []
+  for (let i = 0; i < array.length; i++) {
+    result = result.concat(Array.isArray(array[i]) ? flatten(array[i]) : array[i])
+  }
+  return result
 }
