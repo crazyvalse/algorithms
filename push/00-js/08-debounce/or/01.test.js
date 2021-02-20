@@ -4,7 +4,7 @@ test('测试 debounce', (done) => {
   global.counter = 0
 
   function cb(payload) {
-    counter = payload
+    global.counter = payload
   }
 
   const go = debounce(cb, 1000)

@@ -5,7 +5,6 @@ module.exports = function ObjectFactory(fn) {
   const obj = {}
   const result = fn.apply(obj, Array.prototype.slice.call(arguments, 1))
   obj.__proto__ = fn.prototype
-  obj.constructor = fn
-
+  obj.constructor = fn.prototype.constructor
   return typeof result === 'object' ? result : obj
 }

@@ -66,12 +66,13 @@ function debounce(fn, time, immediate) {
   function debounced() {
     const context = this
     const args = arguments
-    if (timer) {
-      clearTimeout(timer)
-    }
 
     if (immediate && !timer) {
       cb.apply(this, args)
+    }
+
+    if (timer) {
+      clearTimeout(timer)
     }
 
     timer = setTimeout(() => {

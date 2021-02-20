@@ -6,26 +6,26 @@
  * @param span
  */
 
-module.exports = function debounce(cb, span, immediate) {
-  let timeout
+module.exports = debounce
 
+function debounce(cb, span, immediate) {
+  let timer = null
   function debounced() {
-    if (timeout) {
-      clearTimeout(timeout)
+    if (timer) {
+      clearTimeout(timer)
     }
 
-    if (immediate && !timeout) {
-      cb.apply(this, arguments)
+    if (immediate && !timer) {
+      cb.apply(this, Array.prototype.slice.call(arguments))
     }
 
-    timeout = setTimeout(() => {
-      cb.apply(this, arguments)
+    timer = setTimeout(() => {
+      cb.apply(this, Array.prototype.slice.call(arguments))
     }, span)
   }
 
   debounced.cancel = function () {
-    clearTimeout(timeout)
+    clearTimeout(timer)
   }
-
   return debounced
 }
