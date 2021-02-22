@@ -3,34 +3,29 @@ function swap(array, a, b) {
 }
 
 /**
- * 1. 返回 pivot - 1
- * 2. 以 array[left] 为 初始 pivot，next = left + 1，
- * 3. 当 pivot > array[i] 的时候交换 swap(array, next, i)
- * 4. 最后 swap(array, left, pivot -1)
+ * 1. 排序并返回pivot
+ *  - 以array[left]为基准，小的放左边，大的放右边，最后交换 left 与 pivot
+ *  let pivot = left + 1 // 指向下一个
+ *  let next = left + 1
+ *  pivot 为指针，小的元素交换放到pivot++位置
+ *    - if(array[next] < array[left]){
+ *      swap(array, pivot++, next)
+ *    }
  *
- * pivot = array[left]
- * next = left + 1
- * for i = (left + 1),...,(right - 1);
- *  if pivot > array[i]
- *    swap(next, i)
  *
- * swap(left, pivot - 1)
- * return pivot - 1
  */
 const sortAndFindPivot = function (array, left, right) {
-  if (Array.isArray(array) && array.length < 2) {
+  if (array.length < 2) {
     return array
   }
-  const pivot = array[left]
-  let next = left + 1
-  for (let i = left + 1; i <= right; i++) {
-    if (pivot > array[i]) {
-      swap(array, next, i)
-      next++
+  let pivot = left + 1
+  for (let next = left + 1; next <= right; next++) {
+    if (array[next] < array[left]) {
+      swap(array, pivot++, next)
     }
   }
-  swap(array, left, next - 1)
-  return next - 1
+  swap(array, pivot - 1, left)
+  return pivot - 1
 }
 
 /**
@@ -40,11 +35,12 @@ const sortAndFindPivot = function (array, left, right) {
  */
 function sort(array) {
   const walk = function (array, left, right) {
-    if (left < right) {
-      const pivot = sortAndFindPivot(array, left, right)
-      walk(array, left, pivot)
-      walk(array, pivot + 1, right)
+    if (array.length < 2) {
+      return array
     }
+    const pivot = sortAndFindPivot(array, left, right)
+    walk(array, left, pivot)
+    walk(array, pivot + 1, right)
     return array
   }
   return walk(array, 0, array.length - 1)
