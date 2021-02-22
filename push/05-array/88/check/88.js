@@ -20,33 +20,32 @@
  0 <= m, n <= 200
  1 <= m + n <= 200
  -109 <= nums1[i], nums2[i] <= 109
+
+ 可以从后面开始插入
+ p1 指向 nums1 的尾部
+ p2 指向 nums2 的尾部
  * @param {number[]} nums1
  * @param {number} m
  * @param {number[]} nums2
  * @param {number} n
- * @return {void} Do not return anything, modify nums1 in-place instead.
- */
-/**
- * 从 nums1 后面开始添加元素
- * @param nums1
- * @param m
- * @param nums2
- * @param n
  */
 var merge = function (nums1, m, nums2, n) {
   let p1 = m - 1
   let p2 = n - 1
-
-  for (let i = nums1.length - 1; i >= 0; i--) {
-    if (p1 >= 0 && p2 >= 0) {
-      nums1[i] = nums1[p1] >= nums2[p2] ? nums1[p1--] : nums2[p2--]
+  let next = nums1.length - 1
+  while (next >= 0) {
+    if (nums1[p1] > nums2[p2] || nums2[p2] === undefined) {
+      nums1[next] = nums1[p1--]
+    } else if (nums1[p1] <= nums2[p2]|| nums2[p1] === undefined) {
+      nums1[next] = nums2[p2--]
     }
-    // 只需要处理 p1 用尽的情况。当p2用尽的时候，列表不需要做处理，还保持原样就可以了
-    if (p1 < 0) {
-      nums1[i] = nums2[p2--]
-    }
+    next--
   }
+
   return nums1
 }
+console.info(merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3))
 
 module.exports = merge
+
+console.info( 1 > undefined)
