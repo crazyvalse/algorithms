@@ -143,6 +143,8 @@ array
 
 search
 
+- [x] 二分法
+
 stack
 
 - [x] memorize
