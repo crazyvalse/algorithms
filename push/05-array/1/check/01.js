@@ -29,31 +29,28 @@
 
  */
 /**
- * 分析：
- * 1. params: nums target
- * 2. 和 === target
- * 3. 两个数
- * 4. 返回下标
+ * 使用一个map来记录结果
+ * map
+ * for i = 0,...,length -1; i++
+ *  // 没有这个值
+ *  if(map[target - array[i]] === undefined){
+ *    map[array[i]] = i
+ *  } else {
+ *    return [i, map[target - array[i]] ]
+ *  }
  *
- * 暴力解法
- *  - 挨个相加，并查看是否等于 9
  *
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-  for (let i = 0; i < nums.length - 1; i++) {
-    if (nums[i] > target) {
-      continue
-    }
-    for (let j = i + 1; j < nums.length; j++) {
-      if (nums[j] > target) {
-        continue
-      }
-      if (nums[i] + nums[j] === target) {
-        return [i, j]
-      }
+  const map = {}
+  for (let i = 0; i < nums.length; i++) {
+    if (map[target - nums[i]] === undefined) {
+      map[nums[i]] = i
+    } else {
+      return [map[target - nums[i]], i]
     }
   }
   return []
