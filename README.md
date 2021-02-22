@@ -117,6 +117,20 @@
 - [x] 18-memorize
 - [x] 19-shuffle
 
+### 2.22 - 2.26 面试题
+
+#### 2.22 复习
+
+- [ ] 00-scm
+- [ ] 00-scm
+- [ ] 00-scm
+- [ ] 00-scm
+- [ ] 00-scm
+- [ ] 00-scm
+- [ ] 00-scm
+- [ ] 00-scm
+- [ ] 00-scm
+
 ## 推荐文章
 
 - https://juejin.cn/post/6900698814093459463?utm_source=gold_browser_extension
