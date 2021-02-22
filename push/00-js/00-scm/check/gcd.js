@@ -5,3 +5,4 @@ function gcd(a, b) {
 
 module.exports = gcd
 gcd(12, 24)
+
