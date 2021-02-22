@@ -121,15 +121,17 @@
 
 #### 2.22 复习
 
-- [ ] 00-scm
-- [ ] 00-scm
-- [ ] 00-scm
-- [ ] 00-scm
-- [ ] 00-scm
-- [ ] 00-scm
-- [ ] 00-scm
-- [ ] 00-scm
-- [ ] 00-scm
+- [x] 1-maopao
+- [x] 2-kuais
+- [x] 3-xuanze
+- [x] 56
+- [x] 75
+- [x] 1
+- [x] 53
+- [x] 121
+- [x] memorize
+- [x] memorize
+
 
 ## 推荐文章
 
