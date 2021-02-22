@@ -132,7 +132,7 @@
 - [x] 169
 - [x] 283
 - [x] 448
-- [x] memorize
+- [x] 26
 - [x] memorize
 - [x] memorize
 - [x] memorize

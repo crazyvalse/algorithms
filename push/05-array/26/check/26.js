@@ -14,30 +14,21 @@
 
  */
 /**
- * 1. 返回一个数字
- * 2. 指定一个指针 point 为后面去重数组的长度
- * 3. next 指向下一个数字
- *  - 当 array(next) === array(point) next ++
- *  - 当
- *
- *  pivot = 0 // 去重后数组的长度
- *  flag = array[pivot]
- *  for next = 1,...,array.length next++
- *    if(array[pivot] !== array[next]){
- *      array[++pivot] = array[next]
- *    }
- * 最后返回 point
+ * 快慢指针
+ * l: 当 array[f] !== array[l] array[++l] = array[f]
+ * f: 指向下一个
  * @param array
  */
 function removeDuplicates(array) {
-  let pivot = 0
-
-  for (let i = 1; i < array.length; i++) {
-    if (array[pivot] !== array[i]) {
-      array[++pivot] = array[i]
+  let l = 0
+  let f = 0
+  while (f < array.length) {
+    if (array[f] !== array[l]) {
+      array[++l] = array[f]
     }
+    f++
   }
-  return pivot + 1
+  return l + 1
 }
 
 module.exports = removeDuplicates
