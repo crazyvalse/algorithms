@@ -94,7 +94,7 @@
   - [x] 121 买卖股票的最佳时机
   - [x] 53 最大子序和
   - [x] 1 两数纸盒
-  
+
 #### 2.20 复习
 
 - [x] 01-call
@@ -121,11 +121,16 @@
 
 #### 2.22 复习
 
+sort
+
 - [x] 1-maopao
 - [x] 2-kuais
 - [x] 3-xuanze
 - [x] 56
 - [x] 75
+
+array
+
 - [x] 1
 - [x] 53
 - [x] 121
@@ -135,11 +140,14 @@
 - [x] 26
 - [x] 88
 - [x] 189
-- [x] memorize
-- [x] memorize
-- [x] memorize
 
+search
 
+stack
+
+- [x] memorize
+- [x] memorize
+- [x] memorize
 
 ## 推荐文章
 
