@@ -147,7 +147,7 @@ search
 
 stack
 
-- [x] memorize
+- [x] 20
 - [x] memorize
 - [x] memorize
 

@@ -24,10 +24,6 @@ n == height.length
  * 意思是当前的条形块被栈中的前一个条形块界定。
  * 如果我们发现一个条形块长于栈顶，我们可以确定栈顶的条形块被当前条形块和栈的前一个条形块界定，
  * 因此我们可以弹出栈顶元素并且累加答案到ans 。
- *
- * @param {number[]} height
- * @return {number}
- *
  * |0 1 2 3
  * |_     _
  * | |_  | |
@@ -35,25 +31,28 @@ n == height.length
  * | | | | |
  * | | | | |
  * ----------------------------->
+ * @param {number[]} heights
+ * @return {number}
  */
-var trap = function (height) {
-  let ans = 0
+var trap = function (heights) {
+  let inc = 0
   const stack = []
-
-  for (let i = 0; i < height.length; i++) {
-    while (stack.length && height[i] > height[stack[stack.length - 1]]) {
-      let poppedIndex = stack.pop() // 2
+  for (let i = 0; i < heights.length; i++) {
+    // stack 不为空，且 新塞入的值比栈顶的
+    while (stack.length && heights[i] > heights[stack[stack.length - 1]]) {
+      const poppedIndex = stack.pop()
       if (!stack.length) {
         break
       }
-      let currentStackTopIndex = stack[stack.length - 1]  // 1
-      let distance = i - currentStackTopIndex - 1 //  3 - 1 - 1 = 1
-      let boundedHeight = Math.min(height[i], height[currentStackTopIndex]) - height[poppedIndex]
-      ans += distance * boundedHeight
+      const currentStackTopIndex = stack[stack.length - 1]
+      const distance = i - currentStackTopIndex - 1
+      const boundedHeight = Math.min(heights[i], heights[currentStackTopIndex]) - heights[poppedIndex]
+      inc += distance * boundedHeight
     }
     stack.push(i)
   }
-  return ans
+
+  return inc
 }
 
 module.exports = trap
