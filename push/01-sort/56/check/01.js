@@ -34,4 +34,23 @@ const merge = function (intervals) {
   return result
 }
 
+function merge1 (array) {
+  const left = 0
+  const right = 1
+  if (array.length < 2) {
+    return array
+  }
+  array.sort((a, b) => a[left] - b[left])
+
+  return array.reduce((result, item) => {
+    let resultLastIndex = result.length - 1
+    if (item[left] > result[resultLastIndex][right]) {
+      result.push(item)
+    } else {
+      result[resultLastIndex][right] = Math.max(item[right], result[resultLastIndex][right])
+    }
+    return result
+  }, [array[0]])
+}
+
 module.exports = merge
