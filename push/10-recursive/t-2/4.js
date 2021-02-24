@@ -11,16 +11,14 @@
  * @returns {number}
  */
 
-
-function jump(n) {
+function jump(n, current = 0, next = 1) {
   if (n < 1) {
-    return 0;
+    return 0
   }
   if (n <= 2) {
-    return n;
+    return n
   }
-  return jump(n - 1) + jump(n - 2)
-
+  return jump(n - 1, next, current + next)
 }
 
 jump.cache = {}

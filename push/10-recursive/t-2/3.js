@@ -11,16 +11,19 @@
  * @returns {number}
  */
 
-
 function jump(n) {
-  if (n < 1) {
-    return 0;
-  }
   if (n <= 2) {
-    return n;
+    return n
   }
-  return jump(n - 1) + jump(n - 2)
-
+  let f1 = 1
+  let f2 = 2
+  let sum = 0
+  for (let i = 3; i <= n; i++) {
+    sum = f1 + f2
+    f1 = f2
+    f2 = sum
+  }
+  return sum
 }
 
 jump.cache = {}

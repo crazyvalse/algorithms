@@ -11,16 +11,19 @@
  * @returns {number}
  */
 
-
 function jump(n) {
-  if (n < 1) {
-    return 0;
+  if (jump.cache[n]) {
+    return jump.cache[n]
   }
-  if (n <= 2) {
-    return n;
-  }
-  return jump(n - 1) + jump(n - 2)
 
+  if (n < 1) {
+    jump.cache[n] = 0
+  } else if (n <= 2) {
+    jump.cache[n] = n
+  } else {
+    jump.cache[n] = jump(n - 1) + jump(n - 2)
+  }
+  return jump.cache[n]
 }
 
 jump.cache = {}
