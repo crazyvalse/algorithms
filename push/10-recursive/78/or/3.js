@@ -38,22 +38,28 @@ nums 中的所有元素 互不相同
  * @param {number[]} nums
  * @return {number[][]}
  */
-
-var subsets = function (nums) {
-  const t = []
-  const ans = []
-  const dfs = (cur) => {
-    if (cur === nums.length) {
-      ans.push(t.slice())
-      return
-    }
-    t.push(nums[cur])
-    dfs(cur + 1, nums)
-    t.pop(t.length - 1)
-    dfs(cur + 1, nums)
+/*
+ let result = [[]]
+ result = [[], [1]]
+ result = [[], [1], [2], [1, 2]]
+ result = [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+ 1. 初始化 result = [[]]
+ for i = 0,..., nums.length - 1
+  current = nums[i]
+  t = result.slice()
+  for j = 0,...,t.length - 1
+    t.push(current)
+  result.concat(t)
+ */
+var subsets = function (nums, result = [[]], i = 0) {
+  if (nums.length === i) {
+    return result
   }
-  dfs(0, nums)
-  return ans
+  const current = nums[i]
+
+
+
+  return subsets(nums, result, --i)
 }
 
 console.info(subsets([1, 2, 3, 4]))

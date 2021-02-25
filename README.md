@@ -151,6 +151,10 @@ stack
 - [x] 42 接水滴
 - [x] memorize
 
+### 2.24 递归
+
+### 2.25 树，回溯
+
 ## 推荐文章
 
 - https://juejin.cn/post/6900698814093459463?utm_source=gold_browser_extension

@@ -1,13 +1,13 @@
 // 二叉树的节点
 class Node {
-  constructor (val) {
+  constructor(val) {
     this.val = val
     this.left = this.right = undefined
   }
 }
 
 class Tree {
-  constructor (data) {
+  constructor(data) {
     // 临时存储所有节点，方便寻找父子节点
     let nodeList = []
     // 顶节点
@@ -36,7 +36,7 @@ class Tree {
     nodeList.length = 0
     return root
   }
-  static isSymmetry (root) {
+  static isSymmetry(root) {
     if (!root) {
       return true
     }
@@ -44,7 +44,7 @@ class Tree {
       if (!left && !right) {
         return true
       }
-      if ((left && !right) || (!left && right) || (left.val !== right.val)) {
+      if ((left && !right) || (!left && right) || left.val !== right.val) {
         return false
       }
       return walk(left.left, right.right) && walk(left.right, right.left)
@@ -53,8 +53,13 @@ class Tree {
   }
 }
 
-export default Tree
-
-export {
-  Node
+function preOrder(node) {
+  if (node !== undefined) {
+    console.info(node.val)
+    preOrder(node.left)
+    preOrder(node.right)
+  }
 }
+
+const root = new Tree([4, 2, 7, 1, 3, 6, 9])
+console.info(root)
