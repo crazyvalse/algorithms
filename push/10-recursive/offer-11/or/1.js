@@ -10,16 +10,20 @@
  * @param n
  * @returns {number}
  */
-
-function jump(n, current = 0, next = 1) {
-  if (n < 1) {
-    return 0
-  }
-  if (n <= 2) {
+// n = 4 1 2
+// n = 3 2 3
+// n = 2 2
+// n = 3 1 2
+// n = 2 2
+// n
+function numWays(n, current = 1, next = 2) {
+  if (n <= 1) {
     return n
   }
-  return jump(n - 1, next, current + next)
+  if (n <= 2) {
+    return next
+  }
+  return numWays(n - 1, next, current + next)
 }
 
-
-module.exports = jump
+module.exports = numWays

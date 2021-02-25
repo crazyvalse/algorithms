@@ -18,7 +18,7 @@ function fibonacci(n, current, next) {
     return next
   }
 
-  return fibonacci(n - 1, next, current + next)
+  return fibonacci(n - 1, next % 1000000007, (current + next) % 1000000007)
 }
 
 function partial(fn, a, b) {
