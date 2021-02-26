@@ -44,17 +44,5 @@ function ListNode(val, next) {
   this.next = next === undefined ? null : next
 }
 
-const p4 = new ListNode(3, undefined)
-const p3 = new ListNode(1, p4)
-const p2 = new ListNode(2, p3)
-const p1 = new ListNode(4, p2)
-
-let iterator = sortList(p1)
-const result = []
-
-while (iterator) {
-  result.push(iterator.val)
-  iterator = iterator.next
-}
-
-console.info(result)
+module.exports.ListNode = ListNode
+module.exports.sortList = sortList

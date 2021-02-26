@@ -155,6 +155,10 @@ stack
 
 ### 2.25 树，回溯
 
+### 2.26 链表
+
+- [x] 206
+
 ## 推荐文章
 
 - https://juejin.cn/post/6900698814093459463?utm_source=gold_browser_extension

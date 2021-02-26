@@ -10,6 +10,11 @@
 
  */
 
+function ListNode(val, next) {
+  this.val = val === undefined ? 0 : val
+  this.next = next === undefined ? null : next
+}
+
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
@@ -29,28 +34,15 @@
  * @return {ListNode}
  */
 var reverseList = function (head) {
-  if (head === null || head.next === null) {
-    return head
+  function walk(pre, current) {
+    if (!current) {
+      return pre
+    }
+    let next = current.next
+    current.next = pre
+    return walk(current, next)
   }
-  let prev = null
-  let current = head
-  let next = null
-  while (current) {
-    // 1. 记录next，不然转完之后就丢了
-    next = current.next
-    // 2. 转向
-    current.next = prev
-    // 3. 下一轮的准备
-    prev = current
-    current = next
-  }
-
-  return prev
-}
-
-function ListNode(val, next) {
-  this.val = val === undefined ? 0 : val
-  this.next = next === undefined ? null : next
+  return walk(null, head)
 }
 
 module.exports = {
