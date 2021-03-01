@@ -1,63 +1,44 @@
 /*
-反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。
+给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
+你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
 
-说明:
-1 ≤ m ≤ n ≤ 链表长度。
+示例1：
+输入：head = [1,2,3,4]
+输出：[2,1,4,3]
 
-示例:
+示例 2：
+输入：head = []
+输出：[]
 
-输入: 1->2->3->4->5->NULL, m = 2, n = 4
-输出: 1->4->3->2->5->NULL
-
- */
-
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
+示例 3：
+输入：head = [1]
+输出：[1]
  */
 /**
- * 1. 先找到 m -> pre 然后一个counter m - n + 1
+ * 思路：
+ * // 调换 l1 和 l2
+ * // 如果没有 l2 的话 就 不作处理
+ * 1、定义 pre, l1, l2, next
  *
- * 边界检查
- * 1. 头
- * 2. 尾巴
- * 3. 不满足
- *
- * p c n
  * @param {ListNode} head
  * @param {number} left
  * @param {number} right
  * @return {ListNode}
  */
-var reverseBetween = function (head, left, right) {
-  let counter = 1
+var swapPairs = function (head) {
   let dummyHead = new ListNode(null, head)
-  let start = dummyHead
-  let prev = head
-  let next = null
-  let current = head.next
-  while (current && counter < right) {
-    // 记录头尾
-    if (counter < left) {
-      start = prev
-    }
-    // 记录下一次
-    next = current.next
-    if (left <= counter && counter <= right) {
-      // 指向前一个
-      current.next = prev
-    }
-    // 下一次
-    prev = current
-    current = next
-    counter++
-  }
-  if (start.next) {
-    start.next.next = next
-    start.next = prev
+  let pre = dummyHead
+  let next = dummyHead.next
+
+  // 可以交换的时候 交换
+  while (next && next.next) {
+    let t = next.next
+    pre.next = t
+    next.next = t.next
+    t.next = next
+
+    pre = next
+    next = next.next
   }
 
   return dummyHead.next
@@ -69,6 +50,6 @@ function ListNode(val, next) {
 }
 
 module.exports = {
-  reverseBetween,
+  swapPairs,
   ListNode
 }
