@@ -159,6 +159,10 @@ stack
 
 - [x] 206
 
+### 3.1 链表 + 递归
+
+- [x] 206
+
 ## 推荐文章
 
 - https://juejin.cn/post/6900698814093459463?utm_source=gold_browser_extension
