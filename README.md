@@ -166,6 +166,10 @@ stack
 - [ ] h-25
 - [ ] e-21
 
+### 3.2 栈 + 递归
+
+- [x] check 20
+
 ## 推荐文章
 
 - https://juejin.cn/post/6900698814093459463?utm_source=gold_browser_extension
