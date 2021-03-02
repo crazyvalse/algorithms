@@ -32,35 +32,44 @@
 s 仅由括号 '()[]{}' 组成
  */
 /**
- * 借助一个stack
- * 发现是左括号就 push
- * 发现是右括号就 pop 并且对比 popped 与 array[i] 是否相等
+ * 借助于一个 stack
+ *  - 左括号就放到 stack 中
+ *  - 右括号的话就 stack.pop 查看是不是一对，不是的话 return false
+ *
  *  stack.length === 0
  * @param {string} s
  * @return {boolean}
  * "()[]{}"
  */
 var isValid = function (s) {
-  const stack = []
-  const map = {
-    ')': '(',
-    ']': '[',
-    '}': '{'
-  }
+  debugger
   const ss = s.split('')
+  const map = {
+    ']': '[',
+    '}': '{',
+    ')': '('
+  }
+
+  const right = Object.keys(map)
+  const stack = []
+
   for (let i = 0; i < ss.length; i++) {
-    const char = ss[i]
     // 是右括号
-    if (map[char]) {
-      const popped = stack.pop()
-      if (map[char] !== popped) {
+    if (right.indexOf(ss[i]) !== -1) {
+      // 弹出一个
+      const char = stack.pop()
+      // 判断是不是相等
+      if (map[ss[i]] !== char) {
         return false
       }
+      // 最括号
     } else {
-      stack.push(char)
+      stack.push(ss[i])
     }
   }
-  return !stack.length
+  return stack.length === 0
 }
+
+isValid('()[]{}')
 
 module.exports = isValid
