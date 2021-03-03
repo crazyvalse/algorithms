@@ -23,6 +23,7 @@
  */
 
 /**
+ * 也是快慢指针
  * @param {number} target
  * @param {number[]} nums
  * @return {number}
