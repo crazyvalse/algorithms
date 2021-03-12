@@ -29,22 +29,22 @@ nums 中的所有元素 互不相同
  * 2: result = [[1, 2], [1, 3], [2, 3]]
  * 3: result = [[1, 2, 3], [1,2,4], [1, 3, 4]
  *
- * 思路： 树的节点全部都记录
+ * 思路： 每个节点都有两种选择 选或者不选
  *
- * 1. 参数
- * bucketIndex 坑位 0,...,length - 1
- * container 集合
- * 2. 出口
- * 停止条件？
+ * 1. 出口
+ * if(index === length){
+ *   result.push(container.slice())
+ *   return
+ * }
+ * 2. 参数
+ * index 数组的指针
+ * container 局部结果
+ * 3. 过程
  *
- * 3. 递归过程
- *
- * for i = 0,...,length - 1
- *  container.push(nums[i])
- *  walk(index + 1, container)
- *  container.pop()
- *
- *
+ * container.push(nums[index])
+ * walk(index + 1, container)
+ * container.pop()
+ * walk(index + 1, container)
  * https://leetcode-cn.com/problems/subsets/solution/shou-hua-tu-jie-zi-ji-hui-su-fa-xiang-jie-wei-yun-/
  * @param {number[]} nums
  * @return {number[][]}
@@ -53,14 +53,14 @@ nums 中的所有元素 互不相同
 var subsets = function (nums) {
   const result = []
   const length = nums.length
-  const walk = (bucket, container) => {
-    result.push(container.slice())
-    for (let i = bucket; i < length; i++) {
-      container.push(nums[i])
-      // 下一位只能是 i 后面的
-      walk(i + 1, container)
-      container.pop()
+  const walk = (index, container) => {
+    if (index === length) {
+      result.push(container.slice())
     }
+    container.push(nums[index])
+    walk(index + 1, container)
+    container.pop()
+    walk(index + 1, container)
   }
   walk(0, [])
   return result
