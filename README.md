@@ -191,6 +191,27 @@ stack
 
 - [x] 1456
 
+## 3.8 - 3.12
+
+- 分治算法
+- 回溯法
+- dfs - 深度优先
+- 归并排序
+- union find
+- trie
+- dijkstra floyd
+
+### 3.9
+
+- [x] 分治法
+- [x] 堆排序
+- [x] 堆
+- [x] 对称二叉树
+
+### 3.10
+
+- [ ] 回溯法
+
 ## 推荐文章
 
 - https://juejin.cn/post/6900698814093459463?utm_source=gold_browser_extension

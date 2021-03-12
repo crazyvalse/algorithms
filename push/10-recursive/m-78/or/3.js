@@ -39,27 +39,28 @@ nums 中的所有元素 互不相同
  * @return {number[][]}
  */
 /*
- let result = [[]]
- result = [[], [1]]
- result = [[], [1], [2], [1, 2]]
- result = [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
- 1. 初始化 result = [[]]
- for i = 0,..., nums.length - 1
-  current = nums[i]
-  t = result.slice()
-  for j = 0,...,t.length - 1
-    t.push(current)
-  result.concat(t)
+递归法：
+1. 出口
+nums.length === 0
+return result
+
+2. 参数
+nums, result
+
+03. 过程
+const current = nums.pop()
+return [...result, ...result.map(item => [...item, current])]
+1. copy result
  */
-var subsets = function (nums, result = [[]], i = 0) {
-  if (nums.length === i) {
-    return result
+var subsets = function (nums) {
+  const walk = function (result, nums) {
+    if (nums.length === 0) {
+      return result
+    }
+    const current = nums.shift()
+    return walk([...result, ...result.map((item) => [...item, current])], nums)
   }
-  const current = nums[i]
-
-
-
-  return subsets(nums, result, --i)
+  return walk([[]], nums.slice())
 }
 
-console.info(subsets([1, 2, 3, 4]))
+console.info(subsets([1, 2, 3]))

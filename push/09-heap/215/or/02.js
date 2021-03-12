@@ -18,13 +18,15 @@
   你可以假设 k 总是有效的，且 1 ≤ k ≤ 数组的长度。
  */
 /**
+ * 冒泡
+ * 选择排序
+ * 插入
+ * 堆排序
+ *
  * @param {number[]} nums
  * @param {number} k
  * @return {number}
  */
-var findKthLargest = function (nums, k) {
-  nums.sort((a, b) => b - a)
-  return nums[k - 1]
-}
+var findKthLargest = function (nums, k) {}
 
 module.exports = findKthLargest
