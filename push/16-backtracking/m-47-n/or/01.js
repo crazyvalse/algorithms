@@ -55,11 +55,10 @@ var permuteUnique = function (nums) {
       result.push(cart.slice())
       return
     }
-    debugger
-
     for (let i = 0; i < sortedArray.length; i++) {
-      // 当前一个跟上一个是一样的
-      if (sortedArray[i] === sortedArray[i - 1] && !used[index]) {
+      debugger
+      // 需要是
+      if (sortedArray[i] === sortedArray[i - 1] && i - 1 >= 0 && !used[i - 1]) {
         continue
       }
       // 使用过了

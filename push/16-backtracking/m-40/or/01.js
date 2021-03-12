@@ -36,18 +36,13 @@ candidates中的每个数字在每个组合中只能使用一次。
  */
 var combinationSum2 = function (candidates, target) {
   const result = []
-  const cache = {}
   candidates.sort((a, b) => a - b)
   const walk = function (index, cart, sum) {
     if (sum > target) {
       return
     }
     if (sum === target) {
-      const key = JSON.stringify(cart)
-      if (!cache[key]) {
-        result.push(cart.slice())
-        cache[key] = true
-      }
+      result.push(cart.slice())
       return
     }
     for (let i = index; i < candidates.length; i++) {
