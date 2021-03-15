@@ -45,6 +45,7 @@ var combine = function (n, k) {
       result.push(cart.slice())
       return
     }
+    // 试数组中的每一项
     for (let i = index; i <= n; i++) {
       cart.push(i)
       walk(i + 1, cart)
