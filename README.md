@@ -200,6 +200,7 @@ stack
 - union find
 - trie
 - dijkstra floyd
+- Hierholzer
 
 ### 3.9
 
@@ -211,6 +212,8 @@ stack
 ### 3.10
 
 - [ ] 回溯法
+
+### 3.15
 
 ## 推荐文章
 
