@@ -1,9 +1,9 @@
-function extend (child, parent) {
-  // child.prototype = Object.create(parent.prototype)
+function extend(child, parent) {
+  // child.prototype = Object.create(parents.prototype)
   const create =
     Object.create ||
     function (proto) {
-      function F () {}
+      function F() {}
 
       F.prototype = proto
       return new F()

@@ -123,10 +123,6 @@ var numIslands = function (grid) {
     if (r < 0 || c < 0 || r >= row || c >= column || grid[r][c] === '0') {
       return
     }
-    // 当前的值非0
-    if (grid[r][c] === '0') {
-      return
-    }
     grid[r][c] = '0'
     queue.push({
       r,

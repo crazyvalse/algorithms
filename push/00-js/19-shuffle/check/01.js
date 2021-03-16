@@ -2,15 +2,16 @@ module.exports = shuffle
 
 /**
  * 遍历，然后打乱
+ * 从后面开始遍历
  * @param array
  */
 function shuffle(array) {
   if (!Array.isArray(array)) {
     throw new Error()
   }
-  for (let i = 0; i < array.length; i++) {
-    const next = Math.floor(Math.random() * array.length)
-    swap(array, i, next)
+  for (let i = array.length; i > 0; i--) {
+    const next = Math.floor(Math.random() * i)
+    swap(array, i - 1, next)
   }
 }
 
