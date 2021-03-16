@@ -27,42 +27,52 @@ isConnected[i][i] == 1
 isConnected[i][j] == isConnected[j][i]
  */
 /**
- * visited数组，访问过就 visited = true 找到下一个，继续查找
+ * 并查集
+ * 1. 做并查集
+ * 2. 合并并查集
  * @param {number[][]} isConnected
  * @return {number}
  */
 var findCircleNum = function (isConnected) {
   const length = isConnected.length
-  const visited = new Array(length).fill(false)
-  let result = 0
+  const uf = new UnionFind(length)
 
-  //遍历visited数组
   function main() {
-    for (let c = 0; c < length; c++) {
-      if (!visited[c]) {
-        result++
-        walk(c)
+    for (let r = 0; r < length; r++) {
+      for (let c = r; c < length; c++) {
+        if (isConnected[r][c] === 1) {
+          uf.union(r, c)
+        }
       }
     }
   }
-
-  // 遍历上下左右
-  /**
-   * 把上下左右所有的点都变成0
-   * 1. 出口
-   * 2. 遍历过程
-   */
-  function walk(r) {
-    for (let c = 0; c < length; c++) {
-      if (isConnected[r][c] === 1 && !visited[c]) {
-        visited[c] = true
-        walk(c)
-      }
-    }
-  }
-
   main()
-  return result
+  return uf.counter
+}
+
+class UnionFind {
+  constructor(n) {
+    this.parents = Array.from({ length: n }, (a, i) => i)
+    this.counter = n
+  }
+
+  find(x) {
+    if (x === this.parents[x]) {
+      return x
+    }
+    return (this.parents[x] = this.find(this.parents[x]))
+  }
+
+  union(x, y) {
+    const xRoot = this.find(x)
+    const yRoot = this.find(y)
+
+    if (xRoot === yRoot) {
+      return
+    }
+    this.parents[yRoot] = xRoot
+    this.counter--
+  }
 }
 
 module.exports = findCircleNum

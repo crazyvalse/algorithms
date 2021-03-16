@@ -27,40 +27,38 @@ isConnected[i][i] == 1
 isConnected[i][j] == isConnected[j][i]
  */
 /**
- * visited数组，访问过就 visited = true 找到下一个，继续查找
+ * bfs
+ * 思路：把非0的值全部都塞到queue中
+ *
  * @param {number[][]} isConnected
  * @return {number}
  */
 var findCircleNum = function (isConnected) {
+  let result = 0
   const length = isConnected.length
   const visited = new Array(length).fill(false)
-  let result = 0
-
-  //遍历visited数组
+  const queue = []
   function main() {
-    for (let c = 0; c < length; c++) {
-      if (!visited[c]) {
+    for (let r = 0; r < length; r++) {
+      if (!visited[r]) {
         result++
-        walk(c)
+        walk(r)
       }
     }
   }
 
-  // 遍历上下左右
-  /**
-   * 把上下左右所有的点都变成0
-   * 1. 出口
-   * 2. 遍历过程
-   */
   function walk(r) {
-    for (let c = 0; c < length; c++) {
-      if (isConnected[r][c] === 1 && !visited[c]) {
-        visited[c] = true
-        walk(c)
+    queue.push(r)
+    while (queue.length > 0) {
+      const row = queue.shift()
+      visited[row] = true
+      for (let c = 0; c < length; c++) {
+        if (isConnected[row][c] === 1 && !visited[c]) {
+          queue.push(c)
+        }
       }
     }
   }
-
   main()
   return result
 }
