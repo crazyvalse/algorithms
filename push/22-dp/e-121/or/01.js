@@ -1,5 +1,5 @@
 /*
-给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。
+给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。
 你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 卖出该股票。设计一个算法来计算你所能获取的最大利润。
 返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。
 
@@ -22,31 +22,30 @@
 
  */
 /**
- * 1. 取出每一天后跟后面一天做比，找到最大值，然后下一个
- * 两层遍历：第一层是取出数据，第二层是比较计算
+ * 快慢指针
+ * slow 当前最小值
+ * fast next
  *
- * let max = 0
  *
- * for i = 0,...,length - 1 i ++
- *  for j = i + 1,...,length - 1; j ++
- *    if(prices[j] - prices[i] > max){
- *      max = prices[j] - prices[i]
- *    }
- *
- * return max
+ * max = Math.max(p[fast] - p[slow], max)
+ * if(p[fast] < p[slow]){
+ *   slow = false
+ * }
  * @param {number[]} prices
  * @return {number}
  */
 var maxProfit = function (prices) {
-  let max = 0
-  for (let i = 0; i < prices.length; i++) {
-    for (let j = i + 1; j < prices.length; j++) {
-      if (prices[j] - prices[i] > max) {
-        max = prices[j] - prices[i]
-      }
+  let result = 0
+  let slow = 0
+  let fast = 0
+  while (fast < prices.length) {
+    result = Math.max(prices[fast] - prices[slow], result)
+    if (prices[fast] < prices[slow]) {
+      slow = fast
     }
+    fast++
   }
-  return max
+  return result
 }
 
 module.exports = maxProfit

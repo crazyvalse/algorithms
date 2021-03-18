@@ -5,7 +5,7 @@ test('1', () => {
 })
 
 test('2', () => {
-  expect(coinChange([2, 4], 13)).toEqual(-1)
+  expect(coinChange([2], 3)).toEqual(-1)
 })
 
 test('3', () => {
