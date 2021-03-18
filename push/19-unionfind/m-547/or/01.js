@@ -53,9 +53,9 @@ var findCircleNum = function (isConnected) {
    * 2. 遍历过程
    */
   function walk(r) {
+    visited[r] = true
     for (let c = 0; c < length; c++) {
       if (isConnected[r][c] === 1 && !visited[c]) {
-        visited[c] = true
         walk(c)
       }
     }
