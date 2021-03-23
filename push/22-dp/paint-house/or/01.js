@@ -27,10 +27,9 @@ ENG
  */
 const paintHouse = function (cost) {
   const n = cost.length
-  const f = new Array(n + 1).fill(Array.from({ length: 3 }, () => Infinity))
-  f[0] = new Array(3).fill(0)
+  const f = Array.from({ length: n + 1 }, () => Array.from({ length: 3 }, () => Infinity))
+  f[0] = Array.from({ length: 3 }, () => 0)
   for (let i = 1; i <= n; i++) {
-    debugger
     f[i][0] = Math.min(f[i - 1][1] + cost[i - 1][1], f[i - 1][2] + cost[i - 1][2])
     f[i][1] = Math.min(f[i - 1][0] + cost[i - 1][0], f[i - 1][2] + cost[i - 1][2])
     f[i][2] = Math.min(f[i - 1][0] + cost[i - 1][0], f[i - 1][1] + cost[i - 1][1])
