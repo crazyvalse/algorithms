@@ -39,12 +39,12 @@ s 只包含数字，并且可能包含前导零。
  */
 /**
  * 1. 定义状态
- * dp[i]：以s[i]结尾的前缀子串有多少种解码方法
+ * dp[i]：前i个的组合数
  * 2. 状态转义方程
- *  - s[i] = '0' 不能单独解码
- *  - s[i] != '0' dp[i] = dp[i - 1] * 1
+ * 10 >= two && two <=26
+ * 1 <= one && one <= 9
  * 3. 初始化
- *
+ * dp[0] = 1
  * 4. 考虑输出
  *
  * 5. 优化
@@ -56,19 +56,24 @@ var numDecodings = function (s) {
   if (s === null || s.length === 0) {
     return 0
   }
-  const dp = Array(s.length + 1).fill(0)
+  const n = s.length
+  // 前i个 也就是 0,...,i - 1 个
+  const dp = Array(n + 1).fill(0)
   dp[0] = 1
-  dp[1] = s[0] !== '0' ? 1 : 0
-  for (let i = 2; i < s.length + 1; i++) {
-    const one = +s.slice(i - 1, i)
-    const two = +s.slice(i - 2, i)
-    if (two >= 10 && two <= 26) {
-      dp[i] = dp[i - 2]
-    }
-
-    if (one >= 1 && one <= 9) {
+  for (let i = 1; i <= n; i++) {
+    const one = s.slice(i - 1, i)
+    if (1 <= one && one <= 9) {
       dp[i] += dp[i - 1]
     }
+
+    if (i > 1) {
+      const two = s.slice(i - 2, i)
+      if (10 <= two && two <= 26) {
+        dp[i] += dp[i - 2]
+      }
+    }
   }
-  return dp[dp.length - 1]
+
+  return dp[n]
 }
+console.info(numDecodings('123911'))

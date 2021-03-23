@@ -69,4 +69,4 @@ var numDecodings = function (s) {
   return result
 }
 
-console.info(numDecodings('1239'))
+module.exports = numDecodings

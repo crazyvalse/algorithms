@@ -1,18 +1,28 @@
-const array = [{ a: 1, b: 2 }]
-
-function deepCopy(obj) {
-  if (typeof obj !== 'object') {
-    return obj
+const data = [
+  {
+    key: 'name',
+    value: '豆皮范儿'
+  },
+  {
+    key: 'age',
+    value: 1
+  },
+  {
+    key: 'from',
+    value: '数据平台'
   }
-  const result = Array.isArray(obj) ? [] : {}
-  for (let key in obj) {
-    result[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key]
-  }
-  return result
-}
+]
 
-const b = deepCopy(array)
+const processFn = (data) =>
+  data.reduce((pre, { key, value }) => {
+    return {
+      ...pre,
+      [key]: value
+    }
+  }, {})
 
-b[0].a = 2
+console.info(processFn(data))
+console.info(Object.fromEntries(data.map(Object.values)))
+console.info(data.map(Object.values))
 
-console.info(array, b)
+console.info(Object.values({ a: 1, b: 2 }))
