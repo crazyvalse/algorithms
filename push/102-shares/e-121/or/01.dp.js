@@ -19,15 +19,13 @@
 提示：
 1 <= prices.length <= 105
 0 <= prices[i] <= 104
+
+参考题解： https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/gu-piao-wen-ti-python3-c-by-z1m/
+
  */
 /**
- * - dp含义
- * dp[i] 指的是当前最大利润
- * - 状态转移
- * dp[i] = Math.max()
- *
- * 初始化
- *
+ * - f
+ * f[i] 前i天 最大利润
  *
  * @param {number[]} prices
  * @return {number}
@@ -36,11 +34,17 @@ var maxProfit = function (prices) {
   if (!Array.isArray(prices) || prices.length < 1) {
     return 0
   }
-  const dp = new Array(prices.length).fill(0)
-  for (let i = 1; i < prices.length; i++) {
-    dp[i] = Math.max(prices[i] - prices[i - 1] + dp[i - 1], 0)
+  const n = prices.length
+  let f = Array.from({ length: n + 1 }, () => 0)
+  let minPrice = Infinity
+  f[0] = 0
+  for (let i = 1; i <= n; i++) {
+    if (minPrice > prices[i - 1]) {
+      minPrice = prices[i - 1]
+    }
+    f[i] = Math.max(f[i - 1], prices[i - 1] - minPrice)
   }
-  return dp[prices.length - 1]
+  return f[n]
 }
 
 module.exports = maxProfit
