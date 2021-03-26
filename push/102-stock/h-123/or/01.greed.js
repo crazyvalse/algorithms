@@ -39,52 +39,32 @@
 0 <= prices[i] <= 105
 
 https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/solution/di-gui-dong-tai-gui-hua-tan-xin-er-fen-4-xxd5/
-
+https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/solution/di-gui-dong-tai-gui-hua-tan-xin-er-fen-4-xxd5/
  */
 /**
- * 思路
- * 只要 prices[i] > prices[i - 1] result += 差值
- * @param {number[]} prices
- * @return {number}
- */
-/**
- * 1. 状态
- * buy1 第一次买
- * sell1 第一次卖
- * buy2 第二次买
- * sell2 第二次卖
  *
- * 2. 状态转义
- *
- * buy1[i] = Max(buy[i - 1], - price[i])
- * sell1[i] = Max(sell1[i - 1], buy1[i - 1] + price[i])
- * buy2[i] = Max(buy2[i - 1], sell1[i - 1] - price[i])
- * sell2[i] = Max(sell2[i - 1], buy2[i - 1] + price[i])
  * @param {number[]} prices
  * @return {number}
  */
 var maxProfit = function (prices) {
-  if (!Array.isArray(prices) || prices.length === 0) {
-    return 0
+  let n = prices.length
+  let i = 0
+  let min = prices[0]
+  let max = prices[n - 1]
+  let dp0 = Array(n)
+  let dp1 = 0
+  let r = 0
+  let t // 利润
+  while (++i < n) {
+    ;(t = prices[i] - min) < 0 ? (min = prices[i]) : (dp0[i] = t)
   }
-  const n = prices.length
-  const buy1 = Array.from({ length: n }, () => 0)
-  const buy2 = Array.from({ length: n }, () => 0)
-  const sell1 = Array.from({ length: n }, () => 0)
-  const sell2 = Array.from({ length: n }, () => 0)
-
-  buy1[0] = -prices[0]
-  sell1[0] = 0
-  buy2[0] = -prices[0]
-  sell2[0] = 0
-
-  for (let i = 1; i < n; i++) {
-    buy1[i] = Math.max(buy1[i - 1], -prices[i])
-    sell1[i] = Math.max(sell1[i - 1], buy1[i - 1] + prices[i])
-    buy2[i] = Math.max(buy2[i - 1], sell1[i - 1] - prices[i])
-    sell2[i] = Math.max(sell2[i - 1], buy2[i - 1] + prices[i])
+  console.info(dp0)
+  while (i-- > 1) {
+    ;(t = max - prices[i]) < 0 ? (max = prices[i]) : t > dp1 && (dp1 = t)
+    ;(t = dp0[i] + dp1) > r && (r = t)
   }
-  return sell2[n - 1]
+  return r
 }
 
 module.exports = maxProfit
+maxProfit([3, 3, 5, 0, 0, 3, 1, 4])
