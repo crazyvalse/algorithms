@@ -48,10 +48,10 @@ var search = function (nums, target) {
 }
 
 const walk = function (nums, target, left, right) {
-  const pivot = left + Math.floor((right - left) / 2)
   if (left > right) {
     return -1
   }
+  const pivot = left + Math.floor((right - left) / 2)
   if (nums[pivot] === target) {
     return pivot
   } else if (nums[pivot] < target) {
