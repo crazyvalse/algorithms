@@ -1,5 +1,6 @@
 /**
- *
+ * 二分法查找
+ * 先找一半
  * @param array
  * @param key
  */
@@ -7,13 +8,13 @@ function search(array, key) {
   let left = 0
   let right = array.length - 1
   while (left <= right) {
-    let mid = parseInt((right + left) / 2)
-    if (array[mid] === key) {
-      return mid
-    } else if (key < array[mid]) {
-      right = mid - 1
+    const pivot = left + ((right - left) >>> 1)
+    if (array[pivot] === key) {
+      return pivot
+    } else if (array[pivot] > key) {
+      right = pivot - 1
     } else {
-      left = mid + 1
+      left = pivot + 1
     }
   }
   return -1
