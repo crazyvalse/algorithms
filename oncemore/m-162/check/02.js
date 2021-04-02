@@ -26,23 +26,28 @@
  */
 
 /**
+ * 二分法
  *
- * 只要是 nums[i] > nums[i + 1] return i 说明开始下降了
+ * 正常情况：
+ *  [pivot] < [pivot + 1] 峰值在 右侧
+ *  [pivot] > [pivot + 1] 峰值在 左侧
  *
- * 兜底的就是 length - 1
+ * 边界情况
+ *
  * @param {number[]} nums
  * @return {number}
  */
 var findPeakElement = function (nums) {
-  if (!Array.isArray(nums) || nums.length < 1) {
-    return -1
-  }
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] < nums[i - 1]) {
-      return i - 1
+  let left = 0
+  let right = nums.length - 1
+  while (left < right) {
+    const pivot = left + Math.floor((right - left) / 2)
+    if (nums[pivot] < nums[pivot + 1]) {
+      left = pivot + 1
+    } else {
+      right = pivot
     }
   }
-  return nums.length - 1
+  return left
 }
-
 module.exports = findPeakElement

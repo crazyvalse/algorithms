@@ -27,22 +27,29 @@
 
 /**
  *
- * 只要是 nums[i] > nums[i + 1] return i 说明开始下降了
+ *  二分法递归
  *
- * 兜底的就是 length - 1
+ *  停止
+ *  left === right
+ *  正常
+ *  [pivot] < [pivot + 1] 峰值在 右侧
+ *  [pivot] > [pivot + 1] 峰值在 左侧
+ *
  * @param {number[]} nums
  * @return {number}
  */
 var findPeakElement = function (nums) {
-  if (!Array.isArray(nums) || nums.length < 1) {
-    return -1
-  }
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] < nums[i - 1]) {
-      return i - 1
+  const walk = function (nums, left, right) {
+    if (left === right) {
+      return left
+    }
+    const pivot = left + Math.floor((right - left) / 2)
+    if (nums[pivot] < nums[pivot + 1]) {
+      return walk(nums, pivot + 1, right)
+    } else {
+      return walk(nums, left, pivot)
     }
   }
-  return nums.length - 1
+  return walk(nums, 0, nums.length - 1)
 }
-
 module.exports = findPeakElement

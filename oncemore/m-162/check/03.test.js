@@ -1,4 +1,4 @@
-const findPeakElement = require('./02')
+const findPeakElement = require('./03')
 
 test('1', () => {
   expect(findPeakElement([1, 2, 3, 1])).toBe(2)

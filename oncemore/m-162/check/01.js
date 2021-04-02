@@ -26,23 +26,11 @@
  */
 
 /**
- *
- * 只要是 nums[i] > nums[i + 1] return i 说明开始下降了
+ * 只要是 nums[i] > nums[i + 1] return i
  *
  * 兜底的就是 length - 1
  * @param {number[]} nums
  * @return {number}
  */
-var findPeakElement = function (nums) {
-  if (!Array.isArray(nums) || nums.length < 1) {
-    return -1
-  }
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] < nums[i - 1]) {
-      return i - 1
-    }
-  }
-  return nums.length - 1
-}
-
+var findPeakElement = function (nums) {}
 module.exports = findPeakElement
