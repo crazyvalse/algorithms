@@ -19,7 +19,8 @@ T_4 = 1 + 1 + 2 = 4
 输入：n = 25
 输出：1389537
  */
-var tri = function (n, t1, t2, t3) {
+
+var tri = function (n, t1 = 0, t2 = 1, t3 = 1) {
   if (n === 0) {
     return 0
   }

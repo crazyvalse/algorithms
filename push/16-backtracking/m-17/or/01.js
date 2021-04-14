@@ -57,6 +57,4 @@ var letterCombinations = function (digits) {
   return result
 }
 
-console.info(letterCombinations('23'))
-
 module.exports = letterCombinations

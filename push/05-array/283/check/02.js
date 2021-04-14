@@ -21,23 +21,37 @@
  * @param {number[]} nums
  * @return nums Do not return anything, modify nums in-place instead.
  */
-var moveZeroes = function (nums) {
+var moveZeroes = function (array) {
+  let counter = 0
   let l = 0
   let f = 0
-  while (f < nums.length) {
-    if (nums[f] !== 0) {
-      swap(nums, l++, f)
+  while (f < array.length - counter) {
+    l = f
+    if (array[f] === 0) {
+      while (f < array.length && array[f] === 0) {
+        f++
+      }
+      move(array, l, array.length - 1 - counter, f - l)
+      counter += f - l
+    } else {
+      f++
     }
-    f++
   }
-  return nums
+  return array
 }
 
-function swap(array, a, b) {
-  if (a === b) {
-    return
+const move = function (array, l, r, k) {
+  reverse(array, l, l + k - 1)
+  reverse(array, l + k, r)
+  reverse(array, l, r)
+  return array
+}
+const reverse = function (array, l, r) {
+  while (l < r) {
+    ;[array[l], array[r]] = [array[r], array[l]]
+    l++
+    r--
   }
-  ;[array[a], array[b]] = [array[b], array[a]]
 }
 
 module.exports = moveZeroes

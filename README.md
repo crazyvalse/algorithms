@@ -227,6 +227,11 @@ stack
 
 ### 3.17 贪心算法
 
+### 4.12 - 4.17
+
+- backtracking
+- recursive
+
 ## 推荐文章
 
 - https://juejin.cn/post/6900698814093459463?utm_source=gold_browser_extension

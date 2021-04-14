@@ -15,18 +15,15 @@ function sort(array, left = 0, right = array.length - 1) {
   merge(array, left, right)
 }
 
-// 原地 merge
 /**
- *
  * 移动窗口
- * 1,3,5,6,1,2,3,4
+ * 1, 3, 5, 6, 1, 2, 3, 4
  * 1, [1, 2, 3], 3, 5, 6, 4
  * @param array
  * @param left
  * @param right
  */
 function merge(array, left, right) {
-  debugger
   let l = left
   let pivot = left + ((right - left) >>> 1)
   let r = pivot + 1

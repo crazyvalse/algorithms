@@ -1,15 +1,12 @@
 /**
  * 冒泡思路
- * 1. 先排大数
- * for i = length,..., 0; i --
- *  for j = 0,...,i - 1; j ++
- *
+ * 比较两个数的大小 后面的小就交换直到最后一位
  */
 function sort(array, reverse) {
-  for (let i = array.length; i > 1; i--) {
-    for (let j = 0; j < i - 1; j++) {
-      if (array[j] > array[j + 1]) {
-        swap(array, j, j + 1)
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 1; j < array.length - i; j++) {
+      if (array[j] < array[j - 1]) {
+        swap(array, j, j - 1)
       }
     }
   }

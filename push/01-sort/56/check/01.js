@@ -16,41 +16,33 @@
  ------------------------------------------------------------------------------------------------------------------------
  1. 排序第一个元素 sort(array[0])
  2. 判断下一组第一个值比merged数组中的最后一个值的第二个值大的话 if(array[i][0] > merged[last][1])， merged.push()
-  - 否则 merged.push()
+ - 否则 merged.push()
  * @param {number[][]} intervals
  * @return {number[][]}
  */
 const merge = function (intervals) {
-  // 排序
-  intervals.sort((a, b) => a[0] - b[0])
-  const result = []
-  for (let i = 0; i < intervals.length; i++) {
-    if (result.length === 0 || intervals[i][0] > result[result.length - 1][1]) {
+  if (intervals.length < 2) {
+    return intervals
+  }
+  const result = [intervals[0]]
+  const left = 0
+  const right = 1
+  intervals.sort((a, b) => {
+    if (a[left] === b[left]) {
+      return a[right] - b[right]
+    } else {
+      return a[left] - b[left]
+    }
+  })
+  // 主要是判断右括号
+  for (let i = 1; i < intervals.length; i++) {
+    if (result.length === 0 || intervals[i][left] > result[result.length - 1][right]) {
       result.push(intervals[i])
     } else {
-      result[result.length - 1][1] = Math.max(result[result.length - 1][1], intervals[i][1])
+      result[result.length - 1][right] = Math.max(intervals[i][right], result[result.length - 1][right])
     }
   }
   return result
-}
-
-function merge1 (array) {
-  const left = 0
-  const right = 1
-  if (array.length < 2) {
-    return array
-  }
-  array.sort((a, b) => a[left] - b[left])
-
-  return array.reduce((result, item) => {
-    let resultLastIndex = result.length - 1
-    if (item[left] > result[resultLastIndex][right]) {
-      result.push(item)
-    } else {
-      result[resultLastIndex][right] = Math.max(item[right], result[resultLastIndex][right])
-    }
-    return result
-  }, [array[0]])
 }
 
 module.exports = merge

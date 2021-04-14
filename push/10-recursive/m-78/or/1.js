@@ -39,20 +39,17 @@ nums 中的所有元素 互不相同
  */
 
 var subsets = function (nums) {
-  const t = []
-  const ans = []
-  const dfs = (cur) => {
-    if (cur === nums.length) {
-      ans.push(t.slice())
-      return
+  const result = []
+  const walk = function (index, cart) {
+    result.push(cart.slice())
+    for (let i = index; i < nums.length; i++) {
+      cart.push(nums[i])
+      walk(i + 1, cart)
+      cart.pop()
     }
-    t.push(nums[cur])
-    dfs(cur + 1, nums)
-    t.pop(t.length - 1)
-    dfs(cur + 1, nums)
   }
-  dfs(0, nums)
-  return ans
+  walk(0, [])
+  return result
 }
 
-console.info(subsets([1, 2, 3, 4]))
+console.info(subsets([1, 2, 3]))

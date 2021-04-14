@@ -5,8 +5,10 @@ function swap(array, a, b) {
 }
 
 function reverse(array) {
-  for (let i = 0, length = array.length / 2; i < length; i++) {
-    swap(array, i, array.length - i - 1)
+  let left = 0
+  let right = array.length - 1
+  while (left < right) {
+    swap(array, left++, right--)
   }
   return array
 }

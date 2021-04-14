@@ -40,4 +40,3 @@ var divingBoard = function (shorter, longer, k) {
 }
 
 module.exports = divingBoard
-console.info(divingBoard(2, 10, 30))

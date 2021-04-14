@@ -10,23 +10,34 @@
  */
 /**
  * 题目
- * 冒泡排序 - 只排 0
+ * 挤泡泡
+ * 数组向左移动
  * @param {number[]} nums
  * @return nums Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function (array) {
-  for (let i = array.length; i > 0; i--) {
-    for (let j = 0; j < i - 1; j++) {
-      if (array[j] === 0) {
-        swap(array, j, j + 1)
-      }
+  let f = 0
+  while (f < array.length) {
+    if (array[f] === 0) {
+      move(array, f, array.length - 1, 1)
     }
+    f++
   }
   return array
 }
 
-function swap(array, a, b) {
-  ;[array[a], array[b]] = [array[b], array[a]]
+const move = function (array, l, r, k) {
+  reverse(array, l, l + k - 1)
+  reverse(array, l + k, r)
+  reverse(array, l, r)
+  return array
+}
+const reverse = function (array, l, r) {
+  while (l < r) {
+    ;[array[l], array[r]] = [array[r], array[l]]
+    l++
+    r--
+  }
 }
 
 module.exports = moveZeroes

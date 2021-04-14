@@ -23,23 +23,39 @@
 输出：-100000
  */
 /**
- *  1. 当 前面 相加的结果为负数，需要丢弃之前的结果，赋值当前的值
- *  2. max 判断结果
+ * sum：前面的和 如果前一个的值相加后小于0 sum 等于当前值，否则相加
+ * 加完之后比较
+ * max：当前最大和
+ *
+ * if(array[i] + sum <= 0){
+ *   sum = array[i]
+ * } else {
+ *   sum = sum + array[i]
+ * }
+ * max = Math.max(max, sum)
+ *
+ * 初始化
+ * let = sum
+ *
+ * max = array[0]
+ *
+ * 初始化
+ *
+ *
  *
  *
  * @param {number[]} nums
  * @return {number}
  */
 var maxSubArray = function (nums) {
-  if (nums.length === 0) {
-    return null
+  if (nums.length === 1) {
+    return nums[0]
   }
   let max = nums[0]
-  let sum = nums[0] // 目前相加的结果
+  let sum = nums[0]
+
   for (let i = 1; i < nums.length; i++) {
-    sum = sum < 0 ? nums[i] : sum + nums[i]
-    // 如果前面相加的值还没有当前的大，就果断抛弃
-    // sum = Math.max(nums[i], sum + nums[i])
+    sum = sum <= 0 ? nums[i] : sum + nums[i]
     max = Math.max(max, sum)
   }
   return max

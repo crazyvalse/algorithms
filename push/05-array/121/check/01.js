@@ -16,33 +16,35 @@
 解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
 
 提示：
-
 1 <= prices.length <= 105
 0 <= prices[i] <= 104
-
  */
 /**
  * 分析
- *  l：记录最低点 只要比low低，就 l = f
- *  f：记录下一个
- *  max：当前最大值
+ * max
+ * s 最低的
+ * f++
+ * if(f < s){
+ *   s = f
+ * } else {
+ *   max = Math.max(max, f - s)
+ * }
  *
  * @param {number[]} prices
  * @return {number}
  */
 var maxProfit = function (prices) {
-  let l = 0
-  let f = 0
   let max = 0
+  let s = 0
+  let f = 0
   while (f < prices.length) {
-    if (prices[l] > prices[f]) {
-      l = f
+    if (prices[f] < prices[s]) {
+      s = f
     } else {
-      max = Math.max(max, prices[f] - prices[l])
+      max = Math.max(max, prices[f] - prices[s])
     }
     f++
   }
-
   return max
 }
 

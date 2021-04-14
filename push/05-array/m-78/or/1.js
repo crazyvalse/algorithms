@@ -39,5 +39,10 @@ nums 中的所有元素 互不相同
  * @return {number[][]}
  */
 var subsets = function (nums) {
-
+  return nums.reduce(
+    (pre, cur) => {
+      return [...pre, ...pre.map((item) => [...item, cur])]
+    },
+    [[]]
+  )
 }
