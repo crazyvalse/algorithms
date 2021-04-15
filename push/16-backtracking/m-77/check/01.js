@@ -40,6 +40,7 @@
  */
 var combine = function (n, k) {
   const result = []
+
   const walk = function (index, cart) {
     if (cart.length === k) {
       result.push(cart.slice())

@@ -52,12 +52,14 @@ nums 中的所有元素 互不相同
 
 var subsets = function (nums) {
   const result = []
-  const walk = function (index, cart) {
-    result.push(cart.slice())
-    for (let i = index; i < nums.length; i++) {
-      cart.push(nums[i])
-      walk(i + 1, cart)
-      cart.pop()
+  const length = nums.length
+  const walk = (bucket, container) => {
+    result.push(container.slice())
+    for (let i = bucket; i < length; i++) {
+      container.push(nums[i])
+      // 下一位只能是 i 后面的
+      walk(i + 1, container)
+      container.pop()
     }
   }
   walk(0, [])
