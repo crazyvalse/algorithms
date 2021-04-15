@@ -1,6 +1,7 @@
 let parent = Array.from({ length: 10 }, (item, index) => (index - 1 < 0 ? 0 : index - 1)) // [0, 0, 2, 2, 4, 4, 5, 7]
 
 parent = parent.concat([10, 10, 11, 12])
+console.info(parent)
 // console.info(parents.length)
 
 // function find(x) {

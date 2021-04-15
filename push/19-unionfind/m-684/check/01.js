@@ -62,28 +62,22 @@ class UnionFind {
 }
 
 /**
- * 1. 当确定每个点都有一个共同顶点时，剩下的就是多余的
+ *
  * @param {number[][]} edges
  * @return {number[]}
  */
 var findRedundantConnection = function (edges) {
-  let counter = 0
-  const crt = edges.reduce((pre, cur) => {
-    for (let t of cur) {
-      if (pre[t] === undefined) {
-        pre[t] = counter++
-      }
-    }
-    return pre
-  }, {})
-  const uf = new UnionFind(counter)
-  for (let e of edges) {
-    if (uf.isConnected(crt[e[0]], crt[e[1]])) {
-      return e
+  let n = edges.length
+  const uf = new UnionFind(n)
+  for (let i = 0; i < n; i++) {
+    const [x, y] = edges[i]
+    if (uf.isConnected(x, y)) {
+      return [x, y]
     } else {
-      uf.union(crt[e[0]], crt[e[1]])
+      uf.union(x, y)
     }
   }
+  return []
 }
 
 console.info(
