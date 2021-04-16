@@ -35,24 +35,25 @@ var trap = function (heights) {
   if (heights.length < 1) {
     return 0
   }
-  let inc = 0
-  let left = 0
-  let right = heights.length - 1
-  let leftMax = heights[left]
-  let rightMax = heights[right]
-  while (left < right) {
-    // 当右高的时候，使用左侧的max计算当前height的积水量 left ++
-    if (heights[left] < heights[right]) {
-      leftMax = Math.max(heights[left], leftMax)
-      inc += Math.min(leftMax, heights[right]) - heights[left]
-      left++
+  let result = 0
+  let l = 0
+  let r = heights.length - 1
+  let leftMax = [heights[0]]
+  let rightMax = [heights[heights.length - 1]]
+
+  while (l <= r) {
+    // 左边的小，就处理左边的
+    if (leftMax < rightMax) {
+      leftMax = Math.max(leftMax, heights[l])
+      result += leftMax - heights[l]
+      l++
     } else {
-      rightMax = Math.max(heights[right], rightMax)
-      inc += Math.min(rightMax, heights[left]) - heights[right]
-      right--
+      rightMax = Math.max(rightMax, heights[r])
+      result += rightMax - heights[r]
+      r--
     }
   }
-  return inc
+  return result
 }
 
 module.exports = trap

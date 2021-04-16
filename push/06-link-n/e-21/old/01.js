@@ -24,24 +24,35 @@ function ListNode(val, next) {
 }
 
 /**
- * 给一个 假的跟节点 hair
- * 然后从两个列表中获取下一个节点 结束之后 把剩下的那个节点接上
+ * 合并
+ * 1. 停止：
+ * l1 === null || l2 === null
+ * 2. 返回值 point 返回最小的那个指针
+ * l1 === null l2
+ * l2 === null l2
+ *
+ * 3. 方法：返回最小的那个 每一个 判断 l1.val 与 l2.val 之间的大小
+ *  if(l1.val < l2.val)
+ *  l1 = fn(l1.next, l2)
+ *  return l1
+ *  else
+ *  l2 = fn(l1, l2.next)
+ *
  * */
 const mergeTwoLists = function (l1, l2) {
-  const hair = new ListNode()
-  let next = hair
-  while (l1 && l2) {
-    if (l1.val > l2.val) {
-      next.next = l2
-      l2 = l2.next
-    } else {
-      next.next = l1
-      l1 = l1.next
-    }
-    next = next.next
+  if (!l1) {
+    return l2
   }
-  next.next = l1 || l2
-  return hair.next
+  if (!l2) {
+    return l1
+  }
+  if (l1.val < l2.val) {
+    l1.next = mergeTwoLists(l1.next, l2)
+    return l1
+  } else {
+    l2.next = mergeTwoLists(l1, l2.next)
+    return l2
+  }
 }
 
 module.exports = {
