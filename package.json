@@ -14,8 +14,7 @@
     "test": "jest"
   },
   "husky": {
-    "hooks": {
-    }
+    "hooks": {}
   },
   "lint-staged": {
     "src/**/*.js": [
@@ -107,5 +106,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "dependencies": {}
 }

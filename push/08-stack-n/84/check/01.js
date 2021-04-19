@@ -9,37 +9,14 @@
 输出: 10
  */
 /**
- * 暴力法：
- * let max
- * 遍历 heights
- * 1. 找到左侧第一个 < heights[i]  left = [0, i]
- * 2. right = [i, length - 1]
- * @param {number[]} heights
- * @return {number}
- */
-/**
- * 1. 只需要向右查看最大值即可
+ * 递减栈
+ * 如果碰到高的探出
+ * max = Max(height[i],  )
  * @param heights
  * @returns {number}
  */
 var largestRectangleArea = function (heights) {
   let max = 0
-
-  for (let i = 0; i < heights.length; i++) {
-    let left = i
-    while (left >= 0 && heights[left] >= heights[i]) {
-      left--
-    }
-    let right = i
-    while (right < heights.length && heights[right] >= heights[i]) {
-      right++
-    }
-    let distance = right - left - 1
-    let area = heights[i] * distance
-    max = Math.max(max, area)
-  }
-
-  return max
 }
 
 module.exports = largestRectangleArea

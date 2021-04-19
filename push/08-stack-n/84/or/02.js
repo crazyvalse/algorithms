@@ -19,6 +19,7 @@ var largestRectangleArea = function (heights) {
   heights.push(0)
   heights.unshift(0)
   for (var i = 0; i < heights.length; i++) {
+    // 栈顶的 大于 当前的 处理
     while (stack.length > 0 && heights[stack[stack.length - 1]] > heights[i]) {
       maxarea = Math.max(maxarea, heights[stack.pop()] * (i - stack[stack.length - 1] - 1))
     }

@@ -29,18 +29,10 @@
  * @return {number}
  */
 var climbStairs = function (n) {
-  if (n < 3) {
+  if (n <= 2) {
     return n
   }
-  let pp = 1
-  let p = 2
-  let c = 0
-  for (let i = 3; i <= n; i++) {
-    c = pp + p
-    pp = p
-    p = c
-  }
-  return c
+  return climbStairs(n - 1) + climbStairs(n - 2)
 }
 
 module.exports = climbStairs

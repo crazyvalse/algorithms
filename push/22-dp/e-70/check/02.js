@@ -25,22 +25,30 @@
 
  */
 /**
+ * 1. 定义
+ * f[i] 第i个台阶有多少种方法
+ * 2. 转义方程
+ * f[i] = f[i - 1] + f[i - 2]
+ * 3. 初始化
+ * f[0] = 0
+ * f[1] = 1
+ * f[2] = 2
+ *
+ * 4. 空间优化
+ *
+ *
  * @param {number} n
  * @return {number}
  */
 var climbStairs = function (n) {
-  if (n < 3) {
+  if (n <= 2) {
     return n
   }
-  let pp = 1
-  let p = 2
-  let c = 0
+  const f = Array.from({ length: n + 1 }, (a, i) => i)
   for (let i = 3; i <= n; i++) {
-    c = pp + p
-    pp = p
-    p = c
+    f[i] = f[i - 1] + f[i - 2]
   }
-  return c
+  return f[n]
 }
 
 module.exports = climbStairs
