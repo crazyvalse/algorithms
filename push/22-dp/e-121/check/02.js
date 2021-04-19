@@ -22,30 +22,26 @@
 
  */
 /**
- * 快慢指针
- * slow 当前最小值
- * fast next
+ * f[i] 第i天 最大利润
  *
- *
- * max = Math.max(p[fast] - p[slow], max)
- * if(p[fast] < p[slow]){
- *   slow = false
+ * if(prices[i] < lowest) {
+ *   lowest = prices[i]
  * }
+ * f[i] = Max(f[i - 1] + (prices[i] - prices[i - 1]), prices[i] - lowest)
  * @param {number[]} prices
  * @return {number}
  */
 var maxProfit = function (prices) {
-  let n = prices.length
-  if (n === 0) {
-    return 0
+  const f = Array.from({ length: prices.length }, () => 0)
+  let lowest = prices[0]
+  f[0] = 0
+  for (let i = 1; i < prices.length; i++) {
+    if (prices[i] < lowest) {
+      lowest = prices[i]
+    }
+    f[i] = Math.max(f[i - 1], prices[i] - lowest)
   }
-  let minPrice = prices[0]
-  let dp = new Array(n)
-  for (let i = 1; i < n; i++) {
-    minPrice = Math.min(minPrice, prices[i])
-    dp[i] = Math.max(dp[i - 1], prices[i] - minPrice)
-  }
-  return dp[n - 1]
+  return f[prices.length - 1]
 }
 
 module.exports = maxProfit

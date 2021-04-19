@@ -22,30 +22,34 @@
 
  */
 /**
- * 快慢指针
- * slow 当前最小值
- * fast next
+ * 数组遍历：快慢指针
+ * 慢指针： 最小的那个值
+ * 快指针： 正常向前推进
  *
- *
- * max = Math.max(p[fast] - p[slow], max)
- * if(p[fast] < p[slow]){
- *   slow = false
+ * if(prices[r] < prices[l]){
+ *   l = r
+ *   continue
  * }
+ *
+ * max = Max(prices[r] - prices[l])
+ *
  * @param {number[]} prices
  * @return {number}
  */
 var maxProfit = function (prices) {
-  let result = 0
-  let slow = 0
-  let fast = 0
-  while (fast < prices.length) {
-    result = Math.max(prices[fast] - prices[slow], result)
-    if (prices[fast] < prices[slow]) {
-      slow = fast
+  let s = 0
+  let f = 0
+  let max = 0
+  while (f < prices.length) {
+    if (prices[f] < prices[s]) {
+      s = f
+      continue
     }
-    fast++
+    max = Math.max(prices[f] - prices[s], max)
+    f++
   }
-  return result
+
+  return max
 }
 
 module.exports = maxProfit
