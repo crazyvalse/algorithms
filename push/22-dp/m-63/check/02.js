@@ -27,49 +27,29 @@ obstacleGrid[i][j] 为 0 或 1
 
  */
 /**
- * f[r][c] = 第 r 行 c 列 路线数
- *
- * 状态转移
+ * f[r][c] 第r行第c列 共有多少种路径
+ * 如果 grid[r][c] === 1 => f[r][c] = 0 continue
  *
  * f[r][c] = f[r - 1][c] + f[r][c - 1]
- *
- * 边界
- *
- * if(r = 0){
- *   f[r][c] = f[r][c - 1 < 0? 0 : c - 1]
- * }
- *
  *
  * @param {number[][]} obstacleGrid
  * @return {number}
  */
 var uniquePathsWithObstacles = function (obstacleGrid) {
-  if (obstacleGrid.length < 1 || obstacleGrid[0].length < 1 || obstacleGrid[0][0] === 1) {
-    return 0
-  }
   const row = obstacleGrid.length
   const column = obstacleGrid[0].length
-
-  const f = Array.from({ length: row }, () => Array.from({ length: column }, () => 0))
-  for (let r = 0; r < row; r++) {
-    for (let c = 0; c < column; c++) {
-      if (r === 0 && c === 0) {
-        f[r][c] = 1
+  const f = Array.from({ length: row + 1 }, () => Array(column + 1).fill(0))
+  f[0][1] = 1
+  for (let r = 1; r <= row; r++) {
+    for (let c = 1; c <= column; c++) {
+      if (obstacleGrid[r - 1][c - 1] === 1) {
+        f[r][c] = 0
         continue
       }
-      if (obstacleGrid[r][c] === 0) {
-        if (r === 0) {
-          f[r][c] = obstacleGrid[r][c - 1] === 0 ? f[r][c - 1] : 0
-        } else if (c === 0) {
-          f[r][c] = obstacleGrid[r - 1][c] === 0 ? f[r - 1][c] : 0
-        } else {
-          f[r][c] = obstacleGrid[r][c - 1] === 0 ? f[r][c - 1] : 0
-          f[r][c] += obstacleGrid[r - 1][c] === 0 ? f[r - 1][c] : 0
-        }
-      }
+      f[r][c] = f[r - 1][c] + f[r][c - 1]
     }
   }
-  return f[row - 1][column - 1]
+  return f[row][column]
 }
 
 module.exports = uniquePathsWithObstacles
