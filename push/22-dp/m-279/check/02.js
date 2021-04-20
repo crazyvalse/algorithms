@@ -2,10 +2,10 @@
 279. 完全平方数
 
 给定正整数 n，找到若干个完全平方数（比如 1, 4, 9, 16, ...）使得它们的和等于 n。你需要让组成和的完全平方数的个数最少。
-
 给你一个整数 n ，返回和为 n 的完全平方数的 最少数量 。
 
-完全平方数 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。
+完全平方数 是一个整数，其值等于另一个整数的平方；
+换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。
 
 示例 1：
 输入：n = 12
@@ -24,25 +24,23 @@
  */
 
 /**
- * dp 完全平方数的个数
+ * f[i] 最小平方数
  *
- *
+ *  dp[i] = Math.min(dp[i - inc] + 1, dp[i])
  * @param {number} n
  * @return {number}
  */
 var numSquares = function (n) {
-  const dp = new Array(n + 1).fill(n)
-  dp[0] = 0
-  const maxN = Math.floor(Math.sqrt(n))
-  const squares = Array.from({ length: maxN + 1 }, (num, i) => i * i)
-  for (let i = 0; i <= n; i++) {
-    for (let square of squares) {
-      if (square <= i) {
-        dp[i] = Math.min(dp[i], dp[i - square] + 1)
+  const f = Array(n + 1).fill(n + 1)
+  f[0] = 0
+  for (let i = 1; i <= n; i++) {
+    for (let j = 0; j <= i; j++) {
+      if (i - j * j >= 0) {
+        f[i] = Math.min(f[i - j * j] + 1, f[i])
       }
     }
   }
-  return dp[n]
+  return f[n]
 }
 
 module.exports = numSquares

@@ -24,25 +24,27 @@
  */
 
 /**
- * dp 完全平方数的个数
- *
- *
  * @param {number} n
  * @return {number}
  */
 var numSquares = function (n) {
-  const dp = new Array(n + 1).fill(n)
-  dp[0] = 0
-  const maxN = Math.floor(Math.sqrt(n))
-  const squares = Array.from({ length: maxN + 1 }, (num, i) => i * i)
-  for (let i = 0; i <= n; i++) {
-    for (let square of squares) {
-      if (square <= i) {
-        dp[i] = Math.min(dp[i], dp[i - square] + 1)
-      }
+  let result = Infinity
+  const walk = function (rest, cart) {
+    if (rest < 0) {
+      return
+    }
+    if (rest === 0) {
+      result = Math.min(result, cart)
+      return
+    }
+    const x = Math.floor(Math.sqrt(n))
+    for (let i = 1; i <= x; i++) {
+      const n = Math.pow(i, 2)
+      walk(rest - n, cart + 1)
     }
   }
-  return dp[n]
+  walk(n, 0)
+  return result === Infinity ? 0 : result
 }
 
 module.exports = numSquares
