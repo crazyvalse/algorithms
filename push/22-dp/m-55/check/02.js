@@ -22,33 +22,19 @@
  */
 /**
  * 描述清楚思路的过程
- * 从数组中取出
-
- * - 状态
- * dp 当前能跳的最大位置
- * - 状态转义方程
- * dp[i] = Math.max(i + array[i], dp[i - 1])
- * - 初始化 边界
- * dp[0] = array[i]
- * dp[i] = 0,...,0
- * - 优化
- *
- * dp[length - 1] >= length - 1
- *
+ * f[i] 表示能否调到第i - 1个位置
+ * 涂格子， 把 后面能跳到的位置全部涂满，如果调不到就跳出
+ * if f[i - 1] === true
  * @param nums
  */
 const canJump = function (nums) {
-  if (!Array.isArray(nums) || nums.length < 2) {
-    return true
-  }
   const n = nums.length
-  const f = Array.from({ length }, () => false)
+  const f = Array(n + 1).fill(false)
   f[0] = true
-  for (let j = 1; j < n; j++) {
-    for (let i = 0; i < j; i++) {
-      if (f[i] && i + nums[i] >= j) {
-        f[j] = true
-        break
+  for (let i = 1; i < n && f[i - 1]; i++) {
+    for (let j = i; j < n; j++) {
+      if (j <= i - 1 + nums[i - 1]) {
+        f[i] = true
       }
     }
   }

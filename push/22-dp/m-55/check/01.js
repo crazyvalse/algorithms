@@ -22,37 +22,29 @@
  */
 /**
  * 描述清楚思路的过程
- * 从数组中取出
-
- * - 状态
- * dp 当前能跳的最大位置
- * - 状态转义方程
- * dp[i] = Math.max(i + array[i], dp[i - 1])
- * - 初始化 边界
- * dp[0] = array[i]
- * dp[i] = 0,...,0
- * - 优化
- *
- * dp[length - 1] >= length - 1
- *
+ *  1. 能到达
+ *    - 跳过最后一个数
+ *    不能到达
+ *    - 到某一个节点就停了 max <= index
+ *  遍历每一个数，然后找到 max，只要 max大于最后一个数 直接跳true 小于等于 index 跳false
+ *  最后 false兜底
  * @param nums
  */
 const canJump = function (nums) {
-  if (!Array.isArray(nums) || nums.length < 2) {
+  if (nums.length < 1) {
     return true
   }
-  const n = nums.length
-  const f = Array.from({ length }, () => false)
-  f[0] = true
-  for (let j = 1; j < n; j++) {
-    for (let i = 0; i < j; i++) {
-      if (f[i] && i + nums[i] >= j) {
-        f[j] = true
-        break
-      }
+  let max = 0
+  for (let i = 0; i < nums.length; i++) {
+    max = Math.max(max, i + nums[i])
+    if (max >= nums.length - 1) {
+      return true
+    }
+    if (max <= i) {
+      return false
     }
   }
-  return f[n - 1]
+  return false
 }
 
 module.exports = canJump
