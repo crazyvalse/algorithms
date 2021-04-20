@@ -1,4 +1,4 @@
-const rob = require('./01')
+const rob = require('./02')
 
 test('1', () => {
   expect(rob([1, 2, 3, 1])).toBe(4)
