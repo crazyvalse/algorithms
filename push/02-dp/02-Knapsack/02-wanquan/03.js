@@ -2,7 +2,7 @@ function unboundedKnapsack(weights, values, W) {
   var n = weights.length,
     f = new Array(W + 1).fill(0)
   for (var i = 0; i < n; ++i) {
-    for (j = weights[i]; j <= W; ++j) {
+    for (let j = weights[i]; j <= W; ++j) {
       var tmp = f[j - weights[i]] + values[i]
       f[j] = f[j] > tmp ? f[j] : tmp
     }
