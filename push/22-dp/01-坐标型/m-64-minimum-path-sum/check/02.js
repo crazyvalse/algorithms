@@ -21,28 +21,29 @@ n == grid[i].length
 
  */
 /**
- * 确定状态
- *
+ * f[r][c] 表示当前最小和
  * @param {number[][]} grid
  * @return {number}
  */
 var minPathSum = function (grid) {
   const row = grid.length
   const column = grid[0].length
-  let result = Infinity
-  const walk = function (c, r, sum) {
-    if (c >= column || r >= row) {
-      return
+  // 横竖第一排
+  const f = Array.from({ length: row + 1 }, () => Array.from({ length: column + 1 }, () => 0))
+
+  for (let r = 1; r <= row; r++) {
+    for (let c = 1; c <= column; c++) {
+      if (r === 1) {
+        f[r][c] = f[r][c - 1] + grid[r - 1][c - 1]
+      } else if (c === 1) {
+        f[r][c] = f[r - 1][c] + grid[r - 1][c - 1]
+      } else {
+        f[r][c] = Math.min(f[r - 1][c], f[r][c - 1]) + grid[r - 1][c - 1]
+      }
     }
-    if (c === column - 1 && r === row - 1) {
-      result = Math.min(result, sum + grid[r][c])
-      return
-    }
-    walk(c + 1, r, sum + grid[r][c])
-    walk(c, r + 1, sum + grid[r][c])
   }
-  walk(0, 0, 0)
-  return result === Infinity ? 0 : result
+
+  return f[row][column]
 }
 
 module.exports = minPathSum

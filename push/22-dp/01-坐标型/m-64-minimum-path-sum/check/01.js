@@ -21,8 +21,6 @@ n == grid[i].length
 
  */
 /**
- * 确定状态
- *
  * @param {number[][]} grid
  * @return {number}
  */
