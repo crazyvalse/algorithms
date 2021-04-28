@@ -35,3 +35,4 @@ var longestPalindromeSubseq = function (s) {
 }
 
 module.exports = longestPalindromeSubseq
+console.info(longestPalindromeSubseq('bbbab'))
