@@ -28,8 +28,8 @@ function backPack(A, target) {
   f[0] = 1
   for (let i = 1; i <= n; i++) {
     for (let w = target; w > 0; w--) {
-      if (f[w] > 0 || (w - A[i - 1] >= 0 && f[w - A[i - 1]] > 0)) {
-        f[w] = f[w] + 1
+      if (w - A[i - 1] >= 0) {
+        f[w] += f[w - A[i - 1]]
       }
     }
   }
