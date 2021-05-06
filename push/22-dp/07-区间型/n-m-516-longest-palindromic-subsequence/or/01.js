@@ -17,13 +17,21 @@
 提示：
 1 <= s.length <= 1000b
 s 只包含小写英文字母
+
+https://www.bilibili.com/video/BV18W411d7k2?from=search&seid=16465227653069529153
  */
 var longestPalindromeSubseq = function (s) {
   const n = s.length
   const f = Array.from({ length: n }, () => Array.from({ length: n }, () => 0))
-  for (let i = n - 1; i >= 0; i--) {
-    f[1][1] = 1
-    for (let j = i + 1; j < n; j++) {
+  // 按照长度来计算，对角线来开
+  for (let len = 1; len <= n; len++) {
+    for (let i = 0; i <= n - len; i++) {
+      let j = i + len - 1
+      if (i === j) {
+        f[i][j] = 1
+        continue
+      }
+
       if (s[i] === s[j]) {
         f[i][j] = f[i + 1][j - 1] + 2
       } else {
@@ -35,4 +43,3 @@ var longestPalindromeSubseq = function (s) {
 }
 
 module.exports = longestPalindromeSubseq
-console.info(longestPalindromeSubseq('bbbab'))
