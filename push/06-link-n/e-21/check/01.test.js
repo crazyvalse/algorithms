@@ -1,6 +1,6 @@
 const { ListNode, mergeTwoLists } = require('./01')
 
-test('[ 1, 1, 2, 3, 4, 4 ]', () => {
+test('1', () => {
   const p3 = new ListNode(4, undefined)
   const p2 = new ListNode(2, p3)
   const p1 = new ListNode(1, p2)
