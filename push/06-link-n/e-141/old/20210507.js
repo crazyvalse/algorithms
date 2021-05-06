@@ -36,13 +36,12 @@ function ListNode(val, next) {
  * @return {boolean}
  */
 var hasCycle = function (head) {
-  let s = head
-  let f = head
-
-  while (f && f.next) {
-    s = s.next
-    f = f.next.next
-    if (s === f) {
+  let l = head
+  let r = head
+  while (r && r.next) {
+    l = l.next
+    r = r.next.next
+    if (l === r) {
       return true
     }
   }
