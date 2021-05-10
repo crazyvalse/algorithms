@@ -22,13 +22,7 @@ n == matrix[i].length
  */
 
 /**
- * 把矩阵变成一维数组
- *
- * 然后 按照二分法查找
- * 需要把 pivot -> r c
- * r = Math.floor(pivot / col)
- * c = pivot % col
- *
+ * 把二维变成一维
  * @param {number[]} nums
  * @return {number}
  */
@@ -39,29 +33,25 @@ n == matrix[i].length
  * @return {boolean}
  */
 var searchMatrix = function (matrix, target) {
-  if (!Array.isArray(matrix) || matrix.length < 1) {
-    return false
-  }
   const row = matrix.length
   const column = matrix[0].length
-
-  function getRealIndex(index) {
-    return [Math.floor(index / column), index % column]
+  function getIndex(index) {
+    return [parseInt(index / row), index % row]
   }
-
-  let left = 0
-  let right = row * column - 1
-  while (left <= right) {
+  const walk = function (left, right) {
+    if (left > right) {
+      return false
+    }
     const pivot = left + ((right - left) >>> 1)
-    const [r, c] = getRealIndex(pivot)
+    const [r, c] = getIndex(pivot)
     if (matrix[r][c] === target) {
       return true
     } else if (matrix[r][c] > target) {
-      right = pivot - 1
+      return walk(left, pivot - 1)
     } else {
-      left = pivot + 1
+      return walk(pivot + 1, right)
     }
   }
-  return false
+  return walk(0, row * column - 1)
 }
 module.exports = searchMatrix

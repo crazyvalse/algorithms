@@ -8,35 +8,35 @@ function swap(array, a, b) {
  * 最后一步 第一个元素与 pivot 交换位置
  * pivot
  */
-function sortAndFindPivot(array, l, r) {
-  const base = array[l]
-  let pivot = l + 1
-  for (let i = pivot; i <= r; i++) {
-    if (base > array[i]) {
+const sortAndFindPivot = function (array, left, right) {
+  const target = array[left]
+  let pivot = left + 1
+
+  for (let i = pivot; i <= right; i++) {
+    if (target > array[i]) {
       swap(array, pivot++, i)
     }
   }
-  swap(array, l, pivot - 1)
-  return pivot - 1
+  swap(array, left, pivot - 1)
+  return pivot
 }
 
 /**
- * pivot 是 上一次排序基准值，是下一次排序的上线，和下线 + 1
  * 1. 先拿到pivot
  * 2. 以pivot为基准，前面是 left, pivot，pivot + 1， right，后面选取pivot的时候需要选择一个有意义的所以不能是 pivot
  * @param array
  */
 function sort(array) {
-  if (array.length <= 1) {
+  if (array.length < 2) {
     return array
   }
-  const walk = function (l, r) {
-    if (l >= r) {
+  const walk = function (left, right) {
+    if (left >= right) {
       return
     }
-    const pivot = sortAndFindPivot(array, l, r)
-    walk(l, pivot)
-    walk(pivot + 1, r)
+    const pivot = sortAndFindPivot(array, left, right)
+    walk(left, pivot - 1)
+    walk(pivot, right)
   }
   walk(0, array.length - 1)
   return array

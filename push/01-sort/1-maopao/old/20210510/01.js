@@ -3,10 +3,10 @@
  * 比较两个数的大小 后面的小就交换直到最后一位
  */
 function sort(array, reverse) {
-  for (let i = array.length - 1; i > 0; i--) {
-    for (let j = 0; j < i; j++) {
-      if (array[j] > array[j + 1]) {
-        swap(array, j, j + 1)
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 1; j < array.length - i; j++) {
+      if (array[j] < array[j - 1]) {
+        swap(array, j, j - 1)
       }
     }
   }

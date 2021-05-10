@@ -73,7 +73,7 @@ function reverse(array, left, right) {
   }
 }
 
-// console.info(merge([1, 2, 4, 5, 6, 1, 2, 3, 3], 2, 4, 7))
+console.info(merge([1, 2, 4, 5, 6, 1, 2, 3, 3], 2, 4, 7))
 
 module.exports = {
   reverse,

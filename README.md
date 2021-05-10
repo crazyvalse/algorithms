@@ -224,13 +224,24 @@ stack
 - [x] m-200
 - [x] m-547
 
-
 ### 3.17 贪心算法
 
 ### 4.12 - 4.17
 
 - backtracking
 - recursive
+
+### 5.7 - 5.8 复习 dp
+
+### 5.10 - 5.14 补齐 link stack heap binary fenzhi bfs
+
+### 5.10
+
+- 搜索
+- 排序
+- 链表
+
+###
 
 ### 差
 
