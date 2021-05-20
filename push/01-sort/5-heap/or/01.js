@@ -19,6 +19,7 @@ function sort(array) {
  * 1. 确定子节点
  * 2. 找最大索引
  * 3. 交换 然后处理子节点
+ * 只跟父节点比较
  * @param array
  * @param currentIndex
  * @param length
@@ -27,6 +28,7 @@ function heapify(array, currentIndex, length) {
   if (array.length < 2 || length < 2) {
     return
   }
+  // 最大值索引
   let largestItemIndex = currentIndex
   let leftChildIndex = currentIndex * 2 + 1
   let rightChildIndex = currentIndex * 2 + 2
@@ -51,5 +53,3 @@ module.exports = {
   heapify,
   sort
 }
-
-console.info(sort([2, 3, 4, 6, 9, 1, 6]))
