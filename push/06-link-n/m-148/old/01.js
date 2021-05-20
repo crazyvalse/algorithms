@@ -12,43 +12,71 @@
  * 1 -> 2 -> 3 -> 4
  */
 /**
- * 选择排序
- * 思路：
- * 1. 先选取一个 current
- * 2. 跟 next 做对比，直到找到小的
+ * 归并排序
+ * 1. 找到中点 pivot
+ * 2. sortList
+ * 3. merge
  * @param {ListNode} head
  * @return {ListNode}
  */
+const { ListNode } = require('../../utils')
 var sortList = function (head) {
-  let dummyHead = new ListNode(-1, head)
-  let minPre = dummyHead
-  let current = head
+  const walk = function (h) {
+    if (!h || !h.next) {
+      return h
+    }
+    // 拆分成两个
+    const pivot = findPivot(h)
+    const r = pivot.next
+    pivot.next = null
 
-  return head
+    // 把两个链表合成一个
+    return merge(walk(h), walk(r))
+  }
+  return walk(head)
 }
 
-function ListNode(val, next) {
-  this.val = val === undefined ? 0 : val
-  this.next = next === undefined ? null : next
+/**
+ * 参考 21mergeTwoLists
+ * @param l
+ * @param r
+ * @returns {*}
+ */
+function merge(l, r) {
+  const hair = new ListNode(null, null)
+  let next = hair
+  while (l && r) {
+    if (l.val < r.val) {
+      next.next = l
+      l = l.next
+    } else {
+      next.next = r
+      r = r.next
+    }
+    next = next.next
+  }
+  next.next = l || r
+  return hair.next
 }
 
-const p4 = new ListNode(4, undefined)
-const p3 = new ListNode(3, p4)
-const p2 = new ListNode(2, p3)
-const p1 = new ListNode(1, p2)
-
-// let iterator = sortList(p1)
-
-swap(p1, p2, p3)
-let iterator = p1
-
-const result = []
-while (iterator) {
-  result.push(iterator.val)
-  iterator = iterator.next
+/**
+ * 寻找中间点
+ * [1, 2, 3, 4, 5, 6] pivot = 3
+ * [1, 2, 3, 4, 5] pivot = 3
+ * @param head
+ * @returns {ListNode}
+ */
+function findPivot(head) {
+  const hair = new ListNode(null, head)
+  let l = hair
+  let r = hair
+  while (r && r.next) {
+    l = l.next
+    r = r.next.next
+  }
+  return l
 }
 
-console.info(result)
-
-module.exports.ListNode = ListNode
 module.exports.sortList = sortList
+module.exports.findPivot = findPivot
+module.exports.merge = merge
