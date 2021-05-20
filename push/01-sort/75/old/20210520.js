@@ -64,17 +64,19 @@ nums[i] 为 0、1 或 2
  * @returns {*}
  */
 var sortColors = function (array) {
+  if (array.length < 2) {
+    return array
+  }
   let p0 = 0
   let p2 = array.length - 1
-  let i = 1
-  while (i <= p2) {
-    if (array[i] === 0) {
-      swap(array, i, p0++)
+  let next = 0
+  while (next < array.length && p0 <= p2) {
+    if (array[next] === 0) {
+      swap(array, next, p0++)
+    } else if (array[next] === 2) {
+      swap(array, next--, p2--)
     }
-    if (array[i] === 2) {
-      swap(array, i--, p2--)
-    }
-    i++
+    next++
   }
   return array
 }

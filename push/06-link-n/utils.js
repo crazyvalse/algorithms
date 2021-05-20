@@ -1,3 +1,8 @@
+function ListNode(val, next) {
+  this.val = val === undefined ? 0 : val
+  this.next = next === undefined ? null : next
+}
+
 function arrayToListNode(array) {
   if (array.length === 0) {
     return null
@@ -23,6 +28,7 @@ function listNodeToArray(head) {
 }
 
 module.exports = {
+  ListNode,
   arrayToListNode,
   listNodeToArray
 }

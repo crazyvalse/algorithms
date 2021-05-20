@@ -14,34 +14,32 @@
 
  [[1, 9], [2, 5], [19, 20], [10, 11], [12, 20], [0, 3], [0, 1], [0, 2]]
  ------------------------------------------------------------------------------------------------------------------------
- */
-/**
- * 判断 result[last][right] >= item[left] 扩大右侧 result[last][right] = item[right]
- * 否则 新开一个
- * @param intervals
+ 1. 排序第一个元素 sort(array[0])
+ 2. 判断下一组第一个值比merged数组中的最后一个值的第二个值大的话 if(array[i][0] > merged[last][1])， merged.push()
+ - 否则 merged.push()
+ * @param {number[][]} intervals
+ * @return {number[][]}
  */
 const merge = function (intervals) {
-  if (intervals.length <= 1) {
+  if (intervals.length < 2) {
     return intervals
   }
-  const shadow = intervals.slice()
+  const result = [intervals[0]]
   const left = 0
   const right = 1
-  shadow.sort(([a1, a2], [b1, b2]) => {
-    if (a1 === b1) {
-      return a2 - b2
+  intervals.sort((a, b) => {
+    if (a[left] === b[left]) {
+      return a[right] - b[right]
     } else {
-      return a1 - b1
+      return a[left] - b[left]
     }
   })
-  const result = [shadow[0]]
-
+  // 主要是判断右括号
   for (let i = 1; i < intervals.length; i++) {
-    const last = result.length - 1
-    if (result[last][right] >= intervals[i][left]) {
-      result[last][right] = intervals[i][right]
-    } else {
+    if (result.length === 0 || intervals[i][left] > result[result.length - 1][right]) {
       result.push(intervals[i])
+    } else {
+      result[result.length - 1][right] = Math.max(intervals[i][right], result[result.length - 1][right])
     }
   }
   return result
