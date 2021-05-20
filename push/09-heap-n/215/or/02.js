@@ -23,10 +23,20 @@
  * 插入
  * 堆排序
  *
- * @param {number[]} nums
+ * @param {number[]} A
  * @param {number} k
  * @return {number}
  */
-var findKthLargest = function (nums, k) {}
+var findKthLargest = function (A, k) {
+  const n = A.length
+  for (let i = n; i > n - k; i--) {
+    for (let j = 0; j < i; j++) {
+      if (A[j] > A[j + 1]) {
+        ;[A[j], A[j + 1]] = [A[j + 1], A[j]]
+      }
+    }
+  }
+  return A[n - k]
+}
 
 module.exports = findKthLargest
