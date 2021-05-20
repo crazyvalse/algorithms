@@ -1,71 +1,85 @@
 /*
- 归并算法
- 1. sort(left, pivot)
- 2. sort(pivot + 1, right)
- merge
+ 归并算法： 找到中间节点 然后分别排序，最后合并
  */
 const sort = function (A) {
   const walk = function (l, r) {
-    // 相等的时候 也就是一个元素，不用处理，返回
-    if (l >= r || A.length === 0) {
+    if (l >= r) {
       return
     }
     const pivot = l + ((r - l) >>> 1)
     walk(l, pivot)
     walk(pivot + 1, r)
-    merge(A, l, pivot, r)
+    merge(A, l, r)
   }
-  walk(0, array.length - 1)
+  walk(0, A.length - 1)
+  return A
+}
+
+/**
+ * 1 4 5 8 2 3 6 7
+ *   l   p     r
+ *
+ * 1 2 3 4 5 8 6 7
+ *   l   l     r
+ *  l += r - p
+ * - 当 al < ar 时 l++
+ * - 调整p 不然就丢失了
+ * - 当 ar <= al 时 r++
+ * converse(array, l, pivot, r - 1)
+ *
+ * 需要把后面的调到前面
+ *
+ * @param array
+ * @param left
+ * @param right
+ */
+const merge = function (array, left, right) {
+  if (array.length <= 1 || left >= right) {
+    return
+  }
+  let p = left + ((right - left) >>> 1)
+  let l = left
+  let r = p + 1
+  while (l < r) {
+    while (array[l] <= array[r] && l < r) {
+      l++
+    }
+    p = r - 1
+    while (array[l] > array[r] && r <= right) {
+      r++
+    }
+    converse(array, l, p, r - 1)
+    l += r - p
+  }
   return array
 }
 
 /**
- * - 当A[l] <= A[r] l < r l++
- * - 当A[r] < A[l] r <= right r++
- * @param A
+ * 4 5 6 7 1 2 3 4
+ *   l       r
+ * k = 2
+ * @param array
  * @param left
- * @param pivot
  * @param right
+ * @param pivot 是第一个队列的队尾 第二队列的前一个
+ * @returns {*}
  */
-function merge(A, left, pivot, right) {
+const converse = function (array, left, pivot, right) {
+  reverse(array, left, pivot)
+  reverse(array, pivot + 1, right)
+  reverse(array, left, right)
+  return array
+}
+
+const reverse = function (array, left, right) {
   let l = left
-  let p = pivot
-  let r = p + 1
-  while (l < r && r <= right) {
-    while (l < r && A[l] <= A[r]) {
-      l++
-    }
-    p = r - 1
-    while (r <= right && A[r] < A[l]) {
-      r++
-    }
-    converse(A, l, p, r - 1)
-    l += r - p
-  }
-  return A
-}
-
-/**
- * 1 4 5 2 3 6
- * 1 2 3 4 5 6
- * @param A
- * @param l
- * @param pivot
- * @param r
- */
-function converse(A, l, pivot, r) {
-  reverse(A, l, pivot)
-  reverse(A, pivot + 1, r)
-  reverse(A, l, r)
-  return A
-}
-
-function reverse(A, l, r) {
+  let r = right
   while (l < r) {
-    ;[A[l], A[r]] = [A[r], A[l]]
+    ;[array[l], array[r]] = [array[r], array[l]]
     l++
     r--
   }
+  return array
 }
 
 module.exports = {
