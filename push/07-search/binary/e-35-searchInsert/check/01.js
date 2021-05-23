@@ -21,8 +21,6 @@
 输出: 0
  */
 /**
- * 1. 在数组中找到目标值，并返回其索引
- * 2. 返回它将会被按顺序插入的位置
  * @param {number[]} A
  * @param {number} target
  * @return {number}

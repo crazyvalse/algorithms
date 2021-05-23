@@ -21,27 +21,24 @@
 输出: 0
  */
 /**
- * @param {number[]} nums
+ * @param {number[]} A
  * @param {number} target
  * @return {number}
  */
-var searchInsert = function (nums, target) {
-  if (!Array.isArray(nums) || nums.length === 0) {
-    return 0
-  }
-  let left = 0
-  let right = nums.length - 1
-
-  while (left <= right) {
-    const pivot = left + Math.floor((right - left) / 2)
-    if (nums[pivot] === target) {
+var searchInsert = function (A, target) {
+  const walk = function (l, r) {
+    if (l > r) {
+      return l
+    }
+    const pivot = l + ((r - l) >>> 1)
+    if (A[pivot] === target) {
       return pivot
-    } else if (target < nums[pivot]) {
-      right = pivot - 1
+    } else if (A[pivot] > target) {
+      return walk(l, pivot - 1)
     } else {
-      left = pivot + 1
+      return walk(pivot + 1, r)
     }
   }
-  return left
+  return walk(0, A.length - 1)
 }
 module.exports = searchInsert
