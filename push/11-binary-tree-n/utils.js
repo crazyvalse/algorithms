@@ -2,6 +2,7 @@ function TreeNode(val, left, right) {
   this.val = val === undefined ? 0 : val
   this.left = left === undefined ? null : left
   this.right = right === undefined ? null : right
+  this.next = null
 }
 
 /**
@@ -10,7 +11,7 @@ function TreeNode(val, left, right) {
  * @param array
  * @returns {TreeNode}
  */
-function transfer(array) {
+function arrayToTreeNode(array) {
   if (!Array.isArray(array) || array.length === 0) {
     return new TreeNode()
   }
@@ -30,10 +31,32 @@ function transfer(array) {
   return nodes[0]
 }
 
-const array = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-console.info(transfer(array))
+// bfs
+function treeNodeToArray(node) {
+  if (!node) {
+    return []
+  }
+  const result = []
+  const queue = []
+  queue.push(node)
+  while (queue.length) {
+    const top = queue.shift()
+    if (top) {
+      result.push(top.val)
+      queue.push(top.left)
+      queue.push(top.right)
+    }
+  }
+  return result
+}
+
+// const array = [0, 1, 2, 3, 4]
+// const root = arrayToTreeNode(array)
+// const newArray = treeNodeToArray(root)
+// console.info(newArray)
 
 module.exports = {
-  transfer,
-  TreeNode
+  TreeNode,
+  arrayToTreeNode,
+  treeNodeToArray
 }

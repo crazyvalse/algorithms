@@ -24,13 +24,17 @@ var reverse = function (a, b) {
 }
 
 function reverseK(head, k) {
+  if (k === 0) {
+    return
+  }
   let counter = 0
   let b = head
   while (counter++ !== k) {
     b = b.next
   }
-  // 反转完，返回新头部。head 为最后的一个元素
+  // 反转完，返回新头部。
   const newHead = reverse(head, b)
+  // head 为最后的一个元素
   head.next = b
   return newHead
 }

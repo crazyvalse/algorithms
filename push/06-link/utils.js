@@ -5,7 +5,7 @@ function ListNode(val, next) {
 
 function arrayToListNode(array) {
   if (array.length === 0) {
-    return null
+    return new ListNode(null, null)
   }
   let hair = new ListNode(array[0])
   let pre = hair
@@ -20,7 +20,7 @@ function arrayToListNode(array) {
 function listNodeToArray(head) {
   let it = head
   const array = []
-  while (it) {
+  while (it && it.val) {
     array.push(it.val)
     it = it.next
   }
