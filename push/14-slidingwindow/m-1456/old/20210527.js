@@ -1,11 +1,7 @@
 /*
 给你字符串 s 和整数 k 。
-
 请返回字符串 s 中长度为 k 的单个子字符串中可能包含的最大元音字母数。
-
 英文中的 元音字母 为（a, e, i, o, u）。
-
-
 
 示例 1：
 
@@ -47,19 +43,19 @@ s 由小写英文字母组成
  * @return {number}
  */
 var maxVowels = function (s, k) {
-  let max = -Infinity
   let l = 0
   let r = 0
-  let sum = 0
+  let max = 0
+  let total = 0
   while (r < s.length) {
-    sum += vowelNum(s[r])
-    if (r - l + 1 > k) {
-      sum -= vowelNum(s[l++])
+    total += vowelNum(s[r])
+    if (r - l >= k) {
+      total -= vowelNum(s[l++])
     }
-    max = Math.max(max, sum)
     r++
+    max = Math.max(max, total)
   }
-  return max === -Infinity ? 0 : max
+  return max
 }
 
 function vowelNum(char) {

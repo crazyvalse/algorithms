@@ -29,23 +29,26 @@
  */
 /**
  * 暴力法
- * 倒叙 然后
- *
+ * 两层遍历
+ * 第一层 选一个人
+ * 第二层 遍历
  * @param {number[]} people
  * @param {number} limit
  * @return {number}
  */
 var numRescueBoats = function (people, limit) {
-  let l = 0
-  let r = people.length - 1
   let counter = 0
-  people.sort((a, b) => a - b)
-  while (l <= r) {
-    if (people[l] + people[r] <= limit) {
-      l++
+  for (let i = 0; i < people.length; i++) {
+    for (let j = i + 1; j < people.length && people[i] !== null; j++) {
+      if (people[j] !== null && people[i] + people[j] <= limit) {
+        people[i] = null
+        people[j] = null
+        counter++
+      }
     }
-    r--
-    counter++
+    if (people[i] !== null) {
+      counter++
+    }
   }
   return counter
 }

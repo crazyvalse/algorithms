@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      var counter = 1
+      const observer = new MutationObserver(() => {
+        console.info(123)
+      })
+      var textNode = document.createTextNode(String(counter))
+      observer.observe(textNode, {
+        characterData: true
+      })
+      timerFunc = () => {
+        counter = (counter + 1) % 2
+        textNode.data = String(counter)
+      }
+      timerFunc()
+    </script>
+  </body>
+</html>

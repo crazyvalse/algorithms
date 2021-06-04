@@ -23,30 +23,18 @@
 解释：4 艘船分别载 (3), (3), (4), (5)
 提示：
 
-1 <=people.length <= 50000
-1 <= people[i] <=limit <= 30000
-
+1 <= people.length <= 50000
+1 <= people[i] <= limit <= 30000
  */
 /**
- * 暴力法
- * 倒叙 然后
  *
  * @param {number[]} people
  * @param {number} limit
  * @return {number}
  */
 var numRescueBoats = function (people, limit) {
-  let l = 0
-  let r = people.length - 1
   let counter = 0
-  people.sort((a, b) => a - b)
-  while (l <= r) {
-    if (people[l] + people[r] <= limit) {
-      l++
-    }
-    r--
-    counter++
-  }
+
   return counter
 }
 

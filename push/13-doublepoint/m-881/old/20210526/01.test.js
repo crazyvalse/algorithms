@@ -15,7 +15,3 @@ test('3 ', () => {
 test('4 ', () => {
   expect(numRescueBoats([44, 10, 29, 12, 49, 41, 23, 5, 17, 26], 50)).toEqual(6)
 })
-
-test('5 ', () => {
-  expect(numRescueBoats([1, 2, 3, 4], 10)).toEqual(1)
-})

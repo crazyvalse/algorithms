@@ -24,38 +24,21 @@
  */
 
 /**
- * min = Min(r - l, min)
- *
- * while(l)
- * 1. 定义变量
- * l = 0
- * r = 0
- *
- * while(r < n){
- *   sum += nums[r]
- *   while(sum >= target){
- *    Min()
- *    sum -= nums[l++]
- *   }
- *   r++
- * }
  * @param {number} target
  * @param {number[]} nums
  * @return {number}
  */
 var minSubArrayLen = function (target, nums) {
-  let min = Infinity
-
   let l = 0
   let r = 0
   let sum = 0
-  while (r <= nums.length) {
-    sum += nums[r]
+  let min = Infinity
+  while (r < nums.length) {
+    sum += nums[r++]
     while (sum >= target) {
-      min = Math.min(min, r - l + 1)
+      min = Math.min(min, r - l)
       sum -= nums[l++]
     }
-    r++
   }
   return min === Infinity ? 0 : min
 }
