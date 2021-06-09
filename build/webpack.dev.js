@@ -11,7 +11,7 @@ const base = require('./webpack.base')
 module.exports = merge(base, {
   mode: 'development', // 声明开发模式
   devServer: {
-    contentBase: '../dist',
+    // contentBase: '../dist',
     hot: true, // 热模块更新 - 局部更新
     host: '0.0.0.0', // 设置后，其他机器可以通过ip访问
     port: '8080', // 端口
@@ -23,10 +23,10 @@ module.exports = merge(base, {
   // https://www.webpackjs.com/configuration/devtool/
   devtool: 'cheap-module-eval-source-map',
   plugins: [
-    // new HtmlWebpackPlugin({
-    //   filename: 'index.html', // 生成的文件名
-    //   template: 'index.html', // 使用的模板文件
-    //   inject: true // 生成的script插到body底部
-    // })
+    new HtmlWebpackPlugin({
+      filename: 'index.html', // 生成的文件名
+      template: 'index.html', // 使用的模板文件
+      inject: true // 生成的script插到body底部
+    })
   ]
 })

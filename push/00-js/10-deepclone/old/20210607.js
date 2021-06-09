@@ -12,19 +12,3 @@ function deepClone(target) {
   }
   return result
 }
-
-function deepClone (target) {
-  if (typeof target !== 'object') {
-    return target
-  }
-  const result = []
-  const keys = []
-  const data = []
-  while (queue.length) {
-    const node = queue.shift()
-
-    if (typeof node !== 'object') {
-
-    }
-  }
-}

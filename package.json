@@ -107,5 +107,7 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "snabbdom": "^3.0.3"
+  }
 }
