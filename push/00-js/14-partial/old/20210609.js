@@ -12,14 +12,12 @@
 module.exports = partial
 
 /**
- * 1. 拼接两次的 arguments
- * 2. 使用 fn 调用
+ * 缓存 arguments
  * @param fn
- * @param args
- * @returns {function(...[*]): *}
  */
-function partial(fn, ...args) {
-  return function (...sArgs) {
-    return fn.apply(this, [...args, ...sArgs])
+function partial(fn) {
+  const partArgs = Array.prototype.slice.call(arguments, 1)
+  return function () {
+    return fn.apply(this, partArgs.concat(Array.prototype.slice.call(arguments)))
   }
 }

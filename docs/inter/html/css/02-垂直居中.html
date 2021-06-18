@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      div {
+        border: 1px dashed black;
+      }
+      #app1 span {
+        line-height: 60px;
+      }
+
+      #app1 div {
+        line-height: 60px;
+      }
+      #app2 {
+        display: flex;
+        height: 60px;
+      }
+      #app2 div {
+        margin: auto 0;
+      }
+
+      #app3 {
+        height: 60px;
+      }
+      #app3::after,
+      #app3 span {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      #app3::after {
+        content: '';
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app1">
+      <span>app1</span>
+      <div>app1-1</div>
+    </div>
+    <div id="app2">
+      <div>app2</div>
+    </div>
+    <div id="app3">
+      <span>app3</span>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <ul class="video-title-list">
+      <li>
+        <a class="probarUL-back-one">1</a>
+      </li>
+      <li>
+        <a class="probarUL-back-one">2</a>
+      </li>
+      <li>
+        <a class="probarUL-back-one">3</a>
+      </li>
+    </ul>
+    <script>
+      const links = document.querySelectorAll('.probarUL-back-one')
+      links[0].href = 'http://www.baidu.com/'
+      links[1].href = 'http://news.baidu.com/'
+      links[2].href = 'https://zhidao.baidu.com/'
+      console.info(document.querySelectorAll('.probarUL-back-one:nth-child(1)'));
+    </script>
+  </body>
+</html>
