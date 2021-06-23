@@ -17,11 +17,16 @@
 1. 迅雷或者 HTTP 下载工具
 2. 大文档分解为多个下载段同时下周。可以使用 206
 
+- http 302 301 307 的区别
+- 301 和 302 哪个对 seo 更友好（301）
+
 ```
 打开Fiddler， 然后用浏览器打开“搜狐视频中的绿箭侠” http://tv.sohu.com/20121011/n354681393.shtml 然后你在Fiddler中就能看到一堆的206
 1. 浏览器发送一个Get 方法的request. header中包含 Range: bytes=5303296-5336063. (意思就是请求得到5303296-5336063这个范围的数据)。
 2. Web服务器返回一个206 的Response. header中包含Content-Range: bytes 5303296-5336063/12129376(表明这次返回的内容范围)
 ```
+
+###
 
 ### keep-alive
 
@@ -30,3 +35,4 @@ keep-alive 机制：若开启后，在一次 http 请求中，服务器进行响
 所以引入了 keep-alive 机制。http1.0 默认是关闭的，通过 http 请求头设置“connection: keep-alive”进行开启；http1.1 中默认开启，通过 http 请求头设置“connection: close”关闭。
 
 > HTTP keep-alive 章节的实验结果：无论开启 keep-alive 与否，最终由服务端主动断开 TCP 连接。
+

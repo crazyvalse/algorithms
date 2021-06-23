@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      function jsonp(url, callback, success) {
+        let script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.type = 'text/javascript'
+
+        window[callback] = function (data) {
+          success && success(data)
+        }
+        document.body.appendChild(script)
+      }
+      jsonp('./01.js', '$$JSONP$$', (data) => {
+        console.info(1, data)
+      })
+    </script>
+  </body>
+</html>

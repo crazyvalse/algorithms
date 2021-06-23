@@ -21,12 +21,33 @@
 - [ ] vue hash 与 history 区别
 - [ ] 正则
 - [ ] animate
-- [ ] 自测 https://www.520mg.com/a/inter/front100/real/9976.html
+- [ ] 自测
+  - https://www.520mg.com/a/inter/front100/real/9976.html
+  - https://github.com/Advanced-Frontend/Daily-Interview-Question
 - [ ] web worker
 - [ ] jsBridge
 - [ ] viewport
 - [ ] 大数据量 的性能优化 - https://www.cnblogs.com/songbw/p/11613869.html
 - [ ] flex - flex: 0 1 auto 具体表示什么含义
+- [ ] class 组件和函数组件
+- [ ] graphql
+- [ ] seo 优化 https://www.zhihu.com/question/19808905
+- [ ] JWT 机制
+- [ ] 说一下 instanceof 的原理
+- [ ] 如何避免页面被别人的 iframe 页面嵌套
+- [ ] 在 a.com 中能发送一个 ajax 请求到 b.com 吗？
+- [ ] Promise 的 finally 如何实现
+- [ ] node 项目中如何守护进程
+- [ ] Service Worker
+- [ ] 事件捕捉 冒泡顺序： https://www.cnblogs.com/alvinwei1024/p/4739344.html
+- [x] 字符串赋值后 内存空间：
+  - https://www.zhihu.com/question/392599497/answer/1207676114
+  - https://www.cnblogs.com/liangyin/p/7764232.html
+  - https://blog.csdn.net/HuaiCheng9067/article/details/88863862
+- [ ] http 302 301 307 的区别 301 和 302 哪个对 seo 更友好（301）
+- [ ] jsonp 缺点： https://blog.csdn.net/qq_35385241/article/details/109448766
+- [x] 深拷贝
+  - https://github.com/yygmind/blog/issues/25
 
 ## 6.7 - 6.11
 
@@ -72,3 +93,10 @@
 - [x] 伪类
 - [ ] 安全
 - [ ] webpack 原理
+
+## 6.23
+
+- 防抖
+- 原型
+  - http://journal.portal-test.founderss.cn/rc-api/videoLibs?publicationId=824&tenantId=d3212696de3f4198bf40e75b86a9d338&isGroupMag=false&timestamps=1624364259603&page=0&size=20&searchWord=7897987987987987987&sort=SYS_CREATEDDESC&searchType=RELATION_THESIS_NAME&docIds=480267547893174705301&timestamps=1624364259603
+  - https://muyiy.cn/blog/5/5.1.html

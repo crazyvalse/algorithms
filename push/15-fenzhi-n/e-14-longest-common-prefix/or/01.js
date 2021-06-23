@@ -23,8 +23,8 @@ strs[i] 仅由小写英文字母组成
 
  */
 /**
- * 分治
- * 1. 分割成 两两一组，获得 commonPrefix
+ * 1. 以第一个数为基准
+ * 2. 取出每一个字母，遍历剩下数组的每一个判断是否相等
  * @param array
  * @returns {string}
  */
@@ -32,25 +32,18 @@ const longestCommonPrefix = function (array) {
   if (!Array.isArray(array) || !array.length) {
     return ''
   }
-  const walk = function (l, r) {
-    if (l === r) {
-      return array[l]
+  let result = ''
+  const target = array[0]
+  for (let i = 0; i < target.length; i++) {
+    const c = target[i]
+    for (let j = 1; j < array.length; j++) {
+      if (i === array[j].length || c !== array[j][i]) {
+        return result
+      }
     }
-    const pivot = (l + (r - l)) >> 1
-    const ls = walk(l, pivot)
-    const rs = walk(pivot + 1, r)
-    return getCommonPrefix(ls, rs)
+    result += c
   }
-
-  return walk(0, array.length - 1)
-}
-
-function getCommonPrefix(a, b) {
-  let index = 0
-  while (index < a.length && index < b.length && a[index] === b[index]) {
-    index++
-  }
-  return a.slice(0, index)
+  return result
 }
 
 module.exports = longestCommonPrefix

@@ -37,3 +37,5 @@
 非简单请求是那种对服务器有特殊要求的请求，比如请求方法是 PUT 或 DELETE，或者 Content-Type 字段的类型是 application/json
 
 非简单请求的 CORS 请求，会在正式通信之前，增加一次 HTTP 查询请求，称为"预检"请求（preflight）。
+
+- https://www.520mg.com/a/inter/front100/real/9923.html

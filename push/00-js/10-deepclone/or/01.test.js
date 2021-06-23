@@ -35,3 +35,25 @@ test('测试 deepClone', () => {
     }
   })
 })
+
+test('2', () => {
+  const obj = {
+    a: 1,
+    b: 2,
+    c: undefined,
+    d: null,
+    e: Symbol('e'),
+    f: function () {},
+    g: obj
+  }
+  const obj2 = deepClone(obj)
+  expect(obj2).toEqual({
+    a: 1,
+    b: 2,
+    c: undefined,
+    d: null,
+    e: Symbol('e'),
+    f: function () {},
+    g: obj
+  })
+})
