@@ -4,13 +4,14 @@
 
 - [ ] 空白
 - [ ] webpack 原理
+  - tree-shaking
 - [ ] http
 - [ ] 手写
 - [ ] CSS3 动画硬件加速？CSS3 动画的性能问题（重绘和重流，是否需要脱离正常文档流）？
 - [ ] 事件委托
 - [ ] FCP/FMP/FP 分别是怎样定义，如何统计
 - [ ] ng 负载均衡的方式有哪些
-- [ ] 海量数据的处理
+- [x] 海量数据的处理
 - [ ] 字典树 tier 树 https://zhuanlan.zhihu.com/p/28891541
 - [ ] 进程间通信 （IPC） 方法总结 https://www.cnblogs.com/joker-wz/p/11000489.html
 - [ ] cookie 包含哪些字段

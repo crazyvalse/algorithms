@@ -33,19 +33,13 @@
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function (prices) {
-  if (!Array.isArray(prices) || prices.length < 2) {
-    return 0
+var maxProfit = function (A) {
+  const n = A.length
+  const f = Array.from({ length: n }, () => 0)
+  for (let i = 1; i < n; i++) {
+    f[i] = Math.max(f[i - 1], f[i - 1] + A[i] - A[i - 1])
   }
-  let n = prices.length
-  let f = Array.from({ length: n + 1 }, () => 0)
-  for (let i = 2; i <= n; i++) {
-    f[i] = f[i - 1]
-    if (prices[i - 1] > prices[i - 2]) {
-      f[i] += prices[i - 1] - prices[i - 2]
-    }
-  }
-  return f[n]
+  return f[n - 1]
 }
 
 module.exports = maxProfit

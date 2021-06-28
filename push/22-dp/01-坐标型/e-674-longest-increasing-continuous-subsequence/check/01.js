@@ -26,20 +26,26 @@
  */
 /**
  * f[i] 前i个最大连续递增子序列
- * @param nums
+ * f[i] = A[i] > A[i - 1] ? f[i - 1] + 1 : 1
+ *
+ * 初始化
+ * f[0] = 1
+ *
+ * f[1] = 1 ? 2
+ * @param A
  */
-var findLengthOfLCIS = function (nums) {
-  const n = nums.length
-  if (n === 1) {
-    return 1
+var findLengthOfLCIS = function (A) {
+  const n = A.length
+  if (n < 2) {
+    return n
   }
-  let max = 0
+  let max = 1
   const f = Array(n).fill(1)
   for (let i = 1; i < n; i++) {
-    if (nums[i] > nums[i - 1]) {
+    if (A[i] > A[i - 1]) {
       f[i] = f[i - 1] + 1
+      max = Math.max(max, f[i])
     }
-    max = Math.max(max, f[i])
   }
   return max
 }

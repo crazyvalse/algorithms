@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <button onclick="go()">gogogogogo</button>
+    <script>
+      function go() {
+        throw new Error('error')
+      }
+
+      window.onerror = function (message, url, line, column, error) {
+        console.log('log---onerror::::',message, url, line, column, error);
+      }
+    </script>
+  </body>
+</html>

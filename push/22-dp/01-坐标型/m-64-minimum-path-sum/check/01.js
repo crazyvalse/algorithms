@@ -21,26 +21,34 @@ n == grid[i].length
 
  */
 /**
+ * if(r === 0) {
+ *   f[r][c] = f[r][c - 1]
+ * } else if( c=== 0) {
+ *   f[r][c] = f[r - 1][c]
+ * } else {
+ *   f[r][c] = Math.min(f[r - 1][c], f[r][c - 1]) + grid[r][c]
+ * }
  * @param {number[][]} grid
  * @return {number}
  */
 var minPathSum = function (grid) {
   const row = grid.length
   const column = grid[0].length
-  let result = Infinity
-  const walk = function (c, r, sum) {
-    if (c >= column || r >= row) {
-      return
+
+  const f = Array.from({ length: row }, () => Array(column).fill(0))
+
+  for (let r = 0; r < row; r++) {
+    for (let c = 0; c < column; c++) {
+      if (r === 0 || c === 0) {
+        if (c === 0 && r - 1 >= 0) f[r][c] += f[r - 1][c]
+        if (r === 0 && c - 1 >= 0) f[r][c] += f[r][c - 1]
+      } else {
+        f[r][c] = Math.min(f[r - 1][c], f[r][c - 1])
+      }
+      f[r][c] += grid[r][c]
     }
-    if (c === column - 1 && r === row - 1) {
-      result = Math.min(result, sum + grid[r][c])
-      return
-    }
-    walk(c + 1, r, sum + grid[r][c])
-    walk(c, r + 1, sum + grid[r][c])
   }
-  walk(0, 0, 0)
-  return result === Infinity ? 0 : result
+  return f[row - 1][column - 1]
 }
 
 module.exports = minPathSum
