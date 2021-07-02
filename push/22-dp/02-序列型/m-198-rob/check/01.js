@@ -24,23 +24,24 @@
 0 <= nums[i] <= 400
  */
 /**
- * @param {number[]} nums
+ * f[n][y] 第n个房子偷时 最大金额
+ * f[n][n] 第n个房子不偷时 最大金额，获得前一个房子的最大金额
+ *
+ * f[i][yes] = f[i - 1][no] + A[i]
+ * f[i][no] = max(f[i - 1][yes], f[i - 1][no])
+ *
+ * max(f[n][yes], f[n][no])
+ * @param {number[]} A
  * @return {number}
  */
-var rob = function (nums) {
-  let result = 0
-
-  const walk = function (index, cart) {
-    if (index >= nums.length) {
-      result = Math.max(result, cart)
-      return
-    }
-    for (let i = index; i < nums.length; i++) {
-      walk(i + 2, cart + nums[i])
-    }
+var rob = function (A) {
+  const n = A.length
+  const f = Array.from({ length: n + 1 }, () => [0, 0])
+  for (let i = 1; i < n + 1; i++) {
+    f[i][0] = Math.max(f[i - 1][1], f[i - 1][0])
+    f[i][1] = f[i - 1][0] + A[i - 1]
   }
-  walk(0, 0)
-  return result
+  return Math.max(f[n][0], f[n][1])
 }
 
 module.exports = rob

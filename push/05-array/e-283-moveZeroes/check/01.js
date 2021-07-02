@@ -9,34 +9,30 @@
 尽量减少操作次数。
  */
 /**
- * 题目
- * 挤泡泡
- * 数组向左移动
- * @param {number[]} nums
+ * 双指针
+ * l 下一个指针
+ * r 最后面的指针
+ * if(l === 0) move(A, l, r)
+ *
+ * @param {number[]} A
  * @return nums Do not return anything, modify nums in-place instead.
  */
-var moveZeroes = function (array) {
-  let f = 0
-  while (f < array.length) {
-    if (array[f] === 0) {
-      move(array, f, array.length - 1, 1)
+var moveZeroes = function (A) {
+  let l = 0
+  let r = A.length - 1
+  while (l < r) {
+    if (A[l] === 0) {
+      move(A, l, r--)
     }
-    f++
+    l++
   }
-  return array
+  return A
 }
 
-const move = function (array, l, r, k) {
-  reverse(array, l, l + k - 1)
-  reverse(array, l + k, r)
-  reverse(array, l, r)
-  return array
-}
-const reverse = function (array, l, r) {
+function move(A, l, r) {
   while (l < r) {
-    ;[array[l], array[r]] = [array[r], array[l]]
+    ;[A[l], A[l + 1]] = [A[l + 1], A[l]]
     l++
-    r--
   }
 }
 

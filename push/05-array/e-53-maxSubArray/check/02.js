@@ -23,16 +23,21 @@
 输出：-100000
  */
 /**
- * @param {number[]} nums
+ * f[i] 为连续 最大连续数组
+ *
+ * f[i] = max(A[i], f[i - 1] + A[i])
+ *
+ * max = Math.max(f[i], max)
+ * @param {number[]} A
  * @return {number}
  */
-var maxSubArray = function (nums) {
-  const n = nums.length
-  let max = 0
+var maxSubArray = function (A) {
+  const n = A.length
   const f = Array(n + 1).fill(0)
+  let max = -Infinity
   for (let i = 1; i <= n; i++) {
-    f[i] = Math.max(f[i - 1] + nums[i - 1], nums[i - 1])
-    max = Math.max(max, f[i])
+    f[i] = Math.max(A[i - 1], f[i - 1] + A[i - 1])
+    max = Math.max(f[i], max)
   }
   return max
 }

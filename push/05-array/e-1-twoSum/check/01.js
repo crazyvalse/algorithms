@@ -29,19 +29,34 @@
 
  */
 /**
- * @param {number[]} nums
+ * for 0,...,n
+ * 1. 选取一个数字
+ * 2. 跟后面的数字相加
+ *
+ * 记忆化：存放计算过的结果
+ * map
+ * key: target - A[i]
+ * value: A[i]
+ * if(map.has(target - A[i])){
+ *   return
+ * }
+ * map
+ * @param {number[]} A
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function (nums, target) {
-  const map = {} // num : index
-  for (let i = 0; i < nums.length; i++) {
-    if (map[target - nums[i]] !== undefined) {
-      return [map[target - nums[i]], i]
+var twoSum = function (A, target) {
+  const n = A.length
+  const map = new Map()
+  for (let i = 0; i < n; i++) {
+    const another = target - A[i]
+    if (map.has(another)) {
+      return [map.get(another), i]
     }
-    map[nums[i]] = i
+    // 计算结果
+    map.set(A[i], i)
   }
-  return null
+  return []
 }
 
 module.exports = twoSum

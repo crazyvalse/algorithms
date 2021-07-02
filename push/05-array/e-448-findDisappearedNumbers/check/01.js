@@ -16,20 +16,6 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-const findDisappearedNumbers = function (nums) {
-  const n = nums.length
-  for (let i = 0; i < n; i++) {
-    const x = (nums[i] - 1) % n
-    nums[x] += n
-  }
-
-  const result = []
-  for (let i = 0; i < n; i++) {
-    if (nums[i] <= n) {
-      result.push(i + 1)
-    }
-  }
-  return result
-}
+const findDisappearedNumbers = function (nums) {}
 
 module.exports = findDisappearedNumbers

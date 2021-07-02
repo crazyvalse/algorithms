@@ -20,22 +20,20 @@
 0 <= prices[i] <= 104
  */
 /**
- * 分析
+ * f[i] 为前i天最大利润
  *
+ * f[i] = Max(f[i - 1], profit)
  * @param {number[]} prices
  * @return {number}
  */
 var maxProfit = function (prices) {
   let max = 0
-  let l = 0
-  let r = 0
-  while (r < prices.length) {
-    if (prices[r] < prices[l]) {
-      l = r
-    } else {
-      max = Math.max(max, prices[r] - prices[l])
+  let low = Infinity
+  for (let i = 0; i < prices.length; i++) {
+    if (prices[i] < low) {
+      low = prices[i]
     }
-    r++
+    max = Math.max(max, prices[i] - low)
   }
   return max
 }

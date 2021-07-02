@@ -26,22 +26,18 @@
 /**
  * f[i] 前 i - 1 个房屋最高金额
  *
- * 第 i - 1 房间 可偷 可不偷 选出最大的一个值
- *
- * f[i] = Max(f[i - 1], f[i - 2] + nums[i - 1])
- *
- * @param {number[]} nums
+ * @param {number[]} A
  * @return {number}
  */
-var rob = function (nums) {
-  const n = nums.length
+var rob = function (A) {
+  const n = A.length
   if (n < 1) {
     return 0
   }
   const f = Array(n + 1).fill(0)
-  f[1] = nums[0]
-  for (let i = 2; i <= n; i++) {
-    f[i] = Math.max(f[i - 1], f[i - 2] + nums[i - 1])
+  f[1] = A[0]
+  for (let i = 2; i < n + 1; i++) {
+    f[i] = Math.max(f[i - 1], f[i - 2] + A[i - 1])
   }
   return f[n]
 }

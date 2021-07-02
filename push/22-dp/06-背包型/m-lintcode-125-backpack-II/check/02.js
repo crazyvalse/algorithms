@@ -36,13 +36,10 @@ function backPack(capacity, weights, values) {
   if (n === 0 || capacity === 0) {
     return 0
   }
-  const f = Array.from({ length: capacity + 1 }, () => -1)
-  f[0] = 0
-  for (let i = 1; i <= n; i++) {
-    for (let c = capacity; c > 0; c--) {
-      if (c - weights[i - 1] >= 0) {
-        f[c] = Math.max(f[c - weights[i - 1]] + values[i - 1], f[c])
-      }
+  const f = Array.from({ length: capacity + 1 }, () => 0)
+  for (let i = 0; i < n; i++) {
+    for (let c = capacity; c >= weights[i]; c--) {
+      f[c] = Math.max(f[c], f[c - weights[i]] + values[i])
     }
   }
   return f[capacity]

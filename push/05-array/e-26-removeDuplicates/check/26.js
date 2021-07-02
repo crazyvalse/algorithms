@@ -16,12 +16,14 @@
 /**
  * @param array
  */
-function removeDuplicates(array) {
+function removeDuplicates(A) {
+  const n = A.length
   let l = 0
-  let r = 0
-  while (r < array.length) {
-    if (array[l] !== array[r]) {
-      array[++l] = array[r]
+  let r = 1
+  while (r < n) {
+    if (A[l] !== A[r]) {
+      l++
+      ;[A[l], A[r]] = [A[r], A[l]]
     }
     r++
   }

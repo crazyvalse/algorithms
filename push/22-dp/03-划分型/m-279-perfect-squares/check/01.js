@@ -28,23 +28,16 @@
  * @return {number}
  */
 var numSquares = function (n) {
-  let result = Infinity
-  const walk = function (rest, cart) {
-    if (rest < 0) {
-      return
-    }
-    if (rest === 0) {
-      result = Math.min(result, cart)
-      return
-    }
-    const x = Math.floor(Math.sqrt(n))
-    for (let i = 1; i <= x; i++) {
-      const n = Math.pow(i, 2)
-      walk(rest - n, cart + 1)
+  const f = Array(n + 1).fill(Infinity)
+  f[0] = 0
+  for (let i = 1; i <= n; i++) {
+    for (let x = 1, xq = 1; (xq = x * x) <= n; x++) {
+      if (i - xq >= 0) {
+        f[i] = Math.min(f[i], f[i - xq] + 1)
+      }
     }
   }
-  walk(n, 0)
-  return result === Infinity ? 0 : result
+  return f[n] === Infinity ? 0 : f[n]
 }
 
 module.exports = numSquares

@@ -23,20 +23,22 @@
 输出：-100000
  */
 /**
- * if(sum + nums[i] < 0){
- *   sum = nums[i]
- * } else {
- *   sum += nums[i]
- * }
- * max
- * @param {number[]} nums
+ * [-2,1,-3,4,-1,2,1,-5,4]
+ * 1. sum < 0 就抛弃
+ * 1. 先判断 sum 是否 < 0，如果是的话 sum = 0
+ * 2. sum += A[i]
+ * 3. max(max, sum)
+ * @param {number[]} A
  * @return {number}
  */
-var maxSubArray = function (nums) {
-  let max = 0
+var maxSubArray = function (A) {
   let sum = 0
-  for (let i = 0; i < nums.length; i++) {
-    sum = Math.max(nums[i], sum + nums[i])
+  let max = -Infinity
+  for (let i = 0; i < A.length; i++) {
+    if (sum < 0) {
+      sum = 0
+    }
+    sum = Math.max(A[i], sum + A[i])
     max = Math.max(max, sum)
   }
   return max

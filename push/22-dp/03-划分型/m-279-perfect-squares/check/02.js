@@ -40,7 +40,7 @@ var numSquares = function (n) {
       }
     }
   }
-  return f[n]
+  return f[n] === n + 1 ? 0 : f[n]
 }
 
 module.exports = numSquares

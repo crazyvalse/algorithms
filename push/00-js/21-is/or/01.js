@@ -3,6 +3,8 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects
 
 Object.is() 方法判断两个值是否为同一个值。
 
+Object.is 同值相等算法，在 === 基础上对 0 和 NaN 特别处理
+
 bject.is() 方法判断两个值是否为同一个值。如果满足以下条件则两个值相等:
 
 - 都是 undefined
@@ -22,7 +24,6 @@ bject.is() 方法判断两个值是否为同一个值。如果满足以下条件
  */
 
 const is = function (x, y) {
-  debugger
   // SameValue algorithm
   if (x === y) {
     // Steps 1-5, 7-10

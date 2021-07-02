@@ -7,7 +7,9 @@
 'B' -> 2
 ...
 'Z' -> 26
-要 解码 已编码的消息，所有数字必须基于上述映射的方法，反向映射回字母（可能有多种方法）。例如，"111" 可以将 "1" 中的每个 "1" 映射为 "A" ，从而得到 "AAA" ，或者可以将 "11" 和 "1"（分别为 "K" 和 "A" ）映射为 "KA" 。注意，"06" 不能映射为 "F" ，因为 "6" 和 "06" 不同。
+要 解码 已编码的消息，所有数字必须基于上述映射的方法，反向映射回字母（可能有多种方法）。
+例如，"111" 可以将 "1" 中的每个 "1" 映射为 "A" ，从而得到 "AAA" ，或者可以将 "11" 和 "1"（分别为 "K" 和 "A" ）映射为 "KA" 。
+注意，"06" 不能映射为 "F" ，因为 "6" 和 "06" 不同。
 给你一个只含数字的 非空 字符串 num ，请计算并返回 解码 方法的 总数 。
 题目数据保证答案肯定是一个 32 位 的整数。
 
@@ -39,33 +41,47 @@ s 只包含数字，并且可能包含前导零。
  */
 /**
  * 字符串的全排列
+ * 1. 可1 可2
+ * 2.
+ * f[i] 前i个字母有多少个组合数
+ *
+ * f[i] = f[i - 1] + f[i - 2]
+ *
+ * if(0 < one && one < 10) {
+ *   f[i] += f[i - 1]
+ * }
+ *
+ * if(10 <= two && two <= 26) {
+ *   f[i] += f[i - 2]
+ * }
+ *
+ *  - 1 的时候 <10
+ *  - 2 的时候 >=10
  * @param {string} s
  * @return {number}
  */
 var numDecodings = function (s) {
   const n = s.length
-  let result = 0
-  let walk = function (index) {
-    if (index > n) {
-      return
+  if (n === 0 || s[0] === '0') {
+    return 0
+  }
+  const f = Array(n + 1).fill(0)
+  f[0] = 1
+  for (let i = 1; i <= n; i++) {
+    const one = +s.substr(i - 1, 1)
+    if (0 < one && one < 10) {
+      f[i] += f[i - 1]
     }
-    if (index === n) {
-      result++
-      return
-    }
-    const one = s.substr(index, 1)
-    if (+one !== 0) {
-      walk(index + 1)
-    }
-    if (n - index >= 2) {
-      const two = s.substr(index, 2)
-      if (+two >= 10 && +two <= 26) {
-        walk(index + 2)
+
+    if (i >= 2) {
+      const two = +s.substr(i - 2, 2)
+
+      if (10 <= two && two <= 26) {
+        f[i] += f[i - 2]
       }
     }
   }
-  walk(0)
-  return result
+  return f[n]
 }
 
 module.exports = numDecodings

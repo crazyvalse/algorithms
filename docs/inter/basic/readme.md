@@ -65,3 +65,23 @@ var a = 'oops, global' // a是全局对象的属性
 bar() // "oops, global"
 ```
 
+### 6 0.1+0.2 为什么不等于 0.3？
+
+0.1 和 0.2 在转换成二进制后会无限循环，由于标准位数的限制后面多余的位数会被截掉，
+此时就已经出现了精度的损失，
+相加后因浮点数小数位的限制而截断的二进制数字在转换为十进制就会变成 0.30000000000000004
+
+### 7 BigInt
+
+- http://interview.poetries.top/excellent-docs/3-JS%E6%A8%A1%E5%9D%97.html#_1-4-1-tostring-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E8%B0%83%E7%94%A8
+
+### 8 判断是否是 promise
+
+```js
+function isPromise (val) {
+    return (
+      typeof val.then === 'function' &&
+      typeof val.catch === 'function'
+    )
+}
+```

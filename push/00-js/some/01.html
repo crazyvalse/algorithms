@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      const vm = this
+
+      Object.defineProperty(vm, 'b', {
+        value: 0,
+        get() {
+          return this.value
+        }
+      })
+      console.info(vm.b)
+    </script>
+  </body>
+</html>

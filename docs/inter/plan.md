@@ -8,6 +8,7 @@
 - [ ] http
 - [ ] 手写
 - [ ] CSS3 动画硬件加速？CSS3 动画的性能问题（重绘和重流，是否需要脱离正常文档流）？
+  - http://interview.poetries.top/excellent-docs/2-CSS%E6%A8%A1%E5%9D%97.html#%E5%A6%82%E4%BD%95%E7%94%BB%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2
 - [ ] 事件委托
 - [ ] FCP/FMP/FP 分别是怎样定义，如何统计
 - [ ] ng 负载均衡的方式有哪些
@@ -49,6 +50,7 @@
 - [ ] jsonp 缺点： https://blog.csdn.net/qq_35385241/article/details/109448766
 - [x] 深拷贝
   - https://github.com/yygmind/blog/issues/25
+- [ ] babel
 
 ## 6.7 - 6.11
 

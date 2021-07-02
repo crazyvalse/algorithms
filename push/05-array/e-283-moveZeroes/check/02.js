@@ -9,49 +9,25 @@
 尽量减少操作次数。
  */
 /**
- * 题目
- * 1. 将所有 0 移动到数组的末尾
- * 2. 保持非零元素的相对顺序
- * 思路：双指针
- * l：指向非0
- * f：指向下一位
+ * 双指针
+ * A[l] !== 0 l++
+ * A[l] === 0 && A[r] !== 0 swap
+ * r
  *
- * array[f] === 0 的话就 f++
- * array[f] !== 0 的话就 swap()
- * @param {number[]} nums
+ * @param {number[]} A
  * @return nums Do not return anything, modify nums in-place instead.
  */
-var moveZeroes = function (array) {
-  let counter = 0
+var moveZeroes = function (A) {
   let l = 0
-  let f = 0
-  while (f < array.length - counter) {
-    l = f
-    if (array[f] === 0) {
-      while (f < array.length && array[f] === 0) {
-        f++
-      }
-      move(array, l, array.length - 1 - counter, f - l)
-      counter += f - l
-    } else {
-      f++
+  let r = 0
+  while (r < A.length) {
+    if (A[r] !== 0) {
+      ;[A[l], A[r]] = [A[r], A[l]]
+      l++
     }
+    r++
   }
-  return array
-}
-
-const move = function (array, l, r, k) {
-  reverse(array, l, l + k - 1)
-  reverse(array, l + k, r)
-  reverse(array, l, r)
-  return array
-}
-const reverse = function (array, l, r) {
-  while (l < r) {
-    ;[array[l], array[r]] = [array[r], array[l]]
-    l++
-    r--
-  }
+  return A
 }
 
 module.exports = moveZeroes

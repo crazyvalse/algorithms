@@ -24,25 +24,34 @@
 
  */
 /**
- * 从后面开始排
- * 当 n < 0 的时候 说明 1还有，不用管
- * m < 0 说明 2还有，接到前面
- * @param nums1
+ * 从 1. 的后面开始排
+ * 比较大小，然后放到后面
+ * 最后剩余
+ * A剩余 不管
+ * B剩余 补到A上
+ *
+ * @param A
  * @param m
- * @param nums2
+ * @param B
  * @param n
  */
-const merge = function (nums1, m, nums2, n) {
-  let l = m - 1
-  let r = n - 1
-  let i = m + n - 1
-  while (l >= 0 && r >= 0) {
-    nums1[i--] = nums1[l] > nums2[r] ? nums1[l--] : nums2[r--]
+const merge = function (A, m, B, n) {
+  let r = m + n - 1
+  m--
+  n--
+  while (m >= 0 && n >= 0) {
+    if (A[m] < B[n]) {
+      A[r] = B[n--]
+    } else {
+      A[r] = A[m--]
+    }
+    r--
   }
-  while (r >= 0) {
-    nums1[r--] = nums2[r]
+  while (n >= 0) {
+    A[n] = B[n]
+    n--
   }
-  return nums1
+  return A
 }
 
 module.exports = merge
