@@ -1,5 +1,5 @@
 const { sort, heapify, initHeap } = require('./01.js')
-test('heapify', () => {
+test('h1', () => {
   const array = [4, 6, 8, 5, 9]
   heapify(array, 1, 5)
   expect(array).toEqual([4, 9, 8, 5, 6])

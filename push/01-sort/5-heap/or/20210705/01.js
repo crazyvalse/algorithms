@@ -4,7 +4,7 @@
  * @param array
  */
 function sort(array) {
-  if (array.length < 2) {
+  if (array.length <= 1) {
     return array
   }
   initHeap(array)
@@ -14,32 +14,26 @@ function sort(array) {
 
 /**
  * 组成最大堆之后，把第一和最后交换，然后处理 0 堆
- *
- * 1. 组成最大堆之后，
- * 2. 交换 头尾
- * 3. 继续构建 从0开始构建
  * @param array
  */
 function doSort(array) {
-  for (let l = array.length - 1; l >= 0; l--) {
-    swap(array, 0, l)
-    heapify(array, 0, l)
+  const n = array.length
+  for (let i = n - 1; i >= 0; i--) {
+    swap(array, 0, i)
+    heapify(array, 0, i)
   }
 }
 
 /**
  * 构建最大堆
- * 1. 找到最后一个父节点
- * 2. 从最后一个父节点开始向头构建
+ * 从最后一个父节点开始向前推进
  * @param array
  */
 function initHeap(array) {
-  if (array.length < 2) {
-    return
-  }
-  const pivot = (array.length >> 1) - 1
-  for (let i = pivot; i >= 0; i--) {
-    heapify(array, i, array.length)
+  const length = array.length
+  const pivot = length >>> 1
+  for (let i = pivot - 1; i >= 0; i--) {
+    heapify(array, i, length)
   }
 }
 
@@ -58,25 +52,23 @@ function initHeap(array) {
  * @param length 当前数组长度
  */
 function heapify(array, current, length) {
-  if (array.length < 2 || length < 2) {
+  if (array.length <= 1 || length <= 1) {
     return
   }
-  // 1. 找到子节点
   const lc = current * 2 + 1
   const rc = current * 2 + 2
-
-  // 2. 找到最大索引
   let c = current
-  if (lc < length && array[lc] > array[c]) {
+  // 判断左侧的大小
+  if (lc < length && array[c] < array[lc]) {
     c = lc
   }
-  if (rc < length && array[rc] > array[c]) {
+  // 判断右侧的大小
+  if (rc < length && array[c] < array[rc]) {
     c = rc
   }
 
-  // 3. 如果交换了，就交换并且继续处理子节点
-  if (current !== c) {
-    swap(array, current, c)
+  if (c !== current) {
+    swap(array, c, current)
     heapify(array, c, length)
   }
 }
