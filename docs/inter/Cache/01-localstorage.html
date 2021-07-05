@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <button id="btn">go</button>
+    <script>
+      let counter = 1
+      document.querySelector('#btn').onclick = function () {
+        localStorage.setItem('test-msg', ++counter)
+      }
+    </script>
+  </body>
+</html>

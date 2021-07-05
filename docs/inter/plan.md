@@ -18,6 +18,7 @@
 - [ ] cookie 包含哪些字段
 - [ ] 箭头函数能 new 嘛？ 不能
 - [ ] http 与 https 缓存有什么区别
+  - https://segmentfault.com/a/1190000016828036
 - [ ] fetch
 - [ ] async/await 与 generator 的关联
 - [ ] vue hash 与 history 区别
@@ -41,7 +42,7 @@
 - [ ] Promise 的 finally 如何实现
 - [ ] node 项目中如何守护进程
 - [ ] Service Worker
-- [ ] 事件捕捉 冒泡顺序： https://www.cnblogs.com/alvinwei1024/p/4739344.html
+- [x] 事件捕捉 冒泡顺序： https://www.cnblogs.com/alvinwei1024/p/4739344.html
 - [x] 字符串赋值后 内存空间：
   - https://www.zhihu.com/question/392599497/answer/1207676114
   - https://www.cnblogs.com/liangyin/p/7764232.html
@@ -51,6 +52,9 @@
 - [x] 深拷贝
   - https://github.com/yygmind/blog/issues/25
 - [ ] babel
+- [ ] proxy
+- [ ] vue 3.0
+- [ ]
 
 ## 6.7 - 6.11
 
