@@ -15,8 +15,6 @@
  * @param heights
  * @returns {number}
  */
-var largestRectangleArea = function (heights) {
-  let max = 0
-}
+var largestRectangleArea = function (heights) {}
 
 module.exports = largestRectangleArea

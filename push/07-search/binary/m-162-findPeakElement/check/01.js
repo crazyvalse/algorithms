@@ -26,23 +26,26 @@
  */
 
 /**
- *
- * 只要是 nums[i] > nums[i + 1] return i 说明开始下降了
- *
- * 兜底的就是 length - 1
- * @param {number[]} nums
+ * 二分法：
+ * A[pivot] > A[r]
+ * r = pivot
+ * else
+ * l = pivot
+ * @param {number[]} A
  * @return {number}
  */
-var findPeakElement = function (nums) {
-  if (!Array.isArray(nums) || nums.length < 1) {
-    return -1
-  }
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] < nums[i - 1]) {
-      return i - 1
+var findPeakElement = function (A) {
+  let l = 0
+  let r = A.length - 1
+  while (l < r) {
+    const pivot = l + ((r - l) >> 1)
+    if (A[pivot] > A[pivot + 1]) {
+      r = pivot
+    } else {
+      l = pivot + 1
     }
   }
-  return nums.length - 1
+  return l
 }
 
 module.exports = findPeakElement

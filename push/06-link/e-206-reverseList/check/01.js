@@ -29,16 +29,16 @@
  * @return {ListNode}
  */
 var reverseList = function (head) {
-  let pre = null
-  let cur = head
-  let next
-  while (cur) {
-    next = cur.next
-    cur.next = pre
-    pre = cur
-    cur = next
+  let p = null
+  let c = head
+  let n
+  while (c) {
+    n = c.next
+    c.next = p
+    p = c
+    c = n
   }
-  return pre
+  return p
 }
 
 function ListNode(val, next) {

@@ -32,9 +32,8 @@
 s 仅由括号 '()[]{}' 组成
  */
 /**
- * 好像确实需要借助一个stack
- * 遇到左括号就推进去
- * 遇到右括号的时候 就pop一个 看看是不是
+ * 1. 遇到左括号就push到栈中
+ * 2. 如果是右括号就从栈中pop一个出来对比 看看是不是相等
  * @param {string} s
  * @return {boolean}
  * "()[]{}"
@@ -42,15 +41,20 @@ s 仅由括号 '()[]{}' 组成
 var isValid = function (s) {
   const stack = []
   const map = {
+    '}': '{',
     ']': '[',
-    ')': '(',
-    '}': '{'
+    ')': '('
   }
-  for (let i = 0, char = null; (char = s[i]); i++) {
-    if (!map[char]) {
-      stack.push(char)
-    } else if (map[char] !== stack.pop()) {
-      return false
+
+  for (let i = 0; i < s.length; i++) {
+    debugger
+    // 右括号
+    if (map[s[i]]) {
+      if (map[s[i]] !== stack.pop()) {
+        return false
+      }
+    } else {
+      stack.push(s[i])
     }
   }
   return !stack.length

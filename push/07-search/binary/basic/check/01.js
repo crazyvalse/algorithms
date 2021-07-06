@@ -7,8 +7,9 @@
 function search(array, key) {
   let l = 0
   let r = array.length - 1
+
   while (l <= r) {
-    const pivot = l + ((r - l) >>> 1)
+    const pivot = l + ((r - l) >> 1)
     if (array[pivot] === key) {
       return pivot
     } else if (array[pivot] > key) {

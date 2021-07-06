@@ -29,7 +29,7 @@ var searchInsert = function (A, target) {
   let l = 0
   let r = A.length - 1
   while (l <= r) {
-    const pivot = l + ((r - l) >>> 1)
+    const pivot = l + ((r - l) >> 1)
     if (A[pivot] === target) {
       return pivot
     } else if (A[pivot] > target) {

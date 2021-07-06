@@ -28,21 +28,38 @@ function ListNode(val, next) {
  * null <- 1    2
  *         p    c    n
  *
- * 边界检查：
+ * 1. 终止条件
+ * 2. 返回结果 - 返回是后面的 head 已经指向前面的
+ * 3. 参数
+ * 4. 过程
  *
- * @param {ListNode} head
+ * const cp = walk(c.next)
+ * cp.next = c
+ * c.next = null
+ * return c
+ *
+ * 边界
+ *
+ * @param {ListNode} c
  * @return {ListNode}
  */
-var reverseList = function (head) {
-  const walk = function (current, previous) {
-    if (!current) {
-      return previous
-    }
-    const next = current.next
-    current.next = previous
-    return walk(next, current)
+var reverseList = function (c) {
+  if (!c || !c.next) {
+    return c
   }
-  return walk(head, null)
+
+  const walk = function (p, c) {
+    if (!c.next) {
+      return c
+    }
+    const last = walk(c, c.next)
+    const n = c.next
+    n.next = c
+    c.next = p
+    return last
+  }
+
+  return walk(null, c)
 }
 
 module.exports = {

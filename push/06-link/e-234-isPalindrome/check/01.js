@@ -33,15 +33,15 @@ function ListNode(val, next) {
  */
 var isPalindrome = function (head) {
   const pivot = findPivot(head)
-  const reversedList = reverse(null, pivot.next)
-  // 断掉 成为新的链表
+  const r = reverse(null, pivot.next)
   pivot.next = null
-  return compare(head, reversedList)
+  return compare(head, r)
 }
 
 // 找到中间的节点
-function findPivot(head) {
-  let hair = new ListNode(null, head)
+
+function findPivot(h) {
+  const hair = new ListNode(null, h)
   let l = hair
   let r = hair
   while (r && r.next) {
@@ -61,16 +61,18 @@ function findPivot(head) {
  *  - next = current.next
  *  - current.next = pre
  *
+ * 1 2 3 4 5
+ * p c n
  */
-function reverse(pre, cur) {
-  let next
-  while (cur) {
-    next = cur.next
-    cur.next = pre
-    pre = cur
-    cur = next
+function reverse(p, c) {
+  let n = null
+  while (c) {
+    n = c.next
+    c.next = p
+    p = c
+    c = n
   }
-  return pre
+  return p
 }
 
 function compare(l1, l2) {

@@ -21,17 +21,14 @@
  */
 const { ListNode } = require('../../utils')
 var sortList = function (head) {
-  const walk = function (h) {
-    if (!h || !h.next) {
-      return h
+  const walk = function (node) {
+    if (!node || !node.next) {
+      return node
     }
-    // 拆分成两个
-    const pivot = findPivot(h)
-    const r = pivot.next
+    const pivot = findPivot(node)
+    const right = pivot.next
     pivot.next = null
-
-    // 把两个链表合成一个
-    return merge(walk(h), walk(r))
+    return merge(walk(node), walk(right))
   }
   return walk(head)
 }
@@ -43,19 +40,22 @@ var sortList = function (head) {
  * @returns {*}
  */
 function merge(l, r) {
-  const hair = new ListNode(null, null)
-  let next = hair
+  const hair = new ListNode()
+  let n = hair
+
   while (l && r) {
-    if (l.val < r.val) {
-      next.next = l
-      l = l.next
-    } else {
-      next.next = r
+    if (l.val > r.val) {
+      n.next = r
       r = r.next
+    } else {
+      n.next = l
+      l = l.next
     }
-    next = next.next
+    n = n.next
   }
-  next.next = l || r
+
+  n.next = l || r
+
   return hair.next
 }
 

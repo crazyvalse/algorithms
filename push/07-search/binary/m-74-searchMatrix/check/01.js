@@ -22,11 +22,6 @@ n == matrix[i].length
  */
 
 /**
- * 把二维变成一维
- * @param {number[]} nums
- * @return {number}
- */
-/**
  * 把二维数组转成一维
  * @param {number[][]} matrix
  * @param {number} target
@@ -35,23 +30,23 @@ n == matrix[i].length
 var searchMatrix = function (matrix, target) {
   const row = matrix.length
   const column = matrix[0].length
-  function getIndex(index) {
-    return [parseInt(index / row), index % row]
-  }
-  const walk = function (left, right) {
-    if (left > right) {
-      return false
-    }
-    const pivot = left + ((right - left) >>> 1)
-    const [r, c] = getIndex(pivot)
-    if (matrix[r][c] === target) {
+  let l = 0
+  let r = row * column - 1
+  while (l <= r) {
+    const pivot = l + ((r - l) >> 1)
+    const [_r, _c] = findIndex(pivot, row)
+    if (matrix[_r][_c] === target) {
       return true
-    } else if (matrix[r][c] > target) {
-      return walk(left, pivot - 1)
+    } else if (matrix[_r][_c] > target) {
+      r = pivot - 1
     } else {
-      return walk(pivot + 1, right)
+      l = pivot + 1
     }
   }
-  return walk(0, row * column - 1)
+  return false
+}
+
+function findIndex(index, row) {
+  return [parseInt(index / row), index % row]
 }
 module.exports = searchMatrix

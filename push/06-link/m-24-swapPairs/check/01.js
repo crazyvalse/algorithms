@@ -26,19 +26,20 @@
  * @return {ListNode}
  */
 var swapPairs = function (head) {
-  let hair = new ListNode(null, head)
-  let pre = hair
-  let one = head
-  let two
-  let next
-  while (one && one.next) {
-    two = one.next
-    next = two.next
-    pre.next = two
-    two.next = one
-    one.next = next
-    pre = one
-    one = next
+  const hair = new ListNode(null, head)
+  let p = hair
+  let o = head
+  let t
+  let n
+  while (o && o.next) {
+    t = o.next
+    n = t.next
+
+    o.next = n
+    t.next = o
+    p.next = t
+    p = o
+    o = n
   }
   return hair.next
 }

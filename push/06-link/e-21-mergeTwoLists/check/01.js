@@ -24,18 +24,20 @@
  * */
 const mergeTwoLists = function (l1, l2) {
   const hair = new ListNode()
-  let next = hair
+  let n = hair
   while (l1 && l2) {
-    if (l1.val < l2.val) {
-      next.next = l1
-      l1 = l1.next
-    } else {
-      next.next = l2
+    if (l1.val > l2.val) {
+      n.next = l2
       l2 = l2.next
+    } else {
+      n.next = l1
+      l1 = l1.next
     }
-    next = next.next
+    n = n.next
   }
-  next.next = l1 || l2
+
+  n.next = l1 || l2
+
   return hair.next
 }
 

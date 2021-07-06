@@ -35,32 +35,34 @@
  * @return {ListNode}
  */
 var reverseBetween = function (head, left, right) {
+  if (left === right) {
+    return head
+  }
+
   const hair = new ListNode(null, head)
-  let pre = hair
-  let cur = head
-  let counter = 1
-  let next
-  let start
-  while (cur && counter <= right) {
-    if (counter < left) {
-      start = pre
-      pre = cur
-      cur = cur.next
-      counter++
+  let counter = 0
+  let p = hair
+  let c = p.next
+  let n
+  let l
+  while (c && counter < right) {
+    if (counter++ < left) {
+      l = p
+      p = c
+      c = c.next
       continue
     }
-    next = cur.next
-    cur.next = pre
-    pre = cur
-    cur = next
-    counter++
+    // 交换
+    n = c.next
+    c.next = p
+    p = c
+    c = n
   }
 
-  if (start.next) {
-    start.next.next = cur
-    start.next = pre
+  if (l.next) {
+    l.next.next = c
+    l.next = p
   }
-
   return hair.next
 }
 
