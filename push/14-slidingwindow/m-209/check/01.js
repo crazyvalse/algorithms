@@ -14,7 +14,7 @@
 输出：1
 
 示例 3：
-输入：target = 11, nums = [1,1,1,1,1,1,1,1]
+输入：target = 11, nums =
 输出：0
 
 提示：
@@ -45,11 +45,10 @@
  */
 var minSubArrayLen = function (target, nums) {
   let min = Infinity
-
+  let sum = 0
   let l = 0
   let r = 0
-  let sum = 0
-  while (r <= nums.length) {
+  while (r < nums.length) {
     sum += nums[r]
     while (sum >= target) {
       min = Math.min(min, r - l + 1)
@@ -57,6 +56,7 @@ var minSubArrayLen = function (target, nums) {
     }
     r++
   }
+
   return min === Infinity ? 0 : min
 }
 

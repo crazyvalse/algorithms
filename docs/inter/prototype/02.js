@@ -16,7 +16,7 @@ Person.go()
 class Child extends Person {
   constructor(name, age) {
     super(name)
-    this.age = age
+    this.#age = age
   }
 }
 

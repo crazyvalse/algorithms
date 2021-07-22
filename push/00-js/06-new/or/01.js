@@ -1,7 +1,7 @@
 // Otaku 御宅族，简称宅
 function Otaku(name, age) {
   this.name = name
-  this.age = age
+  this.#age = age
 
   this.habit = 'Games'
 }

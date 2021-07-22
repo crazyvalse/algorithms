@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      .cover {
+        background-color: red;
+        width: 100px;
+        height: 100px;
+        position: fixed;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: 20%;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="s()">show</button>
+    <button onclick="h()">hide</button>
+    <script>
+      function getCover() {
+        const cover = document.createElement('div')
+        cover.className = 'cover'
+        document.body.appendChild(cover)
+        getCover = function () {
+          return cover
+        }
+        return getCover()
+      }
+      function s () {
+        const cover = getCover()
+        cover.style.display = 'block'
+      }
+
+      function h () {
+        const cover = getCover()
+        cover.style.display = 'none'
+      }
+    </script>
+  </body>
+</html>

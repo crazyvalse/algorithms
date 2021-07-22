@@ -54,7 +54,7 @@ function Person(name, age) {
   // new.target == '[object Person]'
   if (this instanceof Person) {
     this.name = name
-    this.age = age
+    this.#age = age
   } else {
     return new Person(name, age)
   }

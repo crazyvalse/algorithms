@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">
+      <div v-for="item in array" :key="item">{{ item }}</div>
+    </div>
+
+    <script src="vue.min.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          array: [1, 2, 3, 4]
+        },
+        mounted() {
+          this.array.length = 0
+          console.info(this.array[1]);
+        }
+      })
+    </script>
+  </body>
+</html>

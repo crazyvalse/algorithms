@@ -34,17 +34,19 @@ candidates中的数字可以无限制重复被选取。
 var combinationSum = function (candidates, target) {
   const result = []
   const walk = function (index, sum, cart) {
-    if (sum > target) {
+    if (sum >= target) {
+      if (sum === target) {
+        result.push(cart.slice())
+      }
       return
     }
-    if (sum === target) {
-      result.push(cart.slice())
-      return
-    }
+
     for (let i = index; i < candidates.length; i++) {
-      cart.push(candidates[i])
-      walk(i, sum + candidates[i], cart)
-      cart.pop()
+      if (sum + candidates[i] <= target) {
+        cart.push(candidates[i])
+        walk(i, sum + candidates[i], cart)
+        cart.pop()
+      }
     }
   }
   walk(0, 0, [])

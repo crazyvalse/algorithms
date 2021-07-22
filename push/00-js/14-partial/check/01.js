@@ -12,7 +12,7 @@
 module.exports = partial
 
 /**
- * 1. 拼接两次的 arguments
+ * 1. 拼接98两次的 arguments
  * 2. 使用 fn 调用
  * @param fn
  * @param args

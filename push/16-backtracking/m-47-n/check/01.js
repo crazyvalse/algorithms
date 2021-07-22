@@ -37,7 +37,7 @@ var permuteUnique = function (nums) {
         continue
       }
       // 前面的相等
-      if (i - 1 >= 0 && nums[i] === nums[i - 1]) {
+      if (i - 1 >= 0 && nums[i] === nums[i - 1] && !used[i - 1]) {
         continue
       }
 

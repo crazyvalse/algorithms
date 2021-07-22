@@ -36,6 +36,22 @@ keep-alive 机制：若开启后，在一次 http 请求中，服务器进行响
 
 > HTTP keep-alive 章节的实验结果：无论开启 keep-alive 与否，最终由服务端主动断开 TCP 连接。
 
+## 分层
+
+- 将复杂的流程分为几个功能相对单一的子进程
+- 整个流程更加清晰，复杂问题简单化
+- 更容易发现问题并针对性的解决问题
+
+网络五层结构
+
+- TCP/IP 是传输控制协议/网络互联网协议的检查
+
+- 应用层
+- 传输层
+- 网络层
+- 数据链路层
+- 物理层
+
 ## TCP/UDP
 
 - http://interview.poetries.top/docs/excellent.html#_31-1-udp
@@ -190,3 +206,7 @@ HTTP 请求由三部分构成，分别为：
   - 请求行大概长这样 GET /images/logo.gif HTTP/1.1，基本由请求方法、URL、协议版本组成，这其中值得一说的就是请求方法了。
 - headers
 - 实体
+
+## 参考
+
+- https://juejin.cn/post/6844904100035821575

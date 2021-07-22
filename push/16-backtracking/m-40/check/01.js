@@ -38,14 +38,16 @@ var combinationSum2 = function (candidates, target) {
   const result = []
   candidates.sort()
   const walk = function (index, cart, sum) {
-    if (sum >= target) {
+    if (index >= candidates.length || sum >= target) {
       if (sum === target) {
         result.push(cart.slice())
       }
       return
     }
+
     for (let i = index; i < candidates.length; i++) {
-      if (i - 1 >= index && candidates[i] === candidates[i - 1]) {
+      // 关键就是
+      if (sum + candidates[i] > target || (i - 1 >= index && candidates[i - 1] === candidates[i])) {
         continue
       }
       cart.push(candidates[i])

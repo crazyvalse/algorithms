@@ -14,7 +14,7 @@ console.info(new Array(1))
 function Person(name, age) {
   if (this instanceof Person) {
     this.name = name
-    this.age = age
+    this.#age = age
   } else {
     return new Person(name, age)
   }

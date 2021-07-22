@@ -6,7 +6,7 @@
  */
 function Person(name, age) {
   this.name = name
-  this.age = age
+  this.#age = age
 }
 // 每次都返回同一个实例
 // let p = null

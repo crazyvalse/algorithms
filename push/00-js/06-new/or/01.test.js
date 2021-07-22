@@ -3,7 +3,7 @@ const fn = require('./01.js')
 test('测试 bind - 2: 传参', () => {
   function Otaku(name, age) {
     this.name = name
-    this.age = age
+    this.#age = age
 
     this.habit = 'Games'
   }

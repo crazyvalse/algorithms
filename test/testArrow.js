@@ -1,6 +1,6 @@
 const Person = (name, age) => {
   this.name = name
-  this.age = age
+  this.#age = age
 }
 
 const p = new Person('zac', 12)

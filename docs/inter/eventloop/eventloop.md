@@ -11,6 +11,13 @@
 
 # 3. 事件循环
 
+- 由于 JS 是单线程，所以同一时间只能执行一个任务，其他任务就得排队，后续任务必须等到前一个任务结束才能开始执行。
+- 为了避免因为某些长时间任务造成的无意义等待，JS 引入了异步的概念，用另一个线程来管理异步任务。
+- 同步任务直接在主线程队列中顺序执行，而异步任务会进入另一个任务队列，不会阻塞主线程。
+- 等到主线程队列空了（执行完了）的时候，就会去异步队列查询是否有可执行的异步任务了（异步任务通常进入异步队列之后还要等一些条件才能执行，如 ajax 请求、文件读写），如果某个异步任务可以执行了便加入主线程队列，以此循环。
+- HTML5 规范规定 setTimeout 最小延迟时间不能小于 4ms，即 x 如果小于 4，会被当做 4 来处理。
+- 对于 setInterval(fn, 100) 容易产生一个误区：并不是上一次 fn 执行完了之后再过 100ms 才开始执行下一次 fn。 事实上，setInterval 并不管上一次 fn 的执行结果，而是每隔 100ms 就将 fn 放入主线程队列，而两次 fn 之间具体间隔多久就不一定了，跟 setTimeout 实际延迟时间类似，和 JS 执行情况有关。
+
 参考：
 
 [深入理解事件循环,这一篇就够了!](https://zhuanlan.zhihu.com/p/87684858)
@@ -114,3 +121,36 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_DOM_API/Microtask_guide/In
 - 执行 requestAnimationFrame 回调
 - 更新界面
 - requestIdleCallback
+
+- https://www.cnblogs.com/penghuwan/p/11699164.html
+
+## Node 与浏览器的事件循环的区别
+
+> 重要
+
+- 内核不同：
+  - 浏览器的事件循环是 根据 html5 的标准各浏览器创建的机制
+  - 而 node 是基于 libuv 库（跨平台的基于事件驱动的异步 io 库）
+- 一些 api 上的不同： process.nextTick() 和 MutationObserver
+- 表现上
+  - Node 10 以前：当一个任务队列（例如 timer queue）里面的回调都批量执行完了，才去执行微任务
+  - 在浏览器和 Node11 以后，每执行完一个 timer 类回调，例如 setTimeout,setImmediate 之后，都会把微任务给执行掉（promise 等）。
+
+> 重要
+
+### Node 端的异步执行顺序
+
+- 同步代码 > process.nextTick > Promise.then 中的函数 > setTimeOut(0) 或 setImmediate
+- Promise 中的函数，无论是 resolve 前的还是后的，都属于“同步代码”的范围，并不是“异步代码”
+- process.nextTick 是不会进入异步队列的，而是直接在主线程队列尾强插一个任务，虽然不会阻塞主线程，但是会阻塞异步任务的执行，如果有嵌套的 process.nextTick，那异步任务就永远没机会被执行到了。
+
+下面简单介绍下宏任务和微任务的阵营
+
+- 宏任务(macrotasks)：setTimeout, setInterval, I/O，setImmediate（如果存在），requestAnimationFrame（存在争议）
+- 微任务 (microtasks) : process.nextTick, Promises,MutationObserver
+- 为了协调事件，用户交互，脚本，渲染，网络等，用户代理（浏览器）必须使用本节中描述的事件循环。每个代理都有一个关联的事件循环。
+
+区别
+
+- 在浏览器和 Node11 以后，每执行完一个 timer 类回调，例如 setTimeout,setImmediate 之后，都会把微任务给执行掉（promise 等）。
+- 原来 Node10 和以前： 当一个任务队列（例如 timer queue）里面的回调都批量执行完了，才去执行微任务

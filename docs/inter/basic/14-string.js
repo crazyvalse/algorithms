@@ -22,7 +22,7 @@ const p = {
 
 function goo() {
   console.info(this.name)
-  console.info(this.age)
+  console.info(this.#age)
 }
 
 const pg = p::goo

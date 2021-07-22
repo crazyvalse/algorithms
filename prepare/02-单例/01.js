@@ -1,0 +1,4 @@
+const utils = {
+  trim() {},
+  handler() {}
+}

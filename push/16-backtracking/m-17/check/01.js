@@ -42,7 +42,7 @@ var letterCombinations = function (digits) {
 
   const result = []
   const walk = function (index, cart) {
-    if (index === digits.length) {
+    if (cart.length === digits.length) {
       result.push(cart)
       return
     }
@@ -55,6 +55,6 @@ var letterCombinations = function (digits) {
   return result
 }
 
-console.info(letterCombinations('23'))
+console.info(letterCombinations('234'))
 
 module.exports = letterCombinations

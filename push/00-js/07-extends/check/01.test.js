@@ -12,7 +12,7 @@ test('测试 bind - 2: 传参', () => {
 
   function Child(name, age) {
     Parent.call(this, name)
-    this.age = age
+    this.#age = age
   }
 
   extend(Child, Parent)

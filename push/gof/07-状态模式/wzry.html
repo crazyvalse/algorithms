@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    关羽的技能 - 平时状态 - 冲锋状态
+
+    <button id="first">第一技能</button>
+    <button id="second">第二技能</button>
+    <button id="third">第三技能</button>
+
+    <button onclick="go()">go</button>
+
+    <hr />
+    <div id="message board"></div>
+    <script>
+      class Person {
+        constructor(charactor) {
+          this.charactor = charactor
+          this.init()
+        }
+        init() {
+          document.querySelector('#first').onclick = () => {
+            this.charactor.firstAction()
+          }
+          document.querySelector('#second').onclick = () => {
+            this.charactor.secondAction()
+          }
+          document.querySelector('#third').onclick = () => {
+            this.charactor.thirdAction()
+          }
+        }
+
+        changeState() {
+          this.charactor.changeState()
+        }
+      }
+
+      class Guanyu {
+        constructor() {
+          this.normal = new GuanYuNormal(this)
+          this.chong = new GuanYuChong(this)
+          this.charactor = this.normal
+        }
+
+        changeState() {
+          this.charactor = this.charactor === this.normal ? this.chong : this.normal
+        }
+
+        firstAction() {
+          this.charactor.firstAction()
+        }
+
+        secondAction() {
+          this.charactor.secondAction()
+        }
+
+        thirdAction() {
+          this.charactor.thirdAction()
+        }
+      }
+
+      class GuanYuNormal {
+        firstAction() {
+          console.info('普通 - 单刀赴会')
+        }
+
+        secondAction() {
+          console.info('普通 - 青龙炎月')
+        }
+
+        thirdAction() {
+          console.info('普通 - 刀锋铁骑')
+        }
+      }
+
+      class GuanYuChong {
+        constructor(parent) {
+          this.parent = parent
+        }
+        firstAction() {
+          console.info('冲锋 - 单刀赴会')
+          this.parent.changeState()
+        }
+
+        secondAction() {
+          console.info('冲锋 - 青龙炎月')
+          this.parent.changeState()
+        }
+
+        thirdAction() {
+          console.info('冲锋 - 刀锋铁骑')
+          this.parent.changeState()
+        }
+      }
+
+      const p = new Person(new Guanyu())
+
+      function go() {
+        setTimeout(() => {
+          p.changeState()
+        }, 3000)
+      }
+    </script>
+  </body>
+</html>

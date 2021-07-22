@@ -46,16 +46,19 @@ nums 中的所有元素 互不相同
  *
  *
  * https://leetcode-cn.com/problems/subsets/solution/shou-hua-tu-jie-zi-ji-hui-su-fa-xiang-jie-wei-yun-/
- * @param {number[]} nums
+ * @param {number[]} A
  * @return {number[][]}
  */
 
-var subsets = function (nums) {
+var subsets = function (A) {
   const result = []
   const walk = function (index, cart) {
     result.push(cart.slice())
-    for (let i = index; i < nums.length; i++) {
-      cart.push(nums[i])
+    if (index === A.length) {
+      return
+    }
+    for (let i = index; i < A.length; i++) {
+      cart.push(A[i])
       walk(i + 1, cart)
       cart.pop()
     }

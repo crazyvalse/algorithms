@@ -54,7 +54,8 @@
 - [ ] babel
 - [ ] proxy
 - [ ] vue 3.0
-- [ ]
+- [ ] 灰度发布
+- [ ] https://juejin.cn/post/6986436944913924103#heading-12
 
 ## 6.7 - 6.11
 
@@ -107,3 +108,9 @@
 - 原型
   - http://journal.portal-test.founderss.cn/rc-api/videoLibs?publicationId=824&tenantId=d3212696de3f4198bf40e75b86a9d338&isGroupMag=false&timestamps=1624364259603&page=0&size=20&searchWord=7897987987987987987&sort=SYS_CREATEDDESC&searchType=RELATION_THESIS_NAME&docIds=480267547893174705301&timestamps=1624364259603
   - https://muyiy.cn/blog/5/5.1.html
+
+## 7.8
+
+- 安全
+- 分治算法
+- dfs 与 bfs 的迭代算法

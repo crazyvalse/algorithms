@@ -1,0 +1,20 @@
+version: '2.0'
+
+networks:
+  nginx_al:
+    driver: bridge
+
+services:
+  nginx-al:
+    restart: always
+    container_name: ng-al
+    image: nginx:1.19.5-alpine
+    ports:
+      - 18080:8080
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/html:/usr/share/nginx/html
+    networks:
+      - nginx_al
+    command: [nginx-debug, '-g', 'daemon off;']
