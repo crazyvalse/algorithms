@@ -1,0 +1,2 @@
+- 基本类型
+  - number、string、boolean、undefined、null、symbol、BigInt

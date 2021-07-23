@@ -78,10 +78,14 @@ bar() // "oops, global"
 ### 8 判断是否是 promise
 
 ```js
-function isPromise (val) {
-    return (
-      typeof val.then === 'function' &&
-      typeof val.catch === 'function'
-    )
+function isPromise(val) {
+  return typeof val.then === 'function' && typeof val.catch === 'function'
 }
 ```
+
+### 9. JavaScript 中的数据是如何存储在内存中的？
+
+- 在 JavaScript 的执行过程中， 主要有三种类型内存空间，分别是代码空间、栈空间、堆空间。
+- 代码空间主要是存储可执行代码的
+- 原始类型(Number、String、Null、Undefined、Boolean、Symbol、BigInt)的数据值都是直接保存在“栈”中的，引用类型(Object)的值是存放在“堆”中的。因此在栈空间中(执行上下文)，原始类型存储的是变量的值，而引用类型存储的是其在"堆空间"中的地址，当 JavaScript 需要访问该数据的时候，是通过栈中的引用地址来访问的，相当于多了一道转手流程。
+
