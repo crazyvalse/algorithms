@@ -23,23 +23,20 @@
 输出：-100000
  */
 /**
- * [-2,1,-3,4,-1,2,1,-5,4]
- * 1. sum < 0 就抛弃
- * 1. 先判断 sum 是否 < 0，如果是的话 sum = 0
- * 2. sum += A[i]
- * 3. max(max, sum)
- * @param {number[]} A
+ * f[n] 前n个数字的最大和
+ *
+ * f[n] = Math.max(f[i - 1] + ai-1, ai-1)
+ *
+ * @param {number[]} a
  * @return {number}
  */
-var maxSubArray = function (A) {
-  let sum = 0
+var maxSubArray = function (a) {
+  const n = a.length
+  const f = Array(n + 1).fill(0)
   let max = -Infinity
-  for (let i = 0; i < A.length; i++) {
-    if (sum < 0) {
-      sum = 0
-    }
-    sum = Math.max(A[i], sum + A[i])
-    max = Math.max(max, sum)
+  for (let i = 1; i <= n; i++) {
+    f[i] = Math.max(f[i - 1] + a[i - 1], a[i - 1])
+    max = Math.max(max, f[i])
   }
   return max
 }

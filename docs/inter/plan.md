@@ -114,3 +114,23 @@
 - 安全
 - 分治算法
 - dfs 与 bfs 的迭代算法
+
+# 8月
+
+- 复习算法
+- 复习基础
+- 继续刷算法
+- 继续复习基础
+
+## 8.2 - 8.6
+
+- 8.2 array/link
+- 8.3 search/heap/recursive
+- 8.4 11-binary-search-tree-n/11-binary-tree-n/12-graph
+- 8.5 13-doublepoint/14-slidingwindow/16-backtracking
+- 8.6 17-dfs/18-bfs-n/19-unionfind
+- 8.7 20-greed/21-memorization/22-dp
+
+### 8.2
+
+- [ ]

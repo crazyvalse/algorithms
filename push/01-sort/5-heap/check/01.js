@@ -3,13 +3,13 @@
  * 2. 交换头尾两个节点，长度 - 1，currentIndex = 0 继续构建最大堆
  * @param array
  */
-function sort(array) {
-  if (array.length < 2) {
-    return array
+function sort(a) {
+  if (a.length < 2) {
+    return a
   }
-  initHeap(array)
-  doSort(array)
-  return array
+  initHeap(a)
+  doSort(a)
+  return a
 }
 
 /**
@@ -18,12 +18,17 @@ function sort(array) {
  * 1. 组成最大堆之后，
  * 2. 交换 头尾
  * 3. 继续构建 从0开始构建
- * @param array
+ * @param a
  */
-function doSort(array) {
-  for (let l = array.length - 1; l >= 0; l--) {
-    swap(array, 0, l)
-    heapify(array, 0, l)
+function doSort(a) {
+  // 1. 当前已经是最大堆了，换句话讲 a0 已经是最大值
+  // 2. 交换 a0 与 al
+  // 3. 以 a0 重新构建
+  // 4. 把 length 减小
+  const n = a.length
+  for (let length = n - 1; length > 0; length--) {
+    swap(a, 0, length)
+    heapify(a, 0, length)
   }
 }
 
@@ -31,15 +36,14 @@ function doSort(array) {
  * 构建最大堆
  * 1. 找到最后一个父节点
  * 2. 从最后一个父节点开始向头构建
- * @param array
+ * @param a
  */
-function initHeap(array) {
-  if (array.length < 2) {
-    return
-  }
-  const pivot = (array.length >> 1) - 1
-  for (let i = pivot; i >= 0; i--) {
-    heapify(array, i, array.length)
+function initHeap(a) {
+  // 从最后一个父节点开始构建
+  const n = a.length
+  const lastParentIndex = Math.ceil(n / 2) - 1
+  for (let i = lastParentIndex; i >= 0; i--) {
+    heapify(a, i, n)
   }
 }
 
@@ -53,31 +57,34 @@ function initHeap(array) {
  *  - 处理受影响的子节点
  *
  * 只跟父节点比较
- * @param array 目标数组
+ * @param a 目标数组
  * @param current 需要处理的子树父节点
  * @param length 当前数组长度
  */
-function heapify(array, current, length) {
-  if (array.length < 2 || length < 2) {
+function heapify(a, current, length) {
+  if (a.length < 2 || length < 2) {
     return
   }
-  // 1. 找到子节点
-  const lc = current * 2 + 1
-  const rc = current * 2 + 2
 
-  // 2. 找到最大索引
+  // 1. 先找子节点
+  const l = current * 2 + 1
+  const r = current * 2 + 2
+
+  // 2. 判断节点大小
   let c = current
-  if (lc < length && array[lc] > array[c]) {
-    c = lc
-  }
-  if (rc < length && array[rc] > array[c]) {
-    c = rc
+  if (l < length && a[c] < a[l]) {
+    c = l
   }
 
-  // 3. 如果交换了，就交换并且继续处理子节点
-  if (current !== c) {
-    swap(array, current, c)
-    heapify(array, c, length)
+  if (r < length && a[c] < a[r]) {
+    c = r
+  }
+
+  // 3. 如果已经交换的，swap
+  // 4. 处理交换了的节点树
+  if (c !== current) {
+    swap(a, c, current)
+    heapify(a, c, length)
   }
 }
 

@@ -9,31 +9,35 @@
 尽量减少操作次数。
  */
 /**
- * 双指针
- * l 下一个指针
- * r 最后面的指针
- * if(l === 0) move(A, l, r)
+ * 快慢指针
+ * l = 指向0
+ * r = index
  *
- * @param {number[]} A
+ * if(al !== 0){
+ *   l++
+ * } else if(ar !== 0){
+ *   swap(a, l, r)
+ * }
+ *
+ * @param {number[]} a
  * @return nums Do not return anything, modify nums in-place instead.
  */
-var moveZeroes = function (A) {
+var moveZeroes = function (a) {
+  const n = a.length
   let l = 0
-  let r = A.length - 1
-  while (l < r) {
-    if (A[l] === 0) {
-      move(A, l, r--)
+  let r = 0
+  while (r < n) {
+    if (a[r] !== 0) {
+      swap(a, l, r)
+      l++
     }
-    l++
+    r++
   }
-  return A
+  return a
 }
 
-function move(A, l, r) {
-  while (l < r) {
-    ;[A[l], A[l + 1]] = [A[l + 1], A[l]]
-    l++
-  }
+function swap(array, a, b) {
+  ;[array[a], array[b]] = [array[b], array[a]]
 }
 
 module.exports = moveZeroes

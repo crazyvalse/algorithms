@@ -16,32 +16,31 @@
  ------------------------------------------------------------------------------------------------------------------------
  */
 /**
- * 判断 result[last][right] >= item[left] 扩大右侧 result[last][right] = item[right]
- * 否则 新开一个
- * @param intervals
+ * 1. 前后排序
+ * 2. r[ll, lr] rlr > ail 进行合并 rlr = max(rlr, air)
+ * 3. 否则 新开一个
+ * @param a
  */
-const merge = function (intervals) {
-  if (intervals.length <= 1) {
-    return intervals
+const merge = function (a) {
+  if (a.length < 2) {
+    return a
   }
-  const shadow = intervals.slice()
-  const left = 0
-  const right = 1
-  shadow.sort(([a1, a2], [b1, b2]) => {
-    if (a1 === b1) {
-      return a2 - b2
+  const [l, r] = [0, 1]
+  const n = a.length
+  a.sort((a, b) => {
+    if (a[l] === b[l]) {
+      return a[r] - b[r]
     } else {
-      return a1 - b1
+      return a[l] - b[l]
     }
   })
-  const result = [shadow[0]]
-
-  for (let i = 1; i < intervals.length; i++) {
-    const last = result.length - 1
-    if (result[last][right] >= intervals[i][left]) {
-      result[last][right] = intervals[i][right]
+  const result = [a[0]]
+  for (let i = 1; i < n; i++) {
+    const last = result[result.length - 1]
+    if (last[r] >= a[i][l]) {
+      last[r] = Math.max(last[r], a[i][r])
     } else {
-      result.push(intervals[i])
+      result.push(a[i])
     }
   }
   return result

@@ -24,29 +24,31 @@
 
  */
 /**
- * 从 1. 的后面开始排
- * 比较大小，然后放到后面
- * 最后剩余
- * A剩余 不管
- * B剩余 补到A上
+ * 从 A 的尾巴开始加
  *
+ * 剩下的：
+ * A剩下了 不动
+ * B剩下了 混合到A中
  * @param A
  * @param m
  * @param B
  * @param n
  */
 const merge = function (A, m, B, n) {
-  let r = m + n - 1
+  let l = m + n - 1
   m--
   n--
   while (m >= 0 && n >= 0) {
-    if (A[m] < B[n]) {
-      A[r] = B[n--]
+    if (A[m] >= B[n]) {
+      A[l] = A[m]
+      m--
     } else {
-      A[r] = A[m--]
+      A[l] = B[n]
+      n--
     }
-    r--
+    l--
   }
+
   while (n >= 0) {
     A[n] = B[n]
     n--

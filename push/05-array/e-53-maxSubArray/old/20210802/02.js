@@ -1,0 +1,45 @@
+/*
+给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+
+示例 1：
+输入：nums = [-2,1,-3,4,-1,2,1,-5,4]
+输出：6
+解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。
+
+示例 2：
+输入：nums = [1]
+输出：1
+
+示例 3：
+输入：nums = [0]
+输出：0
+
+示例 4：
+输入：nums = [-1]
+输出：-1
+
+示例 5：
+输入：nums = [-100000]
+输出：-100000
+ */
+/**
+ * f[i] 为连续 最大连续数组
+ *
+ * f[i] = max(A[i], f[i - 1] + A[i])
+ *
+ * max = Math.max(f[i], max)
+ * @param {number[]} A
+ * @return {number}
+ */
+var maxSubArray = function (A) {
+  const n = A.length
+  const f = Array(n + 1).fill(0)
+  let max = -Infinity
+  for (let i = 1; i <= n; i++) {
+    f[i] = Math.max(A[i - 1], f[i - 1] + A[i - 1])
+    max = Math.max(f[i], max)
+  }
+  return max
+}
+
+module.exports = maxSubArray

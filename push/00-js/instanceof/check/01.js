@@ -6,24 +6,18 @@ instanceof 可以正确的判断对象的类型，因为内部机制是通过判
 - 然后一直循环判断对象的原型是否等于类型的原型，直到对象原型为 null，因为原型链最终为 null
  */
 
-function instanceOf(child, parent) {
-  if (typeof child !== 'object') {
-    return false
-  }
-  const prototype = parent.prototype
-  let proto = child.__proto__
+function instanceOf(instance, target) {
+  const prototype = target.prototype
 
-  while (proto !== null && proto !== undefined) {
-    if (prototype === proto) {
+  let _proto = instance.__proto__
+
+  while (_proto) {
+    if (_proto === prototype) {
       return true
     }
-    proto = proto.__proto__
+    _proto = _proto.__proto__
   }
   return false
 }
 
-function Person() {}
-
-const p = new Person()
-
-console.info(instanceOf(p, null))
+module.exports = instanceOf

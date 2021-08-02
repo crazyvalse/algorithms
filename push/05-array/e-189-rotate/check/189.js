@@ -32,17 +32,18 @@ n = 7
  */
 
 const rotate = function (array, k) {
-  k = k % array.length
   const n = array.length - 1
-  reverse(array, 0, n - k)
-  reverse(array, n - k + 1, n)
   reverse(array, 0, n)
+  reverse(array, 0, k - 1)
+  reverse(array, k, n)
   return array
 }
 
 const reverse = function (array, start, end) {
   while (start < end) {
-    ;[array[start++], array[end--]] = [array[end], array[start]]
+    ;[array[start], array[end]] = [array[end], array[start]]
+    start++
+    end--
   }
   return array
 }

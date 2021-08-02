@@ -21,21 +21,23 @@
  */
 /**
  * f[i] 为前i天最大利润
+ * let low = -Infinity
+ * f[i] = Math.max(f[i - 1], ai - low)
  *
- * f[i] = Max(f[i - 1], profit)
- * @param {number[]} prices
+ * f[n]
+ *
+ * @param {number[]} a
  * @return {number}
  */
-var maxProfit = function (prices) {
-  let max = 0
+var maxProfit = function (a) {
+  const n = a.length
   let low = Infinity
-  for (let i = 0; i < prices.length; i++) {
-    if (prices[i] < low) {
-      low = prices[i]
-    }
-    max = Math.max(max, prices[i] - low)
+  let f = Array(n + 1).fill(0)
+  for (let i = 1; i <= n; i++) {
+    low = Math.min(low, a[i - 1])
+    f[i] = Math.max(f[i - 1], a[i - 1] - low)
   }
-  return max
+  return f[n]
 }
 
 module.exports = maxProfit

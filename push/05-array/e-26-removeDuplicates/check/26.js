@@ -14,16 +14,26 @@
 
  */
 /**
- * @param array
+ * 快慢指针
+ *
+ * 1. l 结果
+ * 2. r index
+ *
+ * if(al < ar){
+ *   swap(a, l++, r)
+ * }
+ * r++
+ *
+ * @param a
  */
-function removeDuplicates(A) {
-  const n = A.length
+function removeDuplicates(a) {
+  const n = a.length
   let l = 0
-  let r = 1
+  let r = 0
   while (r < n) {
-    if (A[l] !== A[r]) {
+    if (a[l] < a[r]) {
       l++
-      ;[A[l], A[r]] = [A[r], A[l]]
+      ;[a[l], a[r]] = [a[r], a[l]]
     }
     r++
   }

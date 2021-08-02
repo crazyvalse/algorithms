@@ -11,11 +11,24 @@
 [5,6]
  */
 /**
- * 选择排序
- * if(nums[i] != i + 1) 记录
- * @param {number[]} nums
+ * 给每一个值加n 最后排除小的
+ * @param {number[]} a
  * @return {number[]}
  */
-const findDisappearedNumbers = function (nums) {}
+const findDisappearedNumbers = function (a) {
+  const result = []
+  const n = a.length
+  for (let i = 0; i < n; i++) {
+    const index = (a[i] - 1) % n
+    a[index] += n
+  }
+
+  for (let i = 0; i < n; i++) {
+    if (a[i] <= n) {
+      result.push(i + 1)
+    }
+  }
+  return result
+}
 
 module.exports = findDisappearedNumbers

@@ -29,32 +29,34 @@
 
  */
 /**
- * for 0,...,n
- * 1. 选取一个数字
- * 2. 跟后面的数字相加
+ * 1. 可以不排序
+ * 2. 按照顺序
+ * 3. 用 map 记录已经遍历过的数据
  *
- * 记忆化：存放计算过的结果
- * map
- * key: target - A[i]
- * value: A[i]
- * if(map.has(target - A[i])){
- *   return
- * }
- * map
- * @param {number[]} A
+ * 4. 如果 新老数据相加 === target 返回值
+ *
+ * 难点：
+ * map中key value
+ * 使用场景
+ * 1. 获取老数据 + a[i] === target
+ * 2. 返回索引
+ *
+ * key: a[i]
+ * value: i
+ *
+ * @param {number[]} a
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function (A, target) {
-  const n = A.length
-  const map = new Map()
+var twoSum = function (a, target) {
+  const n = a.length
+  const map = {}
   for (let i = 0; i < n; i++) {
-    const another = target - A[i]
-    if (map.has(another)) {
-      return [map.get(another), i]
+    if (map[target - a[i]] === undefined) {
+      map[a[i]] = i
+    } else {
+      return [map[target - a[i]], i]
     }
-    // 计算结果
-    map.set(A[i], i)
   }
   return []
 }

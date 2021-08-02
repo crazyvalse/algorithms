@@ -46,24 +46,25 @@ for (int i = 0; i < len; i++) {
 0 <= val <= 100
  */
 /**
- * 双指针：
- * 1. 前指针 查找等于 target的 index
- * 2. 后指针，指向最后一位
+ * 双指针
+ * l index
+ * r 最后 用于交换
  *
- * - 相等的
- *  - 交换前后指针
- *  - r--
+ * if(al === target)
+ * swap(a, l--, r--) // 需要再判断一次
  *
- * @param {number[]} A
+ *
+ * @param {number[]} a
  * @param {number} target
  * @return {number}
  */
-var removeElement = function (A, target) {
+var removeElement = function (a, target) {
+  const n = a.length
   let l = 0
-  let r = A.length - 1
+  let r = n - 1
   while (l <= r) {
-    if (A[l] === target) {
-      swap(A, l--, r--)
+    if (a[l] === target) {
+      swap(a, l--, r--)
     }
     l++
   }

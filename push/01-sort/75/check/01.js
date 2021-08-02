@@ -34,49 +34,34 @@ nums[i] 为 0、1 或 2
 你能想出一个仅使用常数空间的一趟扫描算法吗？
  */
 /**
- * [2,0,2,1,1,0]
- * 快慢指针
- * p0 指向 0
- * p2 指向 2
+ * p0 p1 p2
+ * p0 指向0
+ * p2 指向2
  *
- * 0 : [0, p0)
- * 1 : [p0, next)
- * 2 : (p2, length - 1]
+ * p1 正常移动
  *
- * while(next >= p2){
- *  if(array[next] === 0){
- *    swap(array, p0++, next)
- *  }
- *  if(array[next] === 2) {
- *    swap(array, next, p2--)
- *  }
- *  next++
- * }
- *  p0    p2
- * [2, 1, 0]
- * [0, 1, 2]
+ * 1. a[p1] === 2 swap(a, p1, p2)
+ * 2. a[p1] === 0 swap(a, p0++, p1++)
  *
- * 如果是2的话，swap(p2)，但 next并不加1， 需要再次判断
- * 如果是0的话，swap(p0)，这个时候 p0绝对是1，并且，p0前进 next也需要前进
- * [1, 0, 0, 2]
- *
- * @param array
+ * p1 < p2
+ * @param a
  * @returns {*}
  */
-var sortColors = function (array) {
+var sortColors = function (a) {
   let p0 = 0
-  let p2 = array.length - 1
-  let i = 1
-  while (i <= p2) {
-    if (array[i] === 0) {
-      swap(array, i, p0++)
+  let p2 = a.length - 1
+  let p1 = 0
+
+  while (p1 <= p2) {
+    if (a[p1] === 2) {
+      swap(a, p1--, p2--)
     }
-    if (array[i] === 2) {
-      swap(array, i--, p2--)
+    if (a[p1] === 0) {
+      swap(a, p0++, p1)
     }
-    i++
+    p1++
   }
-  return array
+  return a
 }
 
 function swap(array, a, b) {

@@ -13,20 +13,23 @@
 输入数组的长度是正整数，且不超过 10,000。
  */
 /**
- * f[i] 是第i位最大连续的个数
- * f[i] = nums[i] === 1 ? f[i - 1] + 1 : 0
- * @param {number[]} A
+ * f[n] 前 n 个连续最大连续1的个数
+ * if(a[i-1] === 0){
+ *   f[i] = 0
+ * } else {
+ *   f[i] = f[i - 1] + 1
+ * }
+ * f[n] = f[n - 1]
+ * @param {number[]} a
  * @return {number}
  */
-var findMaxConsecutiveOnes = function (A) {
-  const n = A.length
+var findMaxConsecutiveOnes = function (a) {
+  const n = a.length
   const f = Array(n + 1).fill(0)
-  let max = 0
   for (let i = 1; i <= n; i++) {
-    f[i] = A[i - 1] === 1 ? f[i - 1] + 1 : 0
-    max = Math.max(f[i], max)
+    f[i] = a[i - 1] === 0 ? 0 : f[i - 1] + 1
   }
-  return max
+  return f[n]
 }
 
 module.exports = findMaxConsecutiveOnes

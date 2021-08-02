@@ -11,13 +11,15 @@ function swap(array, a, b) {
 function sortAndFindPivot(array, l, r) {
   const base = array[l]
   let pivot = l + 1
-  for (let i = pivot; i <= r; i++) {
-    if (base > array[i]) {
-      swap(array, pivot++, i)
+  let index = pivot
+  while (index <= r) {
+    if (array[index] < base) {
+      swap(array, index, pivot++)
     }
+    index++
   }
   swap(array, l, pivot - 1)
-  return pivot - 1
+  return pivot
 }
 
 /**
@@ -27,16 +29,18 @@ function sortAndFindPivot(array, l, r) {
  * @param array
  */
 function sort(array) {
-  if (array.length <= 1) {
+  if (array.length < 2) {
     return array
   }
+
   const walk = function (l, r) {
     if (l >= r) {
       return
     }
     const pivot = sortAndFindPivot(array, l, r)
-    walk(l, pivot)
-    walk(pivot + 1, r)
+
+    walk(l, pivot - 1)
+    walk(pivot, r)
   }
   walk(0, array.length - 1)
   return array

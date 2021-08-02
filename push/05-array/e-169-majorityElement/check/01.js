@@ -20,8 +20,7 @@
  */
 var majorityElement = function (nums) {
   nums.sort()
-  const pivot = Math.floor(nums.length / 2)
-  return nums[pivot]
+  return nums[nums.length >> 1]
 }
 
 module.exports = majorityElement
