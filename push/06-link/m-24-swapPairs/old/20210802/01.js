@@ -25,7 +25,24 @@
  * @param {number} right
  * @return {ListNode}
  */
-var swapPairs = function (head) {}
+var swapPairs = function (head) {
+  const hair = new ListNode(null, head)
+  let p = hair
+  let o = head
+  let t
+  let n
+  while (o && o.next) {
+    t = o.next
+    n = t.next
+
+    o.next = n
+    t.next = o
+    p.next = t
+    p = o
+    o = n
+  }
+  return hair.next
+}
 
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val

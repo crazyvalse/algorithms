@@ -1,4 +1,4 @@
-const { ListNode, isPalindrome, findPivot, compare, reverse } = require('./01')
+const { ListNode, isPalindrome, findPivot, reverse } = require('./01')
 
 test('find 1', () => {
   const p3 = new ListNode(1, null)

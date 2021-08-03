@@ -20,12 +20,21 @@
  * // 如果没有 l2 的话 就 不作处理
  * 1、定义 pre, l1, l2, next
  *
- * @param {ListNode} head
+ * @param {ListNode} one
  * @param {number} left
  * @param {number} right
  * @return {ListNode}
  */
-var swapPairs = function (head) {}
+var swapPairs = function (one) {
+  if (one === null || one.next === null) {
+    return one
+  }
+  const two = one.next
+  const three = two.next
+  one.next = swapPairs(three)
+  two.next = one
+  return two
+}
 
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val

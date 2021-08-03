@@ -9,7 +9,7 @@ test('1', () => {
 
   expect(hasCycle(p1)).toEqual(true)
 })
-2
+
 test('2', () => {
   const p2 = new ListNode(2, null)
   const p1 = new ListNode(1, p2)

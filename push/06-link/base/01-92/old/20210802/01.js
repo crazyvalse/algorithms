@@ -12,12 +12,14 @@ const { ListNode } = require('../../../utils')
  * p c n
  *   p c n
  *
- * 只改变 c
  * @param {ListNode} root
  * @return {ListNode}
  */
-const reverse = function (root) {
-  let [p, c, n] = [null, root, null]
+var reverse = function (root) {
+  if (!root || !root.next) {
+    return root
+  }
+  let [p, c, n] = [null, root, root.next]
   while (c) {
     n = c.next
     c.next = p

@@ -25,7 +25,24 @@
  * @param {number} right
  * @return {ListNode}
  */
-var swapPairs = function (head) {}
+var swapPairs = function (head) {
+  const dummyHead = new ListNode(null, head)
+  function swapped(pre) {
+    if (pre.next && pre.next.next) {
+      let first = pre.next
+      // 指向2
+      pre.next = first.next
+      // 指向尾巴
+      first.next = pre.next.next
+      //
+      pre.next.next = first
+      swapped(first)
+    }
+  }
+
+  swapped(dummyHead)
+  return dummyHead.next
+}
 
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val

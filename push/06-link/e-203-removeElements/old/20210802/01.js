@@ -43,8 +43,13 @@
  * @return {ListNode}
  */
 var removeElements = function (head, val) {
+  if (!head) {
+    return head
+  }
   const hair = new ListNode(null, head)
-  let [p, c, n] = [hair, head, null]
+  let p = hair
+  let c = p.next
+  let n = null
   while (c) {
     n = c.next
     if (c.val === val) {

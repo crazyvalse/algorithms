@@ -10,35 +10,26 @@
 输出: 1->4->3->2->5->NULL
 
  */
-let successor = null
-var reverseN = function (c, k) {
-  if (!c || !c.next) {
-    return c
+var reverseBetween = function (r, f, t) {
+  const hair = new ListNode(null, r)
+  let [s, p, c, n] = [hair, hair, r, null]
+  // 1. 先找到翻转的起点
+  while (c && --t >= 0) {
+    if (--f >= 0) {
+      s = p
+    }
+    n = c.next
+    if (f < 0) {
+      c.next = p
+    }
+    p = c
+    c = n
   }
-  if (k === 1) {
-    successor = c.next
-    return c
+  if (s && s.next) {
+    s.next.next = c
+    s.next = p
   }
-  const last = reverseN(c.next, k - 1)
-  // 改变下一个的指针
-  c.next.next = c
-  // 这里只是对于第一个值有效，其他的都会被覆盖掉
-  c.next = successor
-  return last
-}
-/**
- * @param {ListNode} head
- * @param {number} m
- * @param {number} n
- * @return {ListNode}
- */
-var reverseBetween = function (head, m, n) {
-  if (m === 1) {
-    return reverseN(head, n)
-  }
-
-  head.next = reverseBetween(head.next, m - 1, n - 1)
-  return head
+  return hair.next
 }
 
 function ListNode(val, next) {

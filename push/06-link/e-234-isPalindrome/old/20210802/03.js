@@ -24,57 +24,29 @@ function ListNode(val, next) {
 }
 
 /**
- * 1. 找中点
- * 2. 反转
- * 3. 对比
+ * FIXME
+ * 放到数组中，然后用双指针查看是否符合
  * @param {ListNode} head
  * @return {boolean}
  */
 var isPalindrome = function (head) {
-  const last = findPivot(head)
-  const nh = last.next
-  last.next = null
-  const rh = reverse(nh)
-  return compare(head, rh)
-}
+  let first = head
+  function walk(current) {
+    // 找到最后一个节点，只要不为null就继续调用
+    if (current.next) {
+      return walk(current.next)
+    }
 
-function compare(l, r) {
-  while (l && r) {
-    if (l.val !== r.val) {
+    if (current.val !== first.val) {
       return false
     }
-    l = l.next
-    r = r.next
+    first = first.next
+    return true
   }
-
-  return true
-}
-
-function reverse(h) {
-  let [p, c, n] = [null, h, null]
-  while (c) {
-    n = c.next
-    c.next = p
-    p = c
-    c = n
-  }
-  return p
-}
-
-function findPivot(head) {
-  const hair = new ListNode(null, head)
-  let [l, r] = [hair, hair]
-  while (r && r.next) {
-    l = l.next
-    r = r.next.next
-  }
-  return l
+  return walk(head)
 }
 
 module.exports = {
-  findPivot,
-  reverse,
-  compare,
   isPalindrome,
   ListNode
 }

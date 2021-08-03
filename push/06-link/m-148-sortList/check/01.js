@@ -20,18 +20,7 @@
  * @return {ListNode}
  */
 const { ListNode } = require('../../utils')
-var sortList = function (head) {
-  const walk = function (node) {
-    if (!node || !node.next) {
-      return node
-    }
-    const pivot = findPivot(node)
-    const right = pivot.next
-    pivot.next = null
-    return merge(walk(node), walk(right))
-  }
-  return walk(head)
-}
+var sortList = function (head) {}
 
 /**
  * 参考 21mergeTwoLists
@@ -39,44 +28,5 @@ var sortList = function (head) {
  * @param r
  * @returns {*}
  */
-function merge(l, r) {
-  const hair = new ListNode()
-  let n = hair
-
-  while (l && r) {
-    if (l.val > r.val) {
-      n.next = r
-      r = r.next
-    } else {
-      n.next = l
-      l = l.next
-    }
-    n = n.next
-  }
-
-  n.next = l || r
-
-  return hair.next
-}
-
-/**
- * 寻找中间点
- * [1, 2, 3, 4, 5, 6] pivot = 3
- * [1, 2, 3, 4, 5] pivot = 3
- * @param head
- * @returns {ListNode}
- */
-function findPivot(head) {
-  const hair = new ListNode(null, head)
-  let l = hair
-  let r = hair
-  while (r && r.next) {
-    l = l.next
-    r = r.next.next
-  }
-  return l
-}
 
 module.exports.sortList = sortList
-module.exports.findPivot = findPivot
-module.exports.merge = merge

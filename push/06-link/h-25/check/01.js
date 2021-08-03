@@ -46,15 +46,39 @@ k是一个正整数，它的值小于或等于链表的长度。
  * @return {ListNode}
  */
 var reverseKGroup = function (head, k = 0) {
-  let [p, c, n] = [null, head, null]
+  const hair = new ListNode(null, head)
+  let length = k === 0 ? 0 : +(getLength(head) / k)
+  let p = hair
+  while (--length >= 0) {
+    p = reverse(p, k)
+  }
+  return hair.next
+}
+
+function getLength(head) {
+  let counter = 0
+  while (head) {
+    counter++
+    head = head.next
+  }
+  return counter
+}
+
+function reverse(s, k = 0) {
+  let [p, c, n] = [s, s.next, null]
+  const np = s.next
   while (c && --k >= 0) {
     n = c.next
     c.next = p
     p = c
     c = n
   }
-  head.next = c
-  return p
+  if (s && s.next) {
+    s.next.next = c
+    s.next = p
+  }
+
+  return np
 }
 
 function ListNode(val, next) {
@@ -64,5 +88,6 @@ function ListNode(val, next) {
 
 module.exports = {
   reverseKGroup,
+  reverse,
   ListNode
 }

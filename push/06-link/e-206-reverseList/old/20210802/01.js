@@ -29,7 +29,9 @@
  * @return {ListNode}
  */
 var reverseList = function (head) {
-  let [p, c, n] = [null, head, null]
+  let p = null
+  let c = head
+  let n
   while (c) {
     n = c.next
     c.next = p

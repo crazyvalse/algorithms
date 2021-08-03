@@ -22,32 +22,30 @@ function ListNode(val, next) {
   this.next = next === undefined ? null : next
 }
 var mergeKLists = function (lists) {
-  if (lists.length === 1) {
-    return lists[0]
+  if (lists.length === 0) {
+    return null
   }
-  const hair = new ListNode(-Infinity, null)
-  let n = hair
-  for (let i = 0; i < lists.length; i++) {
-    n = merge(n, lists[i])
-  }
-  return hair.next
-}
 
-function merge(l, r) {
-  const hair = new ListNode()
-  let n = hair
-  while (l && r) {
-    if (l.val > r.val) {
-      n.next = r
-      r = r.next
-    } else {
-      n.next = l
-      l = l.next
+  function mergeTwoList(l1, l2) {
+    if (!l1) {
+      return l2
     }
-    n = n.next
+    if (!l2) {
+      return l1
+    }
+    if (l1.val < l2.val) {
+      l1.next = mergeTwoList(l1.next, l2)
+      return l1
+    } else {
+      l2.next = mergeTwoList(l1, l2.next)
+      return l2
+    }
   }
-  n.next = l || r
-  return hair.next
+  let l1 = lists[0]
+  for (let i = 1; i < lists.length; i++) {
+    l1 = mergeTwoList(l1, lists[i])
+  }
+  return l1
 }
 
 module.exports = {

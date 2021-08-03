@@ -1,5 +1,5 @@
 const { reverseN } = require('./02')
-const { arrayToListNode, listNodeToArray } = require('../../../utils')
+const { arrayToListNode, listNodeToArray } = require('../utils')
 
 test('1', () => {
   const h = arrayToListNode([1, 2, 3, 4, 5])

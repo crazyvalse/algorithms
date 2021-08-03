@@ -25,16 +25,20 @@ const { ListNode } = require('../../../utils')
  * @return {ListNode}
  */
 let successor = null
-var reverseN = function (root, k) {
-  let [p, c, n] = [null, root, null]
-  while (c && --k >= 0) {
-    n = c.next
-    c.next = p
-    p = c
-    c = n
+var reverseN = function (c, k) {
+  if (!c || !c.next) {
+    return c
   }
-  root.next = c
-  return p
+  if (k === 1) {
+    successor = c.next
+    return c
+  }
+  const last = reverseN(c.next, k - 1)
+  // 改变下一个的指针
+  c.next.next = c
+  // 这里只是对于第一个值有效，其他的都会被覆盖掉
+  c.next = successor
+  return last
 }
 
 module.exports = {
