@@ -26,32 +26,15 @@ candidates中的数字可以无限制重复被选取。
 ]
  */
 /**
+ * f[n][0] = 为 n 最小几个数
+ * f[n][1] = []存放数组
+ * if(t - candidates[i] >= 0)
  *
- * @param {number[]} candidates
+ * @param {number[]} a
  * @param {number} target
  * @return {number[][]}
  */
-var combinationSum = function (candidates, target) {
-  const result = []
-  const walk = function (index, sum, cart) {
-    if (sum >= target) {
-      if (sum === target) {
-        result.push(cart.slice())
-      }
-      return
-    }
-
-    for (let i = index; i < candidates.length; i++) {
-      if (sum + candidates[i] <= target) {
-        cart.push(candidates[i])
-        walk(i, sum + candidates[i], cart)
-        cart.pop()
-      }
-    }
-  }
-  walk(0, 0, [])
-  return result
-}
+var combinationSum = function (a, target) {}
 
 console.info(combinationSum([2, 3, 6, 7], 7))
-console.info(combinationSum([2, 3, 5], 8))
+// console.info(combinationSum([2, 3, 5], 8))

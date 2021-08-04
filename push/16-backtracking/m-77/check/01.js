@@ -46,6 +46,7 @@ var combine = function (n, k) {
       result.push(cart.slice())
       return
     }
+
     for (let i = index; i <= n; i++) {
       cart.push(i)
       walk(i + 1, cart)

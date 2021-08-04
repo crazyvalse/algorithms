@@ -21,15 +21,14 @@ a = [1,4,2,3,4,5,6] 3个为一组，取最大的和
  * @return {number}
  */
 var findMax = function (A) {
-  let n = A.length
+  let sum = 0
   let max = 0
-  let total = 0
-  for (let i = 0; i < n; i++) {
-    total += A[i]
-    if (i >= 3) {
-      total -= A[i - 3]
+  for (let i = 0; i < A.length; i++) {
+    sum += A[i]
+    if (i - 3 >= 0) {
+      sum -= A[i - 3]
     }
-    max = Math.max(max, total)
+    max = Math.max(max, sum)
   }
   return max
 }

@@ -17,25 +17,30 @@
 
  */
 /**
- * @param {number[]} A
+ * @param {number[]} a
  * @return {number[][]}
  */
-const permute = function (A) {
+const permute = function (a) {
+  const n = a.length
   const result = []
-  const walk = function (cart) {
-    if (cart.length === A.length) {
+  const walk = function (index, cart) {
+    if (index === n) {
       result.push(cart.slice())
       return
     }
-    for (let i = 0; i < A.length; i++) {
-      if (!cart.includes(A[i])) {
-        cart.push(A[i])
-        walk(cart)
-        cart.pop()
+    if (index >= n) {
+      return
+    }
+    for (let i = 0; i < n; i++) {
+      if (cart.includes(a[i])) {
+        continue
       }
+      cart.push(a[i])
+      walk(index + 1, cart)
+      cart.pop()
     }
   }
-  walk([])
+  walk(0, [])
   return result
 }
 

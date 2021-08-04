@@ -12,21 +12,59 @@
  * 1 -> 2 -> 3 -> 4
  */
 /**
- * 归并排序
- * 1. 找到中点 pivot
- * 2. sortList
- * 3. merge
+ * 归并算法
+ * 1. 找 pivot
+ * walk()
+ * 2. merge
+ * 3. 合并两个link
+ *
  * @param {ListNode} head
  * @return {ListNode}
  */
 const { ListNode } = require('../../utils')
-var sortList = function (head) {}
+const sortList = function (head) {
+  if (!head) {
+    return head
+  }
+  const walk = function (c) {
+    if (!c || !c.next) {
+      return c
+    }
 
-/**
- * 参考 21mergeTwoLists
- * @param l
- * @param r
- * @returns {*}
- */
+    const pivot = findPivot(c)
+    const nn = pivot.next
+    pivot.next = null
+    return merge(walk(nn), walk(c))
+  }
+  return walk(head)
+}
+
+function merge(l, r) {
+  const hair = new ListNode()
+  let n = hair
+  while (l && r) {
+    if (l.val > r.val) {
+      n.next = r
+      r = r.next
+    } else {
+      n.next = l
+      l = l.next
+    }
+    n = n.next
+  }
+  n.next = l || r
+  return hair.next
+}
+
+function findPivot(h) {
+  const hair = new ListNode(null, h)
+  let l = hair
+  let r = hair
+  while (r && r.next) {
+    l = l.next
+    r = r.next.next
+  }
+  return l
+}
 
 module.exports.sortList = sortList

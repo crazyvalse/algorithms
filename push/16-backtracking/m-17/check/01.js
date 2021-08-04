@@ -39,10 +39,10 @@ var letterCombinations = function (digits) {
     8: 'tuv',
     9: 'wxyz'
   }
-
   const result = []
+  const n = digits.length
   const walk = function (index, cart) {
-    if (cart.length === digits.length) {
+    if (index === n) {
       result.push(cart)
       return
     }
@@ -55,6 +55,6 @@ var letterCombinations = function (digits) {
   return result
 }
 
-console.info(letterCombinations('234'))
+console.info(letterCombinations('23344'))
 
 module.exports = letterCombinations

@@ -24,39 +24,38 @@
  */
 
 /**
- * min = Min(r - l, min)
+ * 1. 该数组中满足其和 ≥ target
+ * 2. 最小的 连续子数组
+ * 3. 并返回其长度。如果不存在符合条件的子数组，返回 0
  *
- * while(l)
- * 1. 定义变量
- * l = 0
- * r = 0
+ * min = Infinity
+ * total
+ * span = 0
+ * for
+ *  total += ai
+ *  // 从后面减
+ *  while(total >= target){
+ *    min = Max.min(min, span)
+ *    total -= a[i - span]
+ *    span--
+ *  }
  *
- * while(r < n){
- *   sum += nums[r]
- *   while(sum >= target){
- *    Min()
- *    sum -= nums[l++]
- *   }
- *   r++
- * }
+ *
  * @param {number} target
- * @param {number[]} nums
+ * @param {number[]} a
  * @return {number}
  */
-var minSubArrayLen = function (target, nums) {
-  let min = Infinity
-  let sum = 0
-  let l = 0
-  let r = 0
-  while (r < nums.length) {
-    sum += nums[r]
-    while (sum >= target) {
-      min = Math.min(min, r - l + 1)
-      sum -= nums[l++]
+const minSubArrayLen = function (target, a) {
+  let [min, total, l, r] = [Infinity, 0, 0, 0]
+  while (r < a.length) {
+    total += a[r]
+    while (total >= target) {
+      min = Math.min(min, r - l)
+      total -= a[r - l]
+      l++
     }
     r++
   }
-
   return min === Infinity ? 0 : min
 }
 

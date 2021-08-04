@@ -52,12 +52,14 @@ nums 中的所有元素 互不相同
 
 var subsets = function (A) {
   const result = []
+  const n = A.length
   const walk = function (index, cart) {
     result.push(cart.slice())
-    if (index === A.length) {
+    if (index >= n) {
       return
     }
-    for (let i = index; i < A.length; i++) {
+
+    for (let i = index; i < n; i++) {
       cart.push(A[i])
       walk(i + 1, cart)
       cart.pop()

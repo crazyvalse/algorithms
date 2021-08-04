@@ -22,17 +22,23 @@
  */
 var generateParenthesis = function (n) {
   const result = []
-  const walk = function (l, r, cart) {
-    if (l === 0 && r === 0) {
+  const walk = function (n, m, cart) {
+    if (n < 0 || m < 0) {
+      return
+    }
+    if (n === 0 && m === 0) {
       result.push(cart)
       return
     }
 
-    if (l > 0) {
-      walk(l - 1, r, cart + '(')
+    // 相加就加
+    if (n > 0) {
+      walk(n - 1, m, cart + '(')
     }
-    if (r > 0 && l < r) {
-      walk(l, r - 1, cart + ')')
+
+    // 只要大于n就行
+    if (m > 0 && m > n) {
+      walk(n, m - 1, cart + ')')
     }
   }
   walk(n, n, '')

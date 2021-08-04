@@ -39,19 +39,18 @@ var getPermutation = function (n, k) {
   let result = null
   let counter = 0
   const walk = function (index, cart) {
-    if (result !== null) {
+    if (result) {
       return
     }
     if (index === n) {
-      counter++
-      if (counter === k) {
+      if (++counter === k) {
         result = cart
       }
       return
     }
 
     for (let i = 1; i <= n; i++) {
-      if (cart.indexOf(i) === -1) {
+      if (!cart.includes(i)) {
         walk(index + 1, cart + i)
       }
     }
@@ -60,5 +59,5 @@ var getPermutation = function (n, k) {
   return result
 }
 
-console.info(getPermutation(3, 1))
+console.info(getPermutation(3, 3))
 module.exports = getPermutation

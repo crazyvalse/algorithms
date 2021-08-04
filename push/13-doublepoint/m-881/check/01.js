@@ -28,24 +28,33 @@
 
  */
 /**
- * 暴力法
- * 倒叙 然后
+ * 1. 每艘船最多可同时载两人
+ * 2. 这些人的重量之和最多为limit
+ * 3. 返回载到每一个人所需的最小船数 min
  *
- * @param {number[]} A
+ * min++: 每次计算 min++
+ * l:
+ * r:
+ * 前后相加 al + ar <= target
+ * l++
+ * 正常
+ * r--
+ * min++
+ * @param {number[]} a
  * @param {number} limit
  * @return {number}
  */
-var numRescueBoats = function (A, limit) {
-  let l = 0
-  let r = A.length - 1
+var numRescueBoats = function (a, limit) {
+  a.sort((a, b) => a - b)
+  const n = a.length
+  let [l, r] = [0, n - 1]
   let counter = 0
-  A.sort((a, b) => a - b)
   while (l <= r) {
-    if (A[l] + A[r] <= limit) {
+    if (a[l] + a[r] <= limit) {
       l++
     }
-    counter++
     r--
+    counter++
   }
   return counter
 }

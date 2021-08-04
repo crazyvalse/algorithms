@@ -25,7 +25,45 @@
  * @param {number} right
  * @return {ListNode}
  */
-var swapPairs = function (head) {}
+var swapPairs = function (head) {
+  return reverseKGroup(head, 2)
+}
+
+var reverseKGroup = function (head, k = 0) {
+  const hair = new ListNode(null, head)
+  let length = k === 0 ? 0 : +(getLength(head) / k)
+  let p = hair
+  while (--length >= 0) {
+    p = reverse(p, k)
+  }
+  return hair.next
+}
+
+function getLength(head) {
+  let counter = 0
+  while (head) {
+    counter++
+    head = head.next
+  }
+  return counter
+}
+
+function reverse(s, k = 0) {
+  let [p, c, n] = [s, s.next, null]
+  const np = s.next
+  while (c && --k >= 0) {
+    n = c.next
+    c.next = p
+    p = c
+    c = n
+  }
+  if (s && s.next) {
+    s.next.next = c
+    s.next = p
+  }
+
+  return np
+}
 
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val
