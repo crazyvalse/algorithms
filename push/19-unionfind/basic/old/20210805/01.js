@@ -2,6 +2,41 @@ let parent = Array.from({ length: 10 }, (item, index) => (index - 1 < 0 ? 0 : in
 
 parent = parent.concat([10, 10, 11, 12])
 console.info(parent)
+// console.info(parents.length)
+
+// function find(x) {
+//   // 直到找到一个数据跟下标一直的值，是根节点
+//   while (x !== parents[x]) {
+//     // 获得数组中的值
+//     x = parents[x]
+//   }
+//   return x
+// }
+//
+// function find(x) {
+//   if (x === parent[x]) {
+//     return x
+//   }
+//
+//   return (parent[x] = find(parent[x]))
+// }
+//
+// function connected(x, y) {
+//   return find(x) === find(y)
+// }
+//
+// // console.info(parents, find(5))
+//
+// // console.info(connected(5, 9), parents)
+//
+// function union(x, y) {
+//   if (connected(x, y)) {
+//     return
+//   }
+//   parent[find(x)] = find(y)
+// }
+
+// console.info(union(8, 12), parents)
 
 function UnionFind(parent) {
   this.parents = parent

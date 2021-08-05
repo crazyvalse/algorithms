@@ -30,26 +30,28 @@ candidates中的每个数字在每个组合中只能使用一次。
 
  */
 /**
- * @param {number[]} a
+ * @param {number[]} candidates
  * @param {number} target
  * @return {number[][]}
  */
-var combinationSum2 = function (a, target) {
+var combinationSum2 = function (candidates, target) {
   const result = []
-  a.sort()
-  const walk = function (index, cart, total) {
-    if (total >= target) {
-      if (total === target) {
+  candidates.sort()
+  const walk = function (index, cart, sum) {
+    if (index >= candidates.length || sum >= target) {
+      if (sum === target) {
         result.push(cart.slice())
       }
       return
     }
-    for (let i = index; i < a.length; i++) {
-      if (i - 1 >= index && a[i] === a[i - 1]) {
+
+    for (let i = index; i < candidates.length; i++) {
+      // 关键就是
+      if (sum + candidates[i] > target || (i - 1 >= index && candidates[i - 1] === candidates[i])) {
         continue
       }
-      cart.push(a[i])
-      walk(i + 1, cart, total + a[i])
+      cart.push(candidates[i])
+      walk(i + 1, cart, sum + candidates[i])
       cart.pop()
     }
   }

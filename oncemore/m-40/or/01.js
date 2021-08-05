@@ -27,30 +27,29 @@ candidates中的每个数字在每个组合中只能使用一次。
  [1,2,2],
  [5]
 ]
-
  */
 /**
- * @param {number[]} a
+ * @param {number[]} candidates
  * @param {number} target
  * @return {number[][]}
  */
-var combinationSum2 = function (a, target) {
+var combinationSum2 = function (candidates, target) {
   const result = []
-  a.sort()
-  const walk = function (index, cart, total) {
-    if (total >= target) {
-      if (total === target) {
-        result.push(cart.slice())
-      }
+  candidates.sort((a, b) => a - b)
+  const walk = function (index, cart, sum) {
+    if (sum > target) {
       return
     }
-    for (let i = index; i < a.length; i++) {
-      if (i - 1 >= index && a[i] === a[i - 1]) {
-        continue
+    if (sum === target) {
+      result.push(cart.slice())
+      return
+    }
+    for (let i = index; i < candidates.length; i++) {
+      if (sum < target) {
+        cart.push(candidates[i])
+        walk(i + 1, cart, sum + candidates[i])
+        cart.pop()
       }
-      cart.push(a[i])
-      walk(i + 1, cart, total + a[i])
-      cart.pop()
     }
   }
   walk(0, [], 0)

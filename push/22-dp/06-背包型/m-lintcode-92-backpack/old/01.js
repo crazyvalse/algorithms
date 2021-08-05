@@ -18,24 +18,27 @@ O(n x m) 的时间复杂度 and O(m) 空间复杂度
 如果不知道如何优化空间，O(n x m) 的空间复杂度也可以通过.
  */
 /**
- * let max = -Infinity
- * f[m] = 是否能够装大小为m的东西
+ * 三种情况可以为true
+ * f[i - 1][w] === true
+ * w - A[i] >= 0 && f[i - 1][w - A[i]] === true
+ * w - A[i] >= 0 && f[i][w - A[i]] === true
+ *
+ * max = Max(max, w)
  * @param m
- * @param a
+ * @param A
  */
-function backPack(m, a) {
-  a.sort((a, b) => a - b)
-  const f = Array(m + 1).fill(false)
-  let max = -Infinity
-  f[0] = true
-  for (let w = m; w > 0; w--) {
-    for (let i = 0; i < a.length; i++) {
-      if (w - a[i] >= 0 && f[w - a[i]]) {
-        f[w] = true
-        max = Math.max(w, max)
+function backPack(m, A) {
+  let max = 0
+  const n = A.length
+  const f = Array.from({ length: n + 1 }, () => Array(m + 1).fill(false))
+  f[0][0] = true
+  for (let i = 1; i <= n; i++) {
+    for (let w = 0; w <= m; w++) {
+      if (f[i - 1][w] || (w - A[i - 1] >= 0 && f[i - 1][w - A[i - 1]])) {
+        f[i][w] = true
+        max = Math.max(max, w)
       }
     }
-    console.info(f)
   }
   return max
 }

@@ -40,24 +40,35 @@ equations[i][2] 是 '='
 /**
  * 1. 先union
  * 2. 再判断
+ *
  * return true 兜底
  * @param {string[]} equations
  * @return {boolean}
  */
 var equationsPossible = function (equations) {
-  const uf = new UnionFind(26)
-  for (let i = 0; i < equations.length; i++) {
-    const [a, e, n, b] = equations[i]
-    const [ac, bc] = [a.charCodeAt() - 97, b.charCodeAt() - 97]
+  let n = equations.length
+  const uf = new UnionFind(n * 2)
+  let counter = 0
+  const map = {}
+  for (let i = 0; i < n; i++) {
+    const [x, e, _, y] = equations[i]
+    if (map[x] === undefined) {
+      map[x] = counter++
+    }
+    if (map[y] === undefined) {
+      map[y] = counter++
+    }
     if (e === '=') {
-      uf.union(ac, bc)
+      uf.union(map[x], map[y])
     }
   }
 
-  for (let i = 0; i < equations.length; i++) {
-    const [a, e, n, b] = equations[i]
-    const [ac, bc] = [a.charCodeAt() - 97, b.charCodeAt() - 97]
-    if (e === '!' && uf.isConnected(ac, bc)) {
+  for (let i = 0; i < n; i++) {
+    const [x, e, _, y] = equations[i]
+    if (e !== '!' || map[x] === undefined || map[y] === undefined) {
+      continue
+    }
+    if (uf.isConnected(map[x], map[y])) {
       return false
     }
   }

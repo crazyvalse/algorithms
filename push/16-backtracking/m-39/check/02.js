@@ -36,6 +36,7 @@ candidates中的数字可以无限制重复被选取。
  */
 var combinationSum = function (a, target) {
   const result = []
+  const map = {}
   const walk = function (index, cart) {
     const total = cart.reduce((pre, cur) => pre + cur, 0)
     if (total >= target) {

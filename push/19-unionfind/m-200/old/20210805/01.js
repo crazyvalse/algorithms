@@ -4,6 +4,7 @@
  此外，你可以假设该网格的四条边均被水包围。
 
  示例 1：
+
  输入：grid = [
  ["1","1","1","1","0"],
  ["1","1","0","1","0"],
@@ -30,76 +31,85 @@
  grid[i][j] 的值为 '0' 或 '1'
  */
 
+function UnionFind(n) {
+  this.counter = n
+  this.parents = Array.from({ length: n }, (t, i) => i)
+}
+
+UnionFind.prototype.find = function (x) {
+  while (this.parents[x] !== x) {
+    this.parents[x] = this.parents[this.parents[x]]
+    x = this.parents[x]
+  }
+  return x
+}
+
+UnionFind.prototype.getCount = function () {
+  return this.counter
+}
+
+UnionFind.prototype.connected = function (x, y) {
+  return this.find(x) === this.find(y)
+}
+
+UnionFind.prototype.union = function (x, y) {
+  const xRoot = this.find(x)
+  const yRoot = this.find(y)
+  if (xRoot === yRoot) {
+    return
+  }
+  this.parents[xRoot] = yRoot
+  this.counter--
+}
+
 /**
- * 1. 并查集
- * 2. 把二维数组做成一维数组
- * 3. 如果当前节点为 1，union 上下左右
- * 4. 如果当前节点为 0，则zn++
- * counter - 0 个的个数
+ * 1. 把二维数组转成一维数组
+ * 2.
+ *
+ * 最后的计算公式是 length - 1的个数
  * @param grid
  */
 function numIslands(grid) {
   const row = grid.length
   const column = grid[0].length
-  const uf = new UnionFind(row * column)
-  let zn = 0
+  const length = row * column
+  const uf = new UnionFind(length)
+  let countOfOne = 0
+
+  function getIndex(r, c) {
+    return r * column + c
+  }
+
   for (let r = 0; r < row; r++) {
     for (let c = 0; c < column; c++) {
       if (grid[r][c] === '0') {
-        zn++
         continue
       }
-      const index = getIndex(column, r, c)
+      // 计算1的个数
+      countOfOne++
+
       // 上
       if (r > 0 && grid[r - 1][c] === '1') {
-        uf.union(index, getIndex(column, r - 1, c))
+        uf.union(getIndex(r, c), getIndex(r - 1, c))
       }
+
       // 下
       if (r + 1 < row && grid[r + 1][c] === '1') {
-        uf.union(index, getIndex(column, r + 1, c))
+        uf.union(getIndex(r, c), getIndex(r + 1, c))
       }
+
       // 左
       if (c > 0 && grid[r][c - 1] === '1') {
-        uf.union(index, getIndex(column, r, c - 1))
+        uf.union(getIndex(r, c), getIndex(r, c - 1))
       }
+
       // 右
       if (c + 1 < column && grid[r][c + 1] === '1') {
-        uf.union(index, getIndex(column, r, c + 1))
+        uf.union(getIndex(r, c), getIndex(r, c + 1))
       }
     }
   }
-  return uf.counter - zn
-}
-
-function getIndex(column, r, c) {
-  return r * column + c
-}
-
-class UnionFind {
-  constructor(n) {
-    this.a = Array.from({ length: n }, (a, i) => i)
-    this.counter = n
-  }
-
-  find(x) {
-    while (x !== this.a[x]) {
-      this.a[x] = this.a[this.a[x]]
-      x = this.a[x]
-    }
-    return x
-  }
-
-  connected(a, b) {
-    return this.find(a) === this.find(b)
-  }
-
-  union(a, b) {
-    if (this.connected(a, b)) {
-      return
-    }
-    this.a[this.find(a)] = this.find(b)
-    this.counter--
-  }
+  return uf.counter - (length - countOfOne)
 }
 
 module.exports = numIslands

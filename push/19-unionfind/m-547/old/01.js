@@ -1,4 +1,4 @@
-1 /*
+/*
 547. 省份数量
 
 有 n 个城市，其中一些彼此相连，另一些没有相连。如果城市 a 与城市 b 直接相连，且城市 b 与城市 c 直接相连，那么城市 a 与城市 c 间接相连。
@@ -54,14 +54,16 @@ UnionFind.prototype.union = function (x, y) {
  * 结果就是 counter
  * @return {number}
  */
-var findCircleNum = function (a) {
-  const n = a.length
+var findCircleNum = function (isConnected) {
+  const n = isConnected.length
   const uf = new UnionFind(n)
+
   for (let r = 0; r < n; r++) {
     for (let c = 0; c < n; c++) {
-      if (a[r][c] === 1) {
-        uf.union(r, c)
+      if (r === c || isConnected[r][c] !== 1) {
+        continue
       }
+      uf.union(r, c)
     }
   }
   return uf.counter

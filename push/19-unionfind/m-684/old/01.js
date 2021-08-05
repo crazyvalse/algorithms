@@ -62,26 +62,21 @@ class UnionFind {
 }
 
 /**
- * if(!uf.connected(a,b){
- *   uf.union(a,b)
- * } else {
- *   return [a, b]
- * }
  *
  * @param {number[][]} edges
  * @return {number[]}
  */
 var findRedundantConnection = function (edges) {
-  const uf = new UnionFind(edges.length * 2)
-  for (let i = 0; i < edges.length; i++) {
-    const [a, b] = edges[i]
-    if (!uf.isConnected(a, b)) {
-      uf.union(a, b)
+  let n = edges.length
+  const uf = new UnionFind(n)
+  for (let i = 0; i < n; i++) {
+    const [x, y] = edges[i]
+    if (uf.isConnected(x, y)) {
+      return [x, y]
     } else {
-      return [a, b]
+      uf.union(x, y)
     }
   }
-
   return []
 }
 
