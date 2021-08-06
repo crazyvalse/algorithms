@@ -15,18 +15,24 @@
 返回 2
  */
 /**
- * if(f[t - A[i]] > 0 && t - A[i] >= 0)
- * f[t] += t - A[i] === 0 ? 1 : f[t - A[i]]
+ * f[i][w] i：数组的索引；w：重量
  * @param A
  * @param target
  */
 function backPack(A, target) {
+  // write your code here
+  const n = A.length
+  if (target === 0 || A.length === 0) {
+    return 0
+  }
   const f = Array(target + 1).fill(0)
-  for (let i = 0; i < A.length; i++) {
+  f[0] = 1
+  for (let i = 0; i < n; i++) {
     for (let t = target; t >= A[i]; t--) {
-      f[t] += t - A[i] === 0 ? 1 : f[t - A[i]]
+      f[t] += f[t - A[i]]
     }
   }
+
   return f[target]
 }
 

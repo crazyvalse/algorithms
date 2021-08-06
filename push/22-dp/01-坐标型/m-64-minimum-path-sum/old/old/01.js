@@ -21,23 +21,34 @@ n == grid[i].length
 
  */
 /**
- * 总和为最小
- * 每次只能向下或者向右移动一步
+ * if(r === 0) {
+ *   f[r][c] = f[r][c - 1]
+ * } else if( c=== 0) {
+ *   f[r][c] = f[r - 1][c]
+ * } else {
+ *   f[r][c] = Math.min(f[r - 1][c], f[r][c - 1]) + grid[r][c]
+ * }
  * @param {number[][]} grid
  * @return {number}
  */
 var minPathSum = function (grid) {
   const row = grid.length
   const column = grid[0].length
-  const f = Array.from({ length: row + 1 }, () => Array.from({ length: column + 1 }, () => Infinity))
-  f[0][1] = 0
-  f[1][0] = 0
-  for (let r = 1; r <= row; r++) {
-    for (let c = 1; c <= column; c++) {
-      f[r][c] = Math.min(f[r - 1][c], f[r][c - 1]) + grid[r - 1][c - 1]
+
+  const f = Array.from({ length: row }, () => Array(column).fill(0))
+
+  for (let r = 0; r < row; r++) {
+    for (let c = 0; c < column; c++) {
+      if (r === 0 || c === 0) {
+        if (c === 0 && r - 1 >= 0) f[r][c] += f[r - 1][c]
+        if (r === 0 && c - 1 >= 0) f[r][c] += f[r][c - 1]
+      } else {
+        f[r][c] = Math.min(f[r - 1][c], f[r][c - 1])
+      }
+      f[r][c] += grid[r][c]
     }
   }
-  return f[row][column]
+  return f[row - 1][column - 1]
 }
 
 module.exports = minPathSum

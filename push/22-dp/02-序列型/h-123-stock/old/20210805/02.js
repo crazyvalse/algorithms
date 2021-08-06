@@ -36,34 +36,50 @@ https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/solution/di
 
  */
 /**
- * f[i][0] 利润
+ * buy1  第一次买 当前手中的钱 应该低价买
+ * sell1 第一次卖 当前手中的钱
+ * buy2  第一次买 当前手中的钱
+ * sell2 第二次卖 当前手中的钱
  *
- * 两笔交易
- * 1. buy:  第一次买 - a[i]
- * 2. sell: 第一次卖 + a[i]
- * 3. buy:  第二次买 第一次的利润 - a[i]
- * 4. sell  第二次卖
+ * 什么都不做 或 买入
+ * buy1[i] = Max(buy1[i - 1], -prices[i]) // 第一次始终应该是 低价买 当前最低价
+ * 什么都不做 或 卖出
+ * sell1[i] = Max(sell1[i - 1], buy[i - 1] + prices[i]) // 第一次卖 也应该是高价卖
  *
- * @param {number[]} a
+ * buy2[i] = Max(buy2[i - 1], buy2[i - 1] - price[i])
+ *
+ * sell2[i] = Max(sell2[i - 1], buy2[i - 1] + prices[i])
+ * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function (a) {
-  const n = a.length
-  const b1 = Array(n + 1).fill(0)
-  const s1 = Array(n + 1).fill(0)
-  const b2 = Array(n + 1).fill(0)
-  const s2 = Array(n + 1).fill(0)
-  b1[0] = -Infinity
-  b2[0] = -Infinity
-  for (let i = 1; i <= n; i++) {
-    b1[i] = Math.max(b1[i - 1], -a[i - 1])
-    // 卖或不卖
-    s1[i] = Math.max(b1[i - 1] + a[i - 1], s1[i - 1])
-    b2[i] = Math.max(b2[i - 1], s1[i] - a[i - 1])
-    // 卖或不卖
-    s2[i] = Math.max(b2[i - 1] + a[i - 1], s2[i - 1])
+var maxProfit = function (prices) {
+  const n = prices.length
+  if (n === 0) {
+    return 0
   }
-  return s2[n]
+  const f = Array.from({ length: n + 1 }, () => Array.from({ length: 5 }, () => Infinity))
+  f[0][1] = 0
+  f[0][2] = f[0][3] = f[0][4] = f[0][5]
+
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= 5; j += 2) {
+      f[i][j] = f[i - 1][j]
+      if (j > 1 && i > 1 && f[i - 1][j - 1] !== Infinity) {
+        f[i][j] = Math.max(f[i][j], f[i - 1][j - 1] + prices[i - 1] - prices[i - 2])
+      }
+    }
+    for (let j = 2; j <= 5; j += 2) {
+      f[i][j] = f[i - 1][j - 1]
+      if (i > 1 && f[i - 1][j] !== Infinity) {
+        f[i][j] = Math.max(f[i][j], f[i - 1][j] + prices[i - 1] - prices[i - 2])
+      }
+
+      if (j > 2 && i > 1 && f[i - 1][j - 2] !== Infinity) {
+        f[i][j] = Math.max(f[i][j], f[i - 1][j - 2] + prices[i - 1] - prices[i - 2])
+      }
+    }
+  }
+  return Math.max(f[n][1], f[n][3], f[n][5])
 }
 
 module.exports = maxProfit

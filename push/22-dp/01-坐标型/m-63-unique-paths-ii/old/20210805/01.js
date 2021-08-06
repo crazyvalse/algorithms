@@ -27,9 +27,10 @@ obstacleGrid[i][j] 为 0 或 1
 
  */
 /**
- * 1. 向下或者向右移动一步
- * f[r][c] 当前有多少种
- * f[0][0] = 1
+ * 1. 只能向下向右
+ * 2. === 1 为0
+ *
+ * if(grid[r - 1][c - 1] === 1) f[r][c] = 0
  *
  * f[r][c] = f[r - 1][c] + f[r][c - 1]
  *
@@ -40,16 +41,16 @@ var uniquePathsWithObstacles = function (grid) {
   if (grid[0][0] === 1) {
     return 0
   }
+
   const row = grid.length
   const column = grid[0].length
   const f = Array.from({ length: row + 1 }, () => Array.from({ length: column + 1 }, () => 0))
-  f[1][1] = 1
+  f[0][1] = 1
   for (let r = 1; r <= row; r++) {
     for (let c = 1; c <= column; c++) {
-      if (grid[r - 1][c - 1] === 1) {
-        continue
+      if (grid[r - 1][c - 1] !== 1) {
+        f[r][c] = f[r - 1][c] + f[r][c - 1]
       }
-      f[r][c] += f[r - 1][c] + f[r][c - 1]
     }
   }
   return f[row][column]

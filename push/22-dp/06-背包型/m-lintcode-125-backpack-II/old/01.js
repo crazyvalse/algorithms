@@ -24,22 +24,31 @@ A[i], V[i], n, m 均为整数
 O(nm) 空间复杂度可以通过, 你能把空间复杂度优化为O(m)吗？
  */
 /**
- * f[c] 容量为c时，最大价值
+ * w - weight[i - 1] > 0
+ *  - 加： f[i - 1][w - weight[i - 1]]
+ *  - 不加 f[i - 1]
  *
- * f[c] = Math.max(f[c], f[c - w[i]] + v[i])
  *
  * @param capacity
  * @param weights
  * @param values
  */
 function backPack(capacity, weights, values) {
-  const f = Array.from({ length: capacity + 1 }, () => 0)
-  for (let i = 0; i < weights.length; i++) {
-    for (let c = capacity; c - weights[i] >= 0; c--) {
-      f[c] = Math.max(f[c], f[c - weights[i]] + values[i])
+  const n = weights.length
+  if (n === 0 || capacity === 0) {
+    return 0
+  }
+  const f = Array.from({ length: n + 1 }, () => Array.from({ length: capacity + 1 }, () => 0))
+  for (let i = 1; i <= n; i++) {
+    for (let w = 1; w <= capacity; w++) {
+      if (w - weights[i - 1] >= 0) {
+        f[i][w] = Math.max(f[i - 1][w], f[i - 1][w - weights[i - 1]] + values[i - 1])
+      } else {
+        f[i][w] = f[i - 1][w]
+      }
     }
   }
-  return f[capacity]
+  return f[n][capacity]
 }
 
 module.exports = backPack

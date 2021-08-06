@@ -28,18 +28,10 @@
 0 <= prices[i]<= 10 ^ 4
  */
 /**
- * 思路
- * 只要 prices[i] > prices[i - 1] result += 差值
+ * 只要 a[i] > a[i - 1]
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function (A) {
-  const n = A.length
-  const f = Array.from({ length: n }, () => 0)
-  for (let i = 1; i < n; i++) {
-    f[i] = Math.max(f[i - 1], f[i - 1] + A[i] - A[i - 1])
-  }
-  return f[n - 1]
-}
+var maxProfit = function (a) {}
 
 module.exports = maxProfit

@@ -25,28 +25,30 @@
 
  */
 /**
- *
- * f[n] 第n个最长子序列
- * f = Array(n + 1).fill(1)
- * if(a[i] > a[i - 1])
- * f[i] += f[i - 1])
- *
- * @param a
+ * 空间简化 只需要 cur pre
+ * @param {number[]} nums
+ * @return {number}
  */
-var findLengthOfLCIS = function (a) {
-  const n = a.length
-  if (n < 2) {
-    return n
+var findLengthOfLCIS = function (nums) {
+  const n = nums.length
+  if (n === 1) {
+    return 1
   }
-  let max = -Infinity
-  const f = Array(n).fill(1)
+  let max = 0
+  const f = Array(2).fill(1)
+  let pre = 0
+  let cur = 1
   for (let i = 1; i < n; i++) {
-    if (a[i] > a[i - 1]) {
-      f[i] += f[i - 1]
-      max = Math.max(max, f[i])
+    if (nums[i] > nums[i - 1]) {
+      f[cur] = f[pre] + 1
+    } else {
+      f[cur] = 1
     }
+    max = Math.max(max, f[cur])
+    pre = 1 - pre
+    cur = 1 - cur
   }
-  return max === -Infinity ? 1 : max
+  return max
 }
 
 module.exports = findLengthOfLCIS

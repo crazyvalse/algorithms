@@ -21,22 +21,28 @@
 解释: 策略不唯一. 比如, 装入五个物品 0 (A[0] = 1, V[0] = 1).
  */
 /**
- * const f[n] = 容量为 n 最大价值
- *
- * f[w] = Math.max(f[w], f[w - weight[i]])
- *
- * @param weights
- * @param values
- * @param capacity
+ * f[i][w] 前i个物品重量为w时的最大价值
+ * 当w时 放或不放
+ *  放: Max(f[i][w - A[i]]) + V[i]
+ *  不放: f[i - 1][w]
+ * @param A
+ * @param V
+ * @param target
  */
-function backPack(weights, values, capacity) {
-  const f = Array.from({ length: capacity + 1 }, () => 0)
-  for (let i = 0; i < weights.length; i++) {
-    for (let c = weights[i]; c <= capacity; c++) {
-      f[c] = Math.max(f[c], f[c - weights[i]] + values[i])
+function backPack(A, V, target) {
+  const n = A.length
+  if (n === 0 || target === 0) {
+    return 0
+  }
+  const f = Array(target + 1).fill(0)
+  for (let i = 0; i < n; i++) {
+    for (let t = 1; t <= target; t++) {
+      if (t - A[i] >= 0) {
+        f[t] = Math.max(f[t], f[t - A[i]] + V[i])
+      }
     }
   }
-  return f[capacity]
+  return f[target]
 }
 
 module.exports = backPack

@@ -20,24 +20,24 @@ O(n x m) 的时间复杂度 and O(m) 空间复杂度
 /**
  * let max = -Infinity
  * f[m] = 是否能够装大小为m的东西
- * @param m
+ * @param size
  * @param a
  */
-function backPack(m, a) {
-  a.sort((a, b) => a - b)
-  const f = Array(m + 1).fill(false)
+function backPack(size, a) {
+  const f = Array(size + 1).fill(false)
   let max = -Infinity
   f[0] = true
-  for (let w = m; w > 0; w--) {
-    for (let i = 0; i < a.length; i++) {
-      if (w - a[i] >= 0 && f[w - a[i]]) {
-        f[w] = true
-        max = Math.max(w, max)
+  // 反过来
+  for (let i = 0; i < a.length; i++) {
+    // 需要一遍遍确认每个size是否可以
+    for (let s = size; s > 0; s--) {
+      if (s - a[i] >= 0 && f[s - a[i]]) {
+        f[s] = true
+        max = Math.max(s, max)
       }
     }
-    console.info(f)
   }
-  return max
+  return max === -Infinity ? 0 : max
 }
 
 module.exports = backPack

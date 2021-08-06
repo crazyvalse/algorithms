@@ -24,23 +24,20 @@
 0 <= nums[i] <= 400
  */
 /**
- * f[n] 前n家最高金额
+ * f[i] 前 i - 1 个房屋最高金额
  *
- * f[i] = Math.max(f[i - 1], f[i - 2] + a[i - 1])
- *
- * @param {number[]} a
+ * @param {number[]} A
  * @return {number}
  */
-var rob = function (a) {
-  if (a.length === 0) {
+var rob = function (A) {
+  const n = A.length
+  if (n < 1) {
     return 0
   }
-
-  const n = a.length
-  const f = Array.from({ length: n + 1 }, () => 0)
-  f[1] = a[0]
-  for (let i = 2; i <= n; i++) {
-    f[i] = Math.max(f[i - 1], f[i - 2] + a[i - 1])
+  const f = Array(n + 1).fill(0)
+  f[1] = A[0]
+  for (let i = 2; i < n + 1; i++) {
+    f[i] = Math.max(f[i - 1], f[i - 2] + A[i - 1])
   }
   return f[n]
 }

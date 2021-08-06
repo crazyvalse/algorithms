@@ -36,34 +36,23 @@ https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/solution/di
 
  */
 /**
- * f[i][0] 利润
- *
- * 两笔交易
- * 1. buy:  第一次买 - a[i]
- * 2. sell: 第一次卖 + a[i]
- * 3. buy:  第二次买 第一次的利润 - a[i]
- * 4. sell  第二次卖
- *
- * @param {number[]} a
+ * @param {number[]} A
  * @return {number}
  */
-var maxProfit = function (a) {
-  const n = a.length
-  const b1 = Array(n + 1).fill(0)
-  const s1 = Array(n + 1).fill(0)
-  const b2 = Array(n + 1).fill(0)
-  const s2 = Array(n + 1).fill(0)
-  b1[0] = -Infinity
-  b2[0] = -Infinity
-  for (let i = 1; i <= n; i++) {
-    b1[i] = Math.max(b1[i - 1], -a[i - 1])
-    // 卖或不卖
-    s1[i] = Math.max(b1[i - 1] + a[i - 1], s1[i - 1])
-    b2[i] = Math.max(b2[i - 1], s1[i] - a[i - 1])
-    // 卖或不卖
-    s2[i] = Math.max(b2[i - 1] + a[i - 1], s2[i - 1])
+var maxProfit = function (A) {
+  const n = A.length
+  let buy1 = [-A[0]]
+  let sell1 = [0]
+  let buy2 = [-A[0]]
+  let sell2 = [0]
+  for (let i = 1; i < n; i++) {
+    buy1[i] = Math.max(buy1[i - 1], -A[i])
+    sell1[i] = Math.max(sell1[i - 1], buy1[i - 1] + A[i])
+    buy2[i] = Math.max(buy2[i - 1], sell1[i - 1] - A[i])
+    sell2[i] = Math.max(sell2[i - 1], buy2[i - 1] + A[i])
   }
-  return s2[n]
+
+  return sell2[n - 1]
 }
 
 module.exports = maxProfit

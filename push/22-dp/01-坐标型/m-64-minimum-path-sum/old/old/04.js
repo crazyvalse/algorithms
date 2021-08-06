@@ -21,23 +21,32 @@ n == grid[i].length
 
  */
 /**
- * 总和为最小
- * 每次只能向下或者向右移动一步
+ * f[r][c] 表示当前最小和
  * @param {number[][]} grid
  * @return {number}
  */
 var minPathSum = function (grid) {
   const row = grid.length
   const column = grid[0].length
-  const f = Array.from({ length: row + 1 }, () => Array.from({ length: column + 1 }, () => Infinity))
-  f[0][1] = 0
-  f[1][0] = 0
+  // 横竖第一排
+  const f = Array.from({ length: 2 }, () => 0)
+  let pre = 0
+  let cur = 1
   for (let r = 1; r <= row; r++) {
     for (let c = 1; c <= column; c++) {
-      f[r][c] = Math.min(f[r - 1][c], f[r][c - 1]) + grid[r - 1][c - 1]
+      if (r === 1) {
+        f[cur] = f[pre] + grid[r - 1][c - 1]
+      } else if (c === 1) {
+        f[cur] = f[cur] + grid[r - 1][c - 1]
+      } else {
+        f[cur] = Math.min(f[cur], f[pre]) + grid[r - 1][c - 1]
+      }
     }
+    cur = 1 - cur
+    pre = 1 - pre
   }
-  return f[row][column]
+  console.info(f)
+  return f[cur]
 }
 
 module.exports = minPathSum

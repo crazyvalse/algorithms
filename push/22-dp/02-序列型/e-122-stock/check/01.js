@@ -45,6 +45,16 @@
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function (prices) {}
+var maxProfit = function (prices) {
+  const n = prices.length
+  let total = 0
+
+  for (let i = 1; i < n; i++) {
+    if (prices[i] > prices[i - 1]) {
+      total += prices[i] - prices[i - 1]
+    }
+  }
+  return total
+}
 
 module.exports = maxProfit

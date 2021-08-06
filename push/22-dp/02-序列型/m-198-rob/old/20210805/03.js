@@ -24,25 +24,28 @@
 0 <= nums[i] <= 400
  */
 /**
- * f[n] 前n家最高金额
+ * f[i][0] 不偷
+ * f[i][1] 偷
  *
- * f[i] = Math.max(f[i - 1], f[i - 2] + a[i - 1])
+ * f[i][0] 不偷：说明 上一个是偷的
+ * f[i][1] 偷： 说明上一个不能偷
  *
- * @param {number[]} a
+ * f[i][0] = Max(f[i - 1][0], f[i - 1][1])
+ * f[i][1] = f[i - 2][1] + nums[i - 1]
+ *
+ * Max(f[n][0], f[n][1])
+ * @param {number[]} nums
  * @return {number}
  */
-var rob = function (a) {
-  if (a.length === 0) {
-    return 0
-  }
-
-  const n = a.length
-  const f = Array.from({ length: n + 1 }, () => 0)
-  f[1] = a[0]
+var rob = function (nums) {
+  const n = nums.length
+  const f = Array.from({ length: n + 1 }, () => [0, 0])
+  f[1][1] = nums[0]
   for (let i = 2; i <= n; i++) {
-    f[i] = Math.max(f[i - 1], f[i - 2] + a[i - 1])
+    f[i][0] = Math.max(f[i - 1][0], f[i - 1][1])
+    f[i][1] = f[i - 2][1] + nums[i - 1]
   }
-  return f[n]
+  return Math.max(f[n][0], f[n][1])
 }
 
 module.exports = rob

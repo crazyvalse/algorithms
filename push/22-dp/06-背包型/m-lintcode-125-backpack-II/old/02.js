@@ -22,20 +22,23 @@ A[i], V[i], n, m 均为整数
 解释: 装入 A[0] 和 A[2] 可以得到最大价值, V[0] + V[2] = 10
 挑战
 O(nm) 空间复杂度可以通过, 你能把空间复杂度优化为O(m)吗？
+
  */
 /**
- * f[c] 容量为c时，最大价值
- *
- * f[c] = Math.max(f[c], f[c - w[i]] + v[i])
- *
+ * 重量放在索引中，价值放到数组中
  * @param capacity
  * @param weights
  * @param values
+ * @returns {number}
  */
 function backPack(capacity, weights, values) {
+  const n = weights.length
+  if (n === 0 || capacity === 0) {
+    return 0
+  }
   const f = Array.from({ length: capacity + 1 }, () => 0)
-  for (let i = 0; i < weights.length; i++) {
-    for (let c = capacity; c - weights[i] >= 0; c--) {
+  for (let i = 0; i < n; i++) {
+    for (let c = capacity; c >= weights[i]; c--) {
       f[c] = Math.max(f[c], f[c - weights[i]] + values[i])
     }
   }

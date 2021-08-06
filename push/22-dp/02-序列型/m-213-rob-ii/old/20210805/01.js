@@ -29,29 +29,29 @@
  */
 /**
  * 回溯 + 记忆
- * @param {number[]} a
+ * @param {number[]} nums
  * @return {number}
  */
-var rob = function (a) {
-  const n = a.length
-  if (n === 0) {
+var rob = function (nums) {
+  if (nums.length < 1) {
     return 0
   }
-  if (n === 1) {
-    return a[0]
+  if (nums.length === 1) {
+    return nums[0]
   }
-  return Math.max(go(a.slice(0, n - 1)), go(a.slice(1)))
+  return Math.max(goRob(nums.slice(1)), goRob(nums.slice(0, nums.length - 1)))
 }
 
-function go(a) {
-  const n = a.length
-  if (n === 0) {
+function goRob(A) {
+  const n = A.length
+  if (n < 1) {
     return 0
   }
+
   const f = Array(n + 1).fill(0)
-  f[1] = a[0]
-  for (let i = 2; i <= n; i++) {
-    f[i] = Math.max(f[i - 1], f[i - 2] + a[i - 1])
+  f[1] = A[0]
+  for (let i = 2; i < n + 1; i++) {
+    f[i] = Math.max(f[i - 1], f[i - 2] + A[i - 1])
   }
   return f[n]
 }
