@@ -28,9 +28,12 @@ t = t1 + t2 + ... + tm
 s1、s2、和 s3 都由小写英文字母组成
  */
 /**
- * 双序列型dp只需要考虑 空串就可以了
- * a.length + b.length !== c.length return false
+ * 1. 前后关系：
+ * 2. 与s3的关系： s3[m + n - 1] 得等于 s1[m] 或者 s2[n]
  *
+ * if(( s3[m + n - 1] === s1[m] || s3[m + n - 1] === s2[n] )) {
+ *   f[m][n] = true
+ * }
  * @param {string} s1
  * @param {string} s2
  * @param {string} s3
@@ -50,7 +53,7 @@ var isInterleave = function (s1, s2, s3) {
         f[i][j] = true
         continue
       }
-      // 来自于 s1
+      // 来自于 s1 来源于 s1 那么 f[i - 1][j] 也得为true才行
       if (i > 0 && s3[i + j - 1] === s1[i - 1]) {
         f[i][j] = f[i - 1][j]
       }

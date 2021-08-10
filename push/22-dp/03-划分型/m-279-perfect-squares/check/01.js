@@ -24,20 +24,25 @@
  */
 
 /**
- * @param {number} n
+ * f[n] 为组成n需要最小平方个数
+ *
+ * 8
+ * @param {number} top
  * @return {number}
  */
-var numSquares = function (n) {
-  const f = Array(n + 1).fill(Infinity)
+var numSquares = function (top) {
+  const n = parseInt(Math.sqrt(top))
+  const f = Array(top + 1).fill(Infinity)
   f[0] = 0
   for (let i = 1; i <= n; i++) {
-    for (let x = 1, xq = 1; (xq = x * x) <= n; x++) {
-      if (i - xq >= 0) {
-        f[i] = Math.min(f[i], f[i - xq] + 1)
-      }
+    const a = i * i
+    for (let t = a; t <= top; t++) {
+      f[t] = Math.min(f[t], f[t - a] + 1)
     }
   }
-  return f[n] === Infinity ? 0 : f[n]
+  return f[top] === Infinity ? -1 : f[top]
 }
 
 module.exports = numSquares
+
+console.info(parseInt(Math.sqrt()))

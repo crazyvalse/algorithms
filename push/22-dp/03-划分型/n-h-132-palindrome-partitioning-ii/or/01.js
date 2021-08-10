@@ -51,6 +51,7 @@ var minCut = function (s) {
       isPalindrome[i--][j++] = true
     }
   }
+  console.info(isPalindrome)
   const f = Array(n + 1).fill(Infinity)
   f[0] = 0
   for (let i = 1; i <= n; i++) {

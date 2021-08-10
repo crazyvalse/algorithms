@@ -29,7 +29,9 @@
  */
 /**
  * 划分型：
- *
+ * 如果 后面的都是一个人复印 total
+ * f[k][n] k 个人抄 n 本书
+ * f[k][i] = Math.min(f[k][i], Math.max(f[k - 1][j], sum));
  * @param pages: an array of integers
  * @param k: An integer
  * @return: an integer

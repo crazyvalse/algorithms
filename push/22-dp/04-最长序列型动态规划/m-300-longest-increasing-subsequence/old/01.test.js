@@ -5,7 +5,7 @@ test('1', () => {
 })
 
 test('2', () => {
-  expect(lengthOfLIS([0, 1, 0, 3, 2, 3, 1])).toEqual(4)
+  expect(lengthOfLIS([0, 1, 0, 3, 2, 3])).toEqual(4)
 })
 
 test('3', () => {
