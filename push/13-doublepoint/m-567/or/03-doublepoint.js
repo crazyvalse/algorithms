@@ -24,6 +24,8 @@
 s1 和 s2 仅包含小写字母
  */
 /**
+ * 滑动窗口
+ * 重点在于如何判断两个子串是否互为子串
  * @param {string} s1
  * @param {string} s2
  * @return {boolean}
@@ -34,20 +36,26 @@ var checkInclusion = function (s1, s2) {
   if (n > m) {
     return false
   }
-
-  const cnt1 = new Array(26).fill(0)
-  const cnt2 = new Array(26).fill(0)
+  const cnt = new Array(26).fill(0)
+  // 计算 s1 的字符个数
   for (let i = 0; i < n; ++i) {
-    ++cnt1[s1[i].charCodeAt() - 'a'.charCodeAt()]
-    ++cnt2[s2[i].charCodeAt() - 'a'.charCodeAt()]
+    --cnt[s1[i].charCodeAt() - 'a'.charCodeAt()]
   }
-  if (cnt1.toString() === cnt2.toString()) {
-    return true
-  }
-  for (let i = n; i < m; ++i) {
-    ++cnt2[s2[i].charCodeAt() - 'a'.charCodeAt()]
-    --cnt2[s2[i - n].charCodeAt() - 'a'.charCodeAt()]
-    if (cnt1.toString() === cnt2.toString()) {
+  let left = 0
+  for (let right = 0; right < m; ++right) {
+    // x 是最右侧的字符
+    const x = s2[right].charCodeAt() - 'a'.charCodeAt()
+    // 右侧字符加一
+    ++cnt[x]
+    // 如果 是非等于的字符
+    while (cnt[x] > 0) {
+      // 左侧字符→移动
+      // 计数减一
+      --cnt[s2[left].charCodeAt() - 'a'.charCodeAt()]
+      ++left
+    }
+    // 操作完之后 是
+    if (right - left + 1 === n) {
       return true
     }
   }
