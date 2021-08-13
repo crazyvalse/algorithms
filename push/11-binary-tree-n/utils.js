@@ -13,10 +13,13 @@ function TreeNode(val, left, right) {
  */
 function arrayToTreeNode(array) {
   if (!Array.isArray(array) || array.length === 0) {
-    return new TreeNode()
+    return null
   }
   const nodes = []
   for (let i = 0; i < array.length; i++) {
+    if (array[i] === null) {
+      continue
+    }
     const node = new TreeNode(array[i])
     nodes.push(node)
     // 从1开始查找
@@ -43,14 +46,28 @@ function treeNodeToArray(node) {
     const top = queue.shift()
     if (top) {
       result.push(top.val)
-      queue.push(top.left)
-      queue.push(top.right)
+      /*
+      左节点计算的条件：
+      1. 左节点有值
+      2. 左节点无值，但是右节点有值
+
+      右节点计算条件：
+      2. 右节点有值
+       */
+      if (top.left || top.right) {
+        queue.push(top.left)
+      }
+      if (top.right) {
+        queue.push(top.right)
+      }
+    } else {
+      result.push(top)
     }
   }
   return result
 }
 
-// const array = [0, 1, 2, 3, 4]
+// const array = [1, null, 2, 3] // [0, 1, 2, 3, 4]
 // const root = arrayToTreeNode(array)
 // const newArray = treeNodeToArray(root)
 // console.info(newArray)
