@@ -34,18 +34,55 @@ function arrayToTreeNode(array) {
   return nodes[0]
 }
 
+function arrayToTreeNode2(array) {
+  if (!Array.isArray(array) || array.length === 0) {
+    return null
+  }
+  const n = array.length
+  const root = new TreeNode(array[0])
+  const queue = [root]
+  let i = 1
+  while (queue.length && i < n) {
+    debugger
+    const root = queue.shift()
+
+    if (array[i]) {
+      root.left = new TreeNode(array[i])
+      queue.push(root.left)
+    }
+    i++
+    if (array[i]) {
+      root.right = new TreeNode(array[i])
+      queue.push(root.right)
+    }
+    i++
+  }
+  return root
+}
+
+function removeRestNull(result) {
+  let [l, r, n] = [0, 0, result.length]
+  while (r < n) {
+    if (result[r] !== null) {
+      l = r
+    }
+    r++
+  }
+  result.splice(l + 1)
+}
+
 // bfs
-function treeNodeToArray(node) {
-  if (!node) {
+function treeNodeToArray(root) {
+  if (!root) {
     return []
   }
   const result = []
   const queue = []
-  queue.push(node)
+  queue.push(root)
   while (queue.length) {
-    const top = queue.shift()
-    if (top) {
-      result.push(top.val)
+    const root = queue.shift()
+    if (root) {
+      result.push(root.val)
       /*
       左节点计算的条件：
       1. 左节点有值
@@ -54,20 +91,22 @@ function treeNodeToArray(node) {
       右节点计算条件：
       2. 右节点有值
        */
-      if (top.left || top.right) {
-        queue.push(top.left)
-      }
-      if (top.right) {
-        queue.push(top.right)
-      }
+      // if (root.left || root.right) {
+      queue.push(root.left)
+      // }
+      // if (root.right) {
+      queue.push(root.right)
+      // }
     } else {
-      result.push(top)
+      result.push(root)
     }
   }
+  removeRestNull(result)
+
   return result
 }
 
-// const array = [1, null, 2, 3] // [0, 1, 2, 3, 4]
+// const array = [1, 2, null, 3] // [0, 1, 2, 3, 4]
 // const root = arrayToTreeNode(array)
 // const newArray = treeNodeToArray(root)
 // console.info(newArray)

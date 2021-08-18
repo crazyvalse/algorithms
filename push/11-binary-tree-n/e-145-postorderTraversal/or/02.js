@@ -42,7 +42,18 @@ var postorderTraversal = function (root) {
     stack.push(root)
   }
 
-  while (stack.length) return result
+  while (stack.length) {
+    const node = stack.pop()
+    result.push(node.val)
+    if (node.left) {
+      stack.push(node.left)
+    }
+    if (node.right) {
+      stack.push(node.right)
+    }
+  }
+  result.reverse()
+  return result
 }
 
 module.exports = postorderTraversal
