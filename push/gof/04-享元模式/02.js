@@ -31,12 +31,10 @@ class Gov {
   pool = []
   candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-  constructor() {
+  constructor(length) {
     // 初始化汽车
-    let i = 0
-    while (i++ < 3) {
-      this.pool.push(new Car('车' + i))
-      this.go()
+    while (length-- > 0) {
+      this.pool.push(new Car('车' + length))
     }
   }
 

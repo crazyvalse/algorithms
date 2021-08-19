@@ -18,6 +18,7 @@ function arrayToTreeNode(array) {
   const nodes = []
   for (let i = 0; i < array.length; i++) {
     if (array[i] === null) {
+      nodes.push(null)
       continue
     }
     const node = new TreeNode(array[i])
@@ -34,7 +35,7 @@ function arrayToTreeNode(array) {
   return nodes[0]
 }
 
-function arrayToTreeNode2(array) {
+function arrayToTreeNode1(array) {
   if (!Array.isArray(array) || array.length === 0) {
     return null
   }
@@ -43,7 +44,6 @@ function arrayToTreeNode2(array) {
   const queue = [root]
   let i = 1
   while (queue.length && i < n) {
-    debugger
     const root = queue.shift()
 
     if (array[i]) {
