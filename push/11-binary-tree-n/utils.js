@@ -27,9 +27,11 @@ function arrayToTreeNode(array) {
     if (i > 0) {
       // 找到 parent 以及是哪个节点
       const parentIndex = (i - 1) >>> 1
-      // 判断是哪个节点
-      const isRight = (i - 1) % 2
-      nodes[parentIndex][isRight ? 'right' : 'left'] = node
+      if (nodes[parentIndex]) {
+        // 判断是哪个节点
+        const isRight = (i - 1) % 2
+        nodes[parentIndex][isRight ? 'right' : 'left'] = node
+      }
     }
   }
   return nodes[0]

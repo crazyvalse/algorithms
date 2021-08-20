@@ -57,7 +57,6 @@ var isValidBST = function (root) {
     walk(root.right, root.val)
   }
   walk(root)
-  debugger
   for (let i = 1; i < a.length; i++) {
     if (a[i] <= a[i - 1]) {
       result = false
