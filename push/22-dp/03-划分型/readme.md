@@ -8,3 +8,5 @@
 - 最后一步： 关注最优策略中最后一个
 
 - https://blog.csdn.net/weixin_41910694/article/details/103874857
+
+> 确实得从后往前看 后面的(从 l 到 r)是一个整体

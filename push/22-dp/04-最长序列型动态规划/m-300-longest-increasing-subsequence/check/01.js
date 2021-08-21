@@ -35,32 +35,30 @@
 /**
  *
  * 1. 状态
- * f[i] 前i-1个 最长的递增子序列
- * 第一种 [aj] 1
- *
+ * f[i] 前i个的最长递增子序列
  * 2. 状态转义
+ * if(a[i] > a[j])
+ * f[i] = Math.max(f[i], f[j] + 1)
+ *
  *
  * 3. 初始条件和边界情况
- *
+ * f[0] = 0
  * 4. 顺序
  *
- * @param {number[]} array
+ * @param {number[]} a
  * @return {number}
  */
-var lengthOfLIS = function (array) {
-  const n = array.length
-  if (n === 0) {
-    return 0
-  }
-  let max = 1
+var lengthOfLIS = function (a) {
+  const n = a.length
   const f = Array(n).fill(1)
+  let max = 1
   for (let i = 1; i < n; i++) {
     for (let j = 0; j < i; j++) {
-      if (array[i] > array[j]) {
+      if (a[i] > a[j]) {
         f[i] = Math.max(f[i], f[j] + 1)
       }
     }
-    max = Math.max(max, f[i])
+    max = Math.max(f[i], max)
   }
   return max
 }
