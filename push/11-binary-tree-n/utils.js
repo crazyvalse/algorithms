@@ -48,12 +48,12 @@ function arrayToTreeNode1(array) {
   while (queue.length && i < n) {
     const root = queue.shift()
 
-    if (array[i]) {
+    if (array[i] !== null) {
       root.left = new TreeNode(array[i])
       queue.push(root.left)
     }
     i++
-    if (array[i]) {
+    if (array[i] !== null) {
       root.right = new TreeNode(array[i])
       queue.push(root.right)
     }
@@ -109,12 +109,16 @@ function treeNodeToArray(root) {
 }
 
 // const array = [1, 2, null, 3] // [0, 1, 2, 3, 4]
-// const root = arrayToTreeNode(array)
+// const array = [1, null, 0, 0, 1]
+// const root = arrayToTreeNode1(array)
+//
+// console.info(root)
 // const newArray = treeNodeToArray(root)
 // console.info(newArray)
 
 module.exports = {
   TreeNode,
   arrayToTreeNode,
+  arrayToTreeNode1,
   treeNodeToArray
 }
