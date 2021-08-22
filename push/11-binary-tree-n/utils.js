@@ -48,12 +48,12 @@ function arrayToTreeNode1(array) {
   while (queue.length && i < n) {
     const root = queue.shift()
 
-    if (array[i] !== null) {
+    if (array[i] !== null && array[i] !== undefined) {
       root.left = new TreeNode(array[i])
       queue.push(root.left)
     }
     i++
-    if (array[i] !== null) {
+    if (array[i] !== null && array[i] !== undefined) {
       root.right = new TreeNode(array[i])
       queue.push(root.right)
     }
