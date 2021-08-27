@@ -9,3 +9,4 @@
 - http://javascript.info/tutorial/initialization
 - https://www.bilibili.com/video/BV1B64y1R7Fm?p=2
 - https://zh.javascript.info/closure
+- [现代浏览器](https://www.zhihu.com/people/incca/posts)

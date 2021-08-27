@@ -38,6 +38,22 @@ const o = {
   c: [1, 2, 3]
 }
 
-o.d = o
-const o2 = deepClone(o)
-console.info(o2)
+// o.d = o
+// const o2 = deepClone(o)
+// console.info(o2)
+
+// const map = {}
+//
+const a = { a: 1 }
+const b = { b: 2 }
+//
+// map[a] = a
+// map[b] = b
+//
+// console.info(map[a])
+// console.info(Object.keys(map))
+
+const map = new Map()
+map.set(a, a)
+map.set(b, b)
+console.info(map.get(a))

@@ -154,3 +154,9 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_DOM_API/Microtask_guide/In
 
 - 在浏览器和 Node11 以后，每执行完一个 timer 类回调，例如 setTimeout,setImmediate 之后，都会把微任务给执行掉（promise 等）。
 - 原来 Node10 和以前： 当一个任务队列（例如 timer queue）里面的回调都批量执行完了，才去执行微任务
+
+## 补充
+
+- https://zh.javascript.info/event-loop
+- https://zh.javascript.info/microtask-queue
+- https://github.com/Troland/how-javascript-works/blob/master/event-loop.md

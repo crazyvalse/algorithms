@@ -39,13 +39,13 @@
 //  */
 
 async function async1() {
-  console.log('a') // c2-1
-  const res = await async2() // c2-2
+  console.log('a') // c1-1
+  const res = await async2() // c1-2
   console.log('b') // m1 - 1
 }
 
 async function async2() {
-  console.log('c') // c2-2
+  console.log('c') // c1-2
   return 2
 }
 
@@ -57,7 +57,7 @@ setTimeout(() => {
 }, 0)
 
 async1().then((res) => {
-  // c2 //m3
+  // c1 //m3
   console.log('f')
 })
 

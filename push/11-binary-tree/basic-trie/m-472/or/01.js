@@ -48,52 +48,18 @@ var findAllConcatenatedWordsInADict = function (words) {
    * 查找
    * @param word
    */
-  function search(word) {
-    let node = trie.children,
-      len = word.length,
-      connect = 0
-    // 递归查找，此单词是否为连接词 dfs(几个单词连接, 当前查找的索引, 当前前缀树)
-    function dfs(num, index, curr) {
-      // 如果已经找到一条路径，确定 word 为连接词，终止所有递归
-      if (connect > 1) return
-
-      // 如果当前节点不存在，终止递归
-      if (curr === undefined) return
-
-      // 如果已经找到了 word 的最后一个字母，而且恰好为一个单词的结束，那么终止递归，
-      // 并且更新 connect
-      if (curr.isEnd === true && index === len - 1 && num + 1 > 1) {
-        return (connect = num + 1)
-      }
-      // 如果当前 curr 为一个单词的结束点，并且 index !== len - 1，
-      // 继续递归以下一个字母为开头的词是否存在，从字典树根节点开始
-      if (curr.isEnd === true && index !== len - 1) {
-        dfs(num + 1, index + 1, node.children[arr[index + 1]])
-        /*
-          注意此处的回溯，即使找到了可能为一种连接词路径的时候，也要继续此时当前的
-          进度继续查找，要搜索所有可能性
-        */
-        dfs(num, index + 1, curr.children[arr[index + 1]])
-      }
-      if (curr.isEnd === false) {
-        dfs(num, index + 1, curr.children[arr[index + 1]])
-      }
-    }
-
-    dfs(0, 0, node.children[word[0]])
-
-    return connect > 1
-  }
 
   const result = []
   // 找到所有由两个单词组成的单词
   for (let word of words) {
-    if (search(word)) {
+    if (trie.check(word)) {
       result.push(word)
     }
   }
   return result
 }
+
+/**************** Trie *****************/
 
 function Trie(words) {
   this.children = {}
@@ -121,6 +87,55 @@ Trie.prototype.search = function (word) {
     node = node[c]
   }
   return node && node.isEnd
+}
+
+// 判断当前单词是否是由2个以上单词构成
+/**
+ * 1. 结束条件
+ *  - word === ''
+ *    - count > 2 return true
+ *
+ * 2. 返回值 boolean
+ *
+ * 3. 过程
+ *  - 从word中取出字母，判断是不是在trie中
+ *    - 是，继续
+ *    - 不是，返回false
+ *    - 发现 isEnd 表示已经组成一个词了，counter++ 并进行下一次递归
+ *
+ * @param word
+ * @returns {boolean}
+ */
+Trie.prototype.check = function (word) {
+  const n = word.length
+  let dict = this.children
+  const visited = Array(n).fill(false)
+  // 有返回值的一般都是从下往上
+  const walk = function (index, cart) {
+    if (visited[index]) {
+      return false
+    }
+    if (index === n) {
+      return cart > 1
+    }
+    let node = dict
+    let char = null
+    for (let i = index; i < n; i++) {
+      char = word[i]
+      node = node[char]
+      if (!node) {
+        return false
+      }
+      // 如果是 isEnd，进行下一个词
+      if (node.isEnd && walk(i + 1, cart + 1)) {
+        return true
+      }
+    }
+    // 遍历完，也没有 isEnd 结尾，说明最后的ch 不构成单词
+    visited[index] = true
+    return false
+  }
+  return walk(0, 0)
 }
 
 module.exports = findAllConcatenatedWordsInADict

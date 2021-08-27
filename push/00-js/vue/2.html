@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">{{counter}}</div>
+    <script src="vue.min.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          counter: 0
+        },
+        mounted() {
+          let l = 1000
+          while (l-- > 0) {
+            this.counter++
+          }
+        },
+        watch: {
+          counter() {
+            console.info(1)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

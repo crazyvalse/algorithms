@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      {
+        // 使用在代码块外不可见的局部变量做一些工作
+
+        let message = 'Hello' // 只在此代码块内可见
+
+        console.info(message) // Hello
+      }
+
+      console.info(message) // Error: message is not defined
+    </script>
+  </body>
+</html>
