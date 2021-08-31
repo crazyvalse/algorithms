@@ -28,8 +28,7 @@ class Person {
 
   // go 方法需要晚于所有的方法，换句话说 我需要先把所有的方法先放到队列里，再执行go
   async go() {
-    let length = this.queue.length
-    while (length-- > 0) {
+    while (this.queue.length) {
       const fn = this.queue.shift()
       await fn()
     }

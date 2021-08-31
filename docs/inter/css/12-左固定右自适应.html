@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    div{
+      border: 1px solid black;
+    }
+    /* 方案1 */
+    .left {
+      width: 120px;
+      float: left;
+    }
+    .right {
+      height: 100px;
+      margin-left: 120px;
+    }
+    /* 方案2 */
+    /*.left {*/
+    /*  width: 120px;*/
+    /*  float: left;*/
+    /*}*/
+    /*.right {*/
+    /*  width: calc(100% - 120px);*/
+    /*  float: left;*/
+    /*}*/
+  </style>
+</head>
+<body>
+<div class="left">left</div>
+<div class="right">right</div>
+</body>
+</html>
