@@ -58,3 +58,7 @@ http://interview.poetries.top/docs/excellent.html#_22-1-xss
 
 - 对于 Ajax 请求，图片和 script 等资源请求，Referer 为发起请求的页面地址。
 - 对于页面跳转，Referer 为打开页面历史记录的前一个页面地址。
+
+## 鉴权
+
+- https://juejin.cn/post/7003147063542153224?utm_source=gold_browser_extension#heading-7

@@ -1,24 +1,27 @@
 // setTimeout(function () {
-//   console.log('setTimeout')
+//   console.log('setTimeout1')
 // }, 0)
 // setImmediate(function () {
-//   console.log('setImmediate')
+//   console.log('setImmediate2')
 // })
 // new Promise(function (resolve, reject) {
 //   resolve()
 // }).then(function () {
-//   console.log('promise.then')
+//   console.log('promise.then3')
 // })
 // process.nextTick(function () {
-//   console.log('next nick')
+//   console.log('next nick4')
 // })
-// console.log('同步代码')
-//
-// // 同步
-// // next tick
-// // promise then
-// // setTimeout
-// // setImmediate
+// console.log('同步代码5')
+// /*
+// 5
+// 4
+// 3
+// 1
+// 2
+//  */
+
+/**************/
 setTimeout(function () {
   console.log('1')
   new Promise(function (resolve, reject) {
@@ -32,4 +35,6 @@ setTimeout(function () {
   console.log('4')
 })
 
-// 1 2 3 4
+/*
+1234
+ */

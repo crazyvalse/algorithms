@@ -11,6 +11,16 @@
 
 # 3. 事件循环
 
+> 事件循环的主要工作就是协调事件，用户交互，脚本，渲染，网络等。
+
+浏览器
+宏任务(macrotasks)：setTimeout, setInterval, I/O，setImmediate（如果存在），requestAnimationFrame（存在争议）
+微任务 (microtasks) : process.nextTick, Promises,MutationObserver
+
+node
+宏任务：setTimeout, setInterval,setImmediate
+微任务：process.nextTick,promise.then
+
 - 由于 JS 是单线程，所以同一时间只能执行一个任务，其他任务就得排队，后续任务必须等到前一个任务结束才能开始执行。
 - 为了避免因为某些长时间任务造成的无意义等待，JS 引入了异步的概念，用另一个线程来管理异步任务。
 - 同步任务直接在主线程队列中顺序执行，而异步任务会进入另一个任务队列，不会阻塞主线程。
@@ -104,13 +114,13 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_DOM_API/Microtask_guide/In
 
 ## 为什么 GUI 渲染线程为什么与 JS 引擎线程互斥
 
-- 这是由于 JS 是可以操作 DOM 的，如果同时修改元素属性并同时渲染界面(即 JS 线程和 UI 线程同时运行)
+- 这是由于 JS 是可以操作 DOM 的，如果**同时**修改元素属性并**同时**渲染界面(即 JS 线程和 UI 线程同时运行)
   - 那么渲染线程前后获得的元素就可能不一致了
 - 因此，为了防止渲染出现不可预期的结果，浏览器设定 GUI 渲染线程和 JS 引擎线程为互斥关系
 
 ## 补充
 
-- 不管是 setTimeout/setInterval 和 XHR/fetch 代码，在这些代码执行时， 本身是同步任务，而其中的回调函数才是异步任务
+- 不管是 setTimeout/setInterval 和 XHR/fetch 代码，在这些代码执行时， **本身**是**同步**任务，而其中的**回调函数**才是**异步**任务
 - 当代码执行到 setTimeout/setInterval 时，实际上是 JS 引擎线程通知 定时触发器线程，间隔一个时间后，会触发一个回调事件
 - 而定时触发器线程在接收到这个消息后，会在等待的时间后，将回调事件放入到由 事件触发线程所管理的事件队列中
 - 而异步 http 请求线程在接收到这个消息后，会在请求成功后，将回调事件放入到由 事件触发线程所管理的 事件队列中
@@ -163,6 +173,35 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_DOM_API/Microtask_guide/In
 
 - 在浏览器和 Node11 以后，每执行完一个 timer 类回调，例如 setTimeout,setImmediate 之后，都会把微任务给执行掉（promise 等）。
 - 原来 Node10 和以前： 当一个任务队列（例如 timer queue）里面的回调都批量执行完了，才去执行微任务
+
+```js
+setTimeout(function () {
+  console.log('timeout1:宏任务')
+  new Promise(function (resolve, reject) {
+    resolve()
+  }).then(() => {
+    console.log('promise:微任务')
+  })
+})
+setTimeout(function () {
+  console.log('timeout2:宏任务')
+})
+
+// 浏览器及 node11以后的版本
+
+// to1
+// promise
+// to2
+
+// node 11 之前的版本
+// to1
+// to2
+// promise
+```
+
+对这段代码
+如果是 11 以后的 Node 和浏览器：执行完第一个 setTimeout 后，接下来轮到 Promise 这类微任务执行了，所以接下来应该是输出「promise:微任务」
+如果是 version11 以前的 Node,则执行完第一个 setTimeout 后，因为 timer 队列没处理完，所以接下来执行的是第二个 setTimeout，输出的是「timeout2:宏任务」
 
 ## 补充
 

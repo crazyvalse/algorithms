@@ -1,255 +1,155 @@
-# algorithms
-
-## 计划
-
-### 2.1 - 2.7: js 基础手写
-
-- [ ] 柯里化
-- [ ] 偏函数
-- [ ] 惰性函数
-- [ ] 函数组合
-- [ ] 函数记忆
-- [ ] 递归
-- [ ] 乱序
-- [ ] generator
-- [ ] class
-- [ ] defineProperty 与 proxy
-- [ ] samesite
-- [ ] 复习
-
-#### 2.1
-
-关键目标：
-
-- [x] new
-- [x] 创建对象
-- [x] 继承
-- [x] 防抖
-- [x] 节流
-- [ ] 去重
-- [ ] 类型判断
-- [x] find
-- [ ] 柯里化
-
-#### 2.2
-
-- [x] 柯里化
-- [x] 偏函数
-- [x] 惰性函数
-- [x] 函数组合
-- [x] 函数记忆
-- [ ] 递归
-- [x] 乱序
-- [ ] generator
-- [ ] class
-- [ ] defineProperty 与 proxy
-
-#### 2.3 复习
-
-#### 2.4 复习
-
-#### 2.5 复习
-
-- [ ] 快速
-- [ ] 选择
-- [ ] 堆
-- [ ] 01 背包
-
-快速
-
-![](./docs/assets/kuais.gif)
-
-### 2.8 - 2.14 算法
-
-### 2.18 - 2.20 top100
-
-#### 2.18
-
-- [x] 排序
-  - [x] 56
-  - [x] 75
-  - [x] 148
-- [x] 栈
-  - [x] 20 有效的括号
-  - [x] 94 二叉树中序遍历
-  - [x] 155 最小栈
-  - [x] 394 字符串解码
-  - [x] 739 每日温度
-
-#### 2.19
-
-- [ ] 栈
-  - [x] 42 接雨水
-  - [ ] 84 柱状图中最大的矩形
-  - [ ] 85 最大矩形
-- [ ] 堆 - 涉及到二叉树 最后再看吧
-  - [ ] 215 最大 k 值
-  - [ ] 347 前 k 个高频元素
-  - [ ] 23 合并 k 个升序链表
-  - [ ] 239 滑动窗口最大值
-- [ ] 数组
-  - [x] 169 多数元素 - 缺少分治算法
-  - [x] 283 移动零
-  - [x] 448 找到所有数组中消失的数字
-  - [x] 121 买卖股票的最佳时机
-  - [x] 53 最大子序和
-  - [x] 1 两数纸盒
+## 推荐
 
-#### 2.20 复习
+- https://juejin.cn/post/6986436944913924103#heading-12
 
-- [x] 01-call
-- [x] 02-apply
-- [x] 03-bind
-- [x] 04-prototype
-- [x] 05-field
-- [x] 06-new
-- [x] 07-extends
-- [x] 08-debounce
-- [x] 09-throttle
-- [x] 10-deepclone
-- [x] 11-findIndex
-- [x] 12-findLastIndex
-- [x] 13-flat
-- [x] 14-partial
-- [x] 15-curry
-- [x] 16-lazy
-- [x] 17-compose
-- [x] 18-memorize
-- [x] 19-shuffle
+- bilibili: https://www.bilibili.com/read/cv5650633/?spm_id_from=333.788.b_636f6d6d656e74.6
 
-### 2.22 - 2.26 面试题
+视频面试题： https://space.bilibili.com/30781252/video?tid=0&page=1&keyword=&order=pubdate
 
-#### 2.22 复习
+- https://www.bilibili.com/video/BV1zz4y1X7L3
 
-sort
+- css 秀： https://chokcoco.github.io/CSS-Inspiration/#/ \*\*\*\*
 
-- [x] 1-maopao
-- [x] 2-kuais
-- [x] 3-xuanze
-- [x] 56
-- [x] 75
+前端面试常见的手写功能： https://juejin.im/post/6873513007037546510?utm_source=gold_browser_extension#comment
 
-array
+- 防抖是控制次数，节流是控制频率 https://www.jianshu.com/p/c8b86b09daf0
+- js 防抖和节流： https://www.cnblogs.com/momo798/p/9177767.html
+- 你能手写实现 call,apply,bind 方法吗? https://juejin.im/post/6844903728147857415
+- 一个合格(优秀)的前端都应该阅读这些文章： https://juejin.im/post/6844903896637259784
+- 30 道 Vue 面试题，内含详细讲解（涵盖入门到精通，自测 Vue
+  掌握程度）： https://juejin.im/post/6844903918753808398
+- 2 万字 | 前端基础拾遗 90 问： https://juejin.im/post/6844904116552990727
+- 2020 最新：100 道有答案的前端面试题（上） https://juejin.im/post/6847902225423925255
+- 面试遇坎，每日一题我精选了这些题目与答案 https://juejin.im/post/6874710268094611469
+- 前端面试查漏补缺: https://juejin.im/post/6844903781079973895 \*\*\*
+- 2020 年中大厂前端面试总结: https://juejin.im/post/6865525477465931783 \*\*\*
+- 前端高频手写面试题汇总: https://juejin.im/post/6847902222081064974
+- 腾讯前端面试篇: https://juejin.im/post/6844903743125733390
+- 面经之真题总结 https://juejin.im/post/6844904161457225735
+- 关于前端面试： https://juejin.im/post/6844904163667623950
+- 前端面试汇总： https://juejin.im/post/6844903734791634952
+- 【2020 面试真题】这 15 道面试真题，你能答出几道： https://juejin.im/post/6869628880538468359
+- 「数组方法」从详细操作 js 数组到浅析 v8 中 array.js： https://juejin.im/post/6846687601806557192
+- 「查缺补漏」我的 2020 前端面试秘籍，为你秋招保驾护航： https://juejin.im/post/6864398060702760968
+- 前端面试必备技巧： https://juejin.im/post/6871956933775982606
+- https://github.com/coffe1891/frontend-hard-mode-interview
+- https://juejin.im/post/6844903809206976520#heading-12
 
-- [x] 1
-- [x] 53
-- [x] 121
-- [x] 169
-- [x] 283
-- [x] 448
-- [x] 26
-- [x] 88
-- [x] 189
+- 前端 P7 岗位要求： https://www.zhihu.com/question/393825440/answer/1214828265
+- https://zhuanlan.zhihu.com/p/143611353
+- 傻傻分不清的
+  Manifest https://segmentfault.com/a/1190000019395237?utm_source=tag-newest
+- 字节三面面经 https://juejin.im/post/6881431951702491143
+- 深入剖析 Object.create()
+  ，为与之相关的理解形成闭环： https://juejin.im/post/6881245501170122759?utm_source=gold_browser_extension
+- 我对 JS
+  延迟异步脚本的思考： https://juejin.im/post/6881231745073561614?utm_source=gold_browser_extension
+-
 
-search
+开发调试的九个技巧【谷歌浏览器】： https://juejin.im/post/6881439870380834830?utm_source=gold_browser_extension
 
-- [x] 二分法
+- 从 13K 的前端开源项目我学到了啥？ https://juejin.im/post/6876943860988772360
+-
 
-stack
+这九种常用的设计模式你掌握了吗 https://juejin.im/post/6881384600758091784?utm_source=gold_browser_extension
 
-- [x] 20
-- [x] 42 接水滴
-- [x] memorize
+- promise: https://juejin.im/post/6844903550590386189
+- https://github.com/haizlin/fe-interview?utm_source=gold_browser_extension
 
-### 2.24 递归
+##
 
-### 2.25 树，回溯
+https://segmentfault.com/a/1190000013331105
 
-### 2.26 链表
+- js 的工作原理： https://github.com/Troland/how-javascript-works
+-
 
-- [x] 206
+websocket： https://juejin.im/post/6876301731966713869?utm_source=gold_browser_extension
 
-### 3.1 链表 + 递归
+- 我来聊聊前端应用表现层抽象： https://xie.infoq.cn/article/58250bd8c789b7a7afa7dd513
+- 一位架构师的感悟：过度忙碌使你落后： https://mp.weixin.qq.com/s/uwA5JryExOpUtQ_5AF7bBQ
 
-- [x] 206
-- [ ] e-110
-- [ ] h-25
-- [ ] e-21
+## 其他
 
-### 3.2 图 + 深度优先 + 广度优先
+- https://juejin.im/post/6844903760603398151
+- https://github.com/funnycoderstar/blog/issues?utf8=%E2%9C%93&q=css
+- https://github.com/Jocs/jocs.github.io/issues/15
+- https://github.com/Jocs/jocs.github.io/issues/22
+- js 工作原理 https://segmentfault.com/u/xupea/articles
+- 写 webpack
+  plugin： https://hijiangtao.github.io/2019/12/01/Introduction-of-webpack-plugin/
 
-- [x] check 20
+## 性能优化
 
-### 3.3 单双指针
+- https://juejin.im/post/6844904055790125064
+-
 
-- [x] e-141
-- [x] m-881
+前端页面性能优化之实战篇 https://juejin.im/post/6881117141282750472?utm_source=gold_browser_extension
 
-二分法
+- https://yourz.github.io/notes/
+- 蚂蚁金服如何把前端性能监控做到极致? https://www.infoq.cn/article/Dxa8aM44oz*Lukk5Ufhy
+- https://juejin.im/post/6887580440803311630?utm_source=gold_browser_extension
 
-- [x] e-35
-- [x] e-704
-- [x] m-162
+## 简历
 
-滑动窗口
+- https://juejin.im/post/6844904163667623950
 
-- [x] m-209
+## 微服务
 
-### 3.4
+- https://juejin.im/post/6874213637687345159?utm_source=gold_browser_extension
+- webpack
+  原理都不会？ https://juejin.im/post/6859538537830858759?utm_source=gold_browser_extension\
 
-滑动窗口
+## vue 源代码
 
-- [x] 1456
+- learnVue https://github.com/answershuto/learnVue
+- vue-router 源码解析 | 1.4w 字 | 多图预警 - 【上】🏆
+  掘金技术征文|双节特别篇: https://juejin.im/post/6880529850159874062?utm_source=gold_browser_extension
+- Vite
+  原理分析: https://juejin.im/post/6881078539756503047?utm_source=gold_browser_extension
+- Vue.js 的源码： https://ustbhuangyi.github.io/vue-analysis/
+- axios
+  源代码： https://juejin.im/post/6887689159918485511?utm_source=gold_browser_extension
+- axios https://mp.weixin.qq.com/s/gqr-CpLEIAEymbdLX3NrpQ
+- vue 源代码推荐资源 https://juejin.cn/post/6942492146725290020?utm_source=gold_browser_extension#heading-2
 
-## 3.8 - 3.12
+## 一键部署
 
-- 分治算法
-- 回溯法
-- dfs - 深度优先
-- 归并排序
-- union find
-- trie
-- dijkstra floyd
-- Hierholzer
+一键部署 https://juejin.im/post/6880792496444538887?utm_source=gold_browser_extension
 
-### 3.9
+## 思考
 
-- [x] 分治法
-- [x] 堆排序
-- [x] 堆
-- [x] 对称二叉树
+- https://sofi.sh/page/2/
+- https://www.zhihu.com/people/sofish/posts
+- 天生不聪明 https://mp.weixin.qq.com/s/QvXIDpyrpiOmvEhcOUUmxQ
 
-### 3.10
+## CSS
 
-- [ ] 回溯法
+-
 
-### 3.15
+你的垂直居中有问题？我竞无法反驳 https://juejin.im/post/6882275388920332302?utm_source=gold_browser_extension
 
-数组转树
+- 多个你不知道的 CSS
+  居中方案！ https://juejin.im/post/6882527193260539917?utm_source=gold_browser_extension
 
-### 3.16 并查集
+## if else
 
-- [x] 684
-- [x] 990
-- [x] m-200
-- [x] m-547
+- https://juejin.im/post/6882390231715151879?utm_source=gold_browser_extension
 
-### 3.17 贪心算法
+## 算法
 
-### 4.12 - 4.17
+- https://juejin.im/post/6882394656148045838?utm_source=gold_browser_extension
 
-- backtracking
-- recursive
+## winter
 
-### 5.7 - 5.8 复习 dp
+- https://time.geekbang.org/column/intro/154?utm_term=zeusPQ6ZQ&utm_source=zhihu&utm_medium=102562537&utm_campaign=154-end&utm_content=zhihu
+- https://www.bilibili.com/video/bv1nb411P7tQ/
 
-### 5.10 - 5.14 补齐 link stack heap binary fenzhi bfs
+- https://www.infoq.cn/article/2017/05/server-render-client-side?utm_source=related_read&utm_medium=article
 
-### 5.10
+## 设计模式
 
-- 搜索
-- 排序
-- 链表
+- 这九种常用的设计模式你掌握了吗 https://juejin.im/post/6881384600758091784
 
-###
+## 浏览器原理
 
-### 差
-
-- 贪心算法
-
-## 推荐文章
-
-- https://juejin.cn/post/6900698814093459463?utm_source=gold_browser_extension
-- https://blog.csdn.net/sinat_17775997/article/details/84099731
-- 梳理 6 大排序算法： https://juejin.cn/post/6856546833025237006
-- 前端面试必备-40 道 LeetCode 经典面试算法题 https://juejin.cn/post/6844903971270688781
+- v8 的原理： https://zhuanlan.zhihu.com/p/279920830

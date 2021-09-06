@@ -39,35 +39,44 @@
 //  */
 
 async function async1() {
-  console.log('a') // c1-1
-  const res = await async2() // c1-2
-  console.log('b') // m1 - 1
+  console.log('1')
+  const res = await async2()
+  console.log('2')
 }
 
 async function async2() {
-  console.log('c') // c1-2
-  return 2
+  console.log('3')
+  return 3
 }
 
-console.log('d') // c1
+console.log('4')
 
 setTimeout(() => {
-  // n
-  console.log('e')
+  console.log('5')
 }, 0)
-
 async1().then((res) => {
-  // c1 //m3
-  console.log('f')
+  console.log('6')
 })
 
 new Promise((resolve) => {
-  console.log('g') // c3
+  console.log('7')
   resolve()
 }).then(() => {
-  console.log('h') // m2
+  console.log('8')
 })
 
-console.log('i') // c4
+console.log('9')
 
-// d a c g i b h f e
+/*
+4
+1
+3
+7
+
+9
+2
+8
+6
+5
+
+ */

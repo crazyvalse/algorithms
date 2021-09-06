@@ -58,6 +58,8 @@
 - [ ] https://juejin.cn/post/6986436944913924103#heading-12
 - [ ] websocket
 - [ ] BFC
+- [ ] 性能优化
+
 
 ## 6.7 - 6.11
 
@@ -142,3 +144,10 @@
 - css
 - 订体检
 - 订淘宝
+
+### 9.1
+
+- [ ] Event Loop
+- [ ] h5
+- [ ] html
+- [ ] http

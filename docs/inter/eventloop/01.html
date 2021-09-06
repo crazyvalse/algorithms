@@ -1,40 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Event Loop</title>
-</head>
-<body>
-<div id="demo"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Loop</title>
+  </head>
+  <body>
+    <div id="demo"></div>
 
-<script>
-  const demoEl = document.getElementById('demo');
+    <script>
+      const demoEl = document.getElementById('demo')
 
-  console.log('a');
+      console.log('1')
 
-  setTimeout(() => {
-    alert('渲染完成！')
-    console.log('b');
-  },0)
+      setTimeout(() => {
+        alert('渲染完成！')
+        console.log('2')
+      }, 0)
 
-  new Promise(resolve => {
-    console.log('c');
-    resolve()
-  }).then(() => {
-    console.log('d');
-    alert('开始渲染！')
-  })
+      new Promise((resolve) => {
+        console.log('3')
+        resolve()
+      }).then(() => {
+        console.log('4')
+        alert('开始渲染！')
+      })
 
-  console.log('e');
-  demoEl.innerText = 'Hello World!';
-</script>
-<script>
-  console.log('f');
+      console.log('5')
+      demoEl.innerText = 'Hello World!'
 
-  demoEl.innerText = 'Hi World!';
-  alert('第二次渲染！');
-</script>
-</body>
+    </script>
+    <script>
+      console.log('6')
+
+      demoEl.innerText = 'Hi World!'
+      alert('第二次渲染！')
+      /*
+      1
+      3
+      5
+      4
+      开始渲染
+      render hello
+      6
+      第二次渲染
+      hi world
+      完成
+      2
+       */
+    </script>
+  </body>
 </html>
