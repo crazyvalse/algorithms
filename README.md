@@ -3,9 +3,7 @@
 - 一些我遇到的常见题目
 - 每个题目都有测试用例
 
-例如:
-
-在 [src/22-dp/06-背包型/m-lintcode-92-backpack](src/22-dp/06-背包型/m-lintcode-92-backpack) 中
+例如: 在 [src/22-dp/06-背包型/m-lintcode-92-backpack](src/22-dp/06-背包型/m-lintcode-92-backpack) 中
 
 [topic](src/22-dp/06-背包型/m-lintcode-92-backpack/or/01.js) :
 
