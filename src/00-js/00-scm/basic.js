@@ -13,3 +13,5 @@ if ({}) {
 if ([1] == [1]) {
   console.log(5)
 }
+
+const a = []

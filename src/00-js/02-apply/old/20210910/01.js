@@ -8,12 +8,14 @@
  */
 Function.prototype.myApply = function (context, args) {
   context = context || global
-  args = args || []
-  const fn = Symbol()
-  context[fn] = this
+  const fnName = Symbol()
+  context[fnName] = this
 
-  const result = context[fn](...args)
+  const params = Array.isArray(args) ? args.map((val, index) => 'args[' + index + ']') : ''
 
-  delete context[fn]
+  const result = eval(`context[fnName](${params})`)
+
+  delete context[fnName]
+
   return result
 }

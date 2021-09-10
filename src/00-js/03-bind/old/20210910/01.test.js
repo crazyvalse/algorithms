@@ -1,4 +1,4 @@
-require('./02.js')
+require('./01.js')
 
 test('测试 bind - 2: 传参', () => {
   var foo = {
@@ -26,6 +26,7 @@ test('测试 bind - 3: 传参', () => {
   function Bar(name, age) {
     this.habit = 'shopping'
     this.name = name
+    this.#age = age
   }
 
   Bar.prototype.friend = 'kevin'
@@ -34,6 +35,7 @@ test('测试 bind - 3: 传参', () => {
 
   var obj = new bindFoo(18)
 
+  expect(obj.#age).toBe(18)
   expect(obj.habit).toEqual('shopping')
   expect(obj.friend).toEqual('kevin')
 })
