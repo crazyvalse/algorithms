@@ -58,6 +58,7 @@ const longestOnes = function (a, k) {
   }
   let [l, r] = [0, 0]
   while (r < n) {
+    // 右边为0时，k--
     if (a[r++] === 0) {
       k--
     }

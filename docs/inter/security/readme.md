@@ -44,6 +44,8 @@ http://interview.poetries.top/docs/excellent.html#_22-1-xss
 
 ## 防范 iframe
 
+防止 自己页面被别人iframe嵌套
+
 - X-FRAME-OPTIONS SAMEORIGIN
 
 ## Origin Header

@@ -54,6 +54,7 @@ var lengthOfLongestSubstring = function (s) {
     const sr = s[r]
     m[sr] = m[sr] || 0
     m[sr]++
+    // 超出了就缩减窗口
     while (m[sr] > 1) {
       m[s[l++]]--
     }

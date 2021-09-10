@@ -30,6 +30,8 @@
 s 和 p 仅包含小写字母
  */
 /**
+ * 1. 先把f中的值变为负数
+ * 2.
  * @param {string} a
  * @param {string} b
  * @return {number[]}
@@ -48,10 +50,12 @@ var findAnagrams = function (a, b) {
   while (r < a.length) {
     const arc = a[r].charCodeAt() - base
     f[arc]++
-    // 说明要么字符多了要不不是需要的
+    // 说明要么字符多了要不不是需要的，有不符合的字段，开始缩减窗口
     while (f[arc] > 0) {
       f[a[l++].charCodeAt() - base]--
     }
+    // 不然需要加1
+    // 当前恰好等于长度
     r++
     if (r - l === b.length) {
       result.push(l)

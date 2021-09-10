@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      const vd = {
+        tag: 'DIV',
+        attrs: {
+          id: 'app'
+        },
+        children: [
+          {
+            tag: 'SPAN',
+            children: [{ tag: 'A', children: [] }]
+          },
+          {
+            tag: 'SPAN',
+            children: [
+              { tag: 'A', children: [] },
+              { tag: 'A', children: [] }
+            ]
+          }
+        ]
+      }
+
+      /**
+       * 1. 遍历树 -
+       *
+       * 需要 option 和 parent
+       * if(p === null)
+       * p = body
+       * option
+       *
+       * const c = createDom(option, p)
+       *
+       * if(option.children.length)
+       *
+       * for(children){
+       *   walk
+       * }
+       *
+       * return c
+       * 2. 创建节点 options, parent
+       *
+       */
+
+      function getDom(option, p = document.body) {
+        const node = createDom(option, p)
+
+        if (Array.isArray(option.children) && option.children.length) {
+          const childrenOptions = option.children
+          for (let i = 0; i < childrenOptions.length; i++) {
+            getDom(childrenOptions[i], node)
+          }
+        }
+        return node
+      }
+
+      function createDom(op, p) {
+        const node = document.createElement(op.tag)
+        if (op.attrs) {
+          const attributes = op.attrs
+          for (let key in attributes) {
+            node.setAttribute(key, attributes[key])
+          }
+        }
+        p.appendChild(node)
+        return node
+      }
+
+      console.info(getDom(vd))
+    </script>
+  </body>
+</html>
