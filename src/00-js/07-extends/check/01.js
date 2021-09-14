@@ -7,6 +7,8 @@ module.exports = function (Child, Parent) {
         F.prototype = prototype
         return new F()
       }
+  //1. create
   Child.prototype = create(Parent.prototype)
+  // 2. constructor
   Child.prototype.constructor = Child
 }

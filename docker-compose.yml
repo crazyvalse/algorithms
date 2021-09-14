@@ -10,11 +10,13 @@ services:
     container_name: ng-al
     image: nginx:1.19.5-alpine
     ports:
-      - 18080:8080
+      - "18080:80"
+      - "443:443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/logs:/var/log/nginx
       - ./nginx/html:/usr/share/nginx/html
+      - ./nginx/ca:/ssl
     networks:
       - nginx_al
     command: [nginx-debug, '-g', 'daemon off;']

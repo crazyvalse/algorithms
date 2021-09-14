@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      .container {
+        min-width: 550px;
+        /******************/
+        padding-left: 300px;
+        padding-right: 200px;
+        overflow: hidden;
+        /*float: left;*/
+      }
+      .main {
+        background: grey;
+        width: 100%;
+        /******************/
+        overflow: auto;
+      }
+      .left {
+        background: orange;
+        width: 300px;
+        /******************/
+        margin-left: -100%;
+        position: relative;
+        left: -300px;
+      }
+      .right {
+        background: greenyellow;
+        width: 200px;
+        /******************/
+        margin-right: -200px;
+      }
+      .footer{
+        background: indigo;
+        clear: both;
+        width: 100%;
+      }
+      /******************/
+      .column {
+        float: left;
+        height: 200px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main column">
+        <div style="height: 1000px"></div>
+      </div>
+      <div class="left column"></div>
+      <div class="right column"></div>
+    </div>
+    <div class="footer">footer</div>
+  </body>
+</html>

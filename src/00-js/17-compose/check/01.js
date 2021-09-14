@@ -4,16 +4,15 @@
  * 疑问：
  * 1. 如果
  */
-module.exports = function compose() {
-  if (arguments.length === 0) {
-    throw new Error('no functions')
-  }
-  const slice = Array.prototype.slice
-  const fns = slice.call(arguments)
-  return function () {
-    let result = fns[0].apply(this, arguments)
-    for (let i = 1; i < fns.length; i++) {
-      result = fns[i].call(this, result)
+module.exports = function compose(ff, ...fns) {
+  return function (...args) {
+    // 第一个可以传入多个参数
+    let result = ff.apply(this, args)
+    // 后面的只能一个
+    if (Array.isArray(fns)) {
+      for (let i = 0; i < fns.length; i++) {
+        result = fns[i].call(this, result)
+      }
     }
     return result
   }

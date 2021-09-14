@@ -229,3 +229,15 @@ inline-block 可以用一排 a {display: inline-block}实现横向导航栏，�
 4. 调用 window.getComputedStyle 方法。
 
 回流过程：由于 DOM 的结构发生了改变，所以需要从生成 DOM 这一步开始，重新经过样式计算、生成布局树、建立图层树、再到生成绘制列表以及之后的显示器显示这整一个渲染过程走一遍，开销是非常大的。
+
+### 19 postcss
+
+- autoprefix
+- css-preset-env
+- stylelint
+- pxtorem
+- sprite
+
+
+
+
