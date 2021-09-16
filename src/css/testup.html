@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <form action="https://www.baidu.com" autocomplete="new-password">
+      <input type="search" name="key" />
+      <input type="text" name="username" autocomplete="new-password" />
+      <input type="password" name="password" value="" autocomplete="new-password" />
+      <button type="submit">submit</button>
+    </form>
+    <script>
+      const psd = document.querySelector('input[name=password]')
+      psd.onfocus = function () {
+        this.removeAttribute('readonly')
+      }
+    </script>
+  </body>
+</html>
