@@ -33,6 +33,7 @@ function deepClone(source, hash = new WeakMap()) {
   })
   return target
 }
+const n = Symbol('x')
 
 const o = {
   a: 1,
@@ -44,12 +45,14 @@ const o = {
   },
   g: {
     h: 'hello'
-  }
+  },
+  [Symbol('dd')]: 1
 }
 
 o.d = o
+o[n] = 123
 const o2 = deepClone(o)
 console.info(o2)
 
-const s = new Set([1, 2, 3])
-console.info(typeof s)
+// const s = new Set([1, 2, 3])
+// console.info(typeof s)

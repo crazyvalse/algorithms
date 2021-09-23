@@ -7,9 +7,12 @@
  * @param context
  */
 Function.prototype.myCall = function (context, ...args) {
+  // 兼容
   context = context || global
+  // 赋值 fn
   const fn = Symbol()
   context[fn] = this
+  // 执行
   const result = context[fn](...args)
   delete context[fn]
   return result

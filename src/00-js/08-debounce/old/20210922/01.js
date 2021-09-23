@@ -11,10 +11,12 @@ module.exports = debounce
 function debounce(cb, span, immediate) {
   let timer = null
   function debounced() {
+    // 再次调用的时候，清空 timer，重新定时
     if (timer) {
       clearTimeout(timer)
     }
 
+    // 是否是需要立刻执行！timer 为 null，说明是第一次
     if (immediate && !timer) {
       cb.apply(this, Array.prototype.slice.call(arguments))
     }

@@ -9,7 +9,6 @@ module.exports = function ObjectFactory(fn, ...args) {
     __proto__: fn.prototype,
     constructor: fn.prototype.constructor
   }
-
   const result = fn.apply(obj, args)
   return typeof result === 'object' ? result : obj
 }

@@ -1,4 +1,4 @@
-// const a = {
+1 // const a = {
 //   name: 'zac',
 //   age: 12,
 //   book: {

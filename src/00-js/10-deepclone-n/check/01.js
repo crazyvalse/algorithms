@@ -1,14 +1,51 @@
 module.exports = deepClone
-// 对象或者数组
+
+/**
+ * 处理 edge case
+ * 1. 数组
+ * 2. 对象
+ * 3. undefined function
+ * 4. symbol
+ * 5. 循环引用
+ * @param target
+ * @returns {*[]|*}
+ */
 
 function deepClone(target) {
-  if (typeof target !== 'object') {
-    return target
-  }
-  const result = Array.isArray(target) ? [] : {}
+  const hash = new WeakMap()
 
-  for (let key in target) {
-    result[key] = typeof target[key] === 'object' ? deepClone(target[key]) : target[key]
+  const walk = function (target) {
+    if (!isObject(target)) {
+      return target
+    }
+    // 如果包含
+    if (hash.has(target)) {
+      return hash.get(target)
+    }
+    const result = Array.isArray(target) ? [] : {}
+
+    hash.set(target, result)
+
+    // 1. 基础类型，直接赋值，其他类型交于deepClone继续处理
+    // 兼容 symbol key
+    Reflect.ownKeys(target).forEach((key) => {
+      if (target.hasOwnProperty(key)) {
+        result[key] = isObject(target[key]) ? walk(target[key]) : target[key]
+      }
+    })
+    return result
   }
-  return result
+
+  return walk(target)
+}
+
+function isObject(target) {
+  return (
+    typeof target === 'object' &&
+    target !== null &&
+    target !== undefined &&
+    !(target instanceof Date) &&
+    !(target instanceof RegExp) &&
+    typeof target !== 'symbol'
+  )
 }

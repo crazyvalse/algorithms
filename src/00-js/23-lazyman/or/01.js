@@ -82,3 +82,9 @@ LazyMan.prototype.sleepFirst = function (time) {
 }
 
 LazyMan('zac').sleepFirst(2).eat('breakfast').sleep(10).eat('dinner').eat('super')
+setTimeout(() => {
+  console.info(666)
+}, 8000)
+setTimeout(() => {
+  console.info(121212)
+}, 12000)

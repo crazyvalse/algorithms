@@ -7,14 +7,17 @@
   <body>
     <script>
       function jsonp(url, callback, success) {
+        // 1. 做标签
         let script = document.createElement('script')
         script.src = url
         script.async = true
         script.type = 'text/javascript'
 
+        // 2. 定义回调
         window[callback] = function (data) {
           success && success(data)
         }
+        // 3. 粘贴
         document.body.appendChild(script)
       }
       jsonp('./01.js', '$$JSONP$$', (data) => {

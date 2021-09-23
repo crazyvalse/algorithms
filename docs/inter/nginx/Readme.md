@@ -229,3 +229,8 @@ worker_connections * worker_processes / 2
 ## 7. 设置缓存
 
 nginx https://linux.cn/article-5945-1.html
+
+## 8. 在 nginx 中运行 js
+
+http://nginx.org/en/docs/njs/
+

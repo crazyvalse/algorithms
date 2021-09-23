@@ -22,7 +22,6 @@ bject.is() 方法判断两个值是否为同一个值。如果满足以下条件
 
 与=== 运算也不相同。 === 运算符 (也包括 == 运算符) 将数字 -0 和 +0 视为相等 ，而将Number.NaN 与NaN视为不相等.
  */
-
 const is = function (x, y) {
   // SameValue algorithm
   if (x === y) {
@@ -34,6 +33,8 @@ const is = function (x, y) {
     return x !== x && y !== y
   }
 }
+
+// console.info(0 === -0)
 
 // console.info(is('123', '123'))
 // console.info(is(-0, 0))

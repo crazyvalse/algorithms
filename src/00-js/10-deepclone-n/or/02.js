@@ -9,7 +9,7 @@
  * @returns {boolean}
  */
 function isObject(obj) {
-  return typeof obj === 'obj' && obj !== null
+  return typeof obj === 'object' && obj !== null
 }
 
 function deepClone(source) {

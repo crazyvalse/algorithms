@@ -1,4 +1,4 @@
-const deepClone = require('./01.js')
+const deepClone = require('./02.js')
 
 test('测试 deepClone', () => {
   const obj = {

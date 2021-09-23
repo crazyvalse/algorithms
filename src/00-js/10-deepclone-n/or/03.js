@@ -44,8 +44,8 @@ const o = {
 
 // const map = {}
 //
-const a = { a: 1 }
-const b = { b: 2 }
+// const a = { a: 1 }
+// const b = { b: 2 }
 //
 // map[a] = a
 // map[b] = b
@@ -53,7 +53,7 @@ const b = { b: 2 }
 // console.info(map[a])
 // console.info(Object.keys(map))
 
-const map = new Map()
-map.set(a, a)
-map.set(b, b)
-console.info(map.get(a))
+// const map = new Map()
+// map.set(a, a)
+// map.set(b, b)
+// console.info(map.get(a))

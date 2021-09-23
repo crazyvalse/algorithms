@@ -37,7 +37,4 @@ var v5 = null
 // var obj = Object.assign2({}, v1, null, v2, undefined, v3, v4)
 // console.info(obj)
 //
-// const a = Object.assign2(1, { a: 1 })
-// console.info(a)
-
-console.info(Object(null))
+const a = Object.assign2(1, { a: 1 })
