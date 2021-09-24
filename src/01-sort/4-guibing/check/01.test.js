@@ -20,43 +20,43 @@ test('converse 1', () => {
 
 test('merge 1', () => {
   const array = [3, 5, 6, 1, 2, 4]
-  merge(array, 0, 5)
+  merge(array, 0, 5, 2)
   expect(array).toEqual([1, 2, 3, 4, 5, 6])
 })
 
 test('merge 2', () => {
   const array = [3, 5, 6, 1, 2, 4]
-  merge(array, 1, 4)
+  merge(array, 1, 4, 2)
   expect(array).toEqual([3, 1, 2, 5, 6, 4])
 })
 
 test('merge 3', () => {
   const array = [3, 5, 6, 1, 2, 4]
-  merge(array, 1, 4)
+  merge(array, 1, 4, 2)
   expect(array).toEqual([3, 1, 2, 5, 6, 4])
 })
 
 test('merge 4', () => {
   const array = [1, 3, 5, 6, 1, 2, 3, 4]
-  merge(array, 0, 7)
+  merge(array, 0, 7, 3)
   expect(array).toEqual([1, 1, 2, 3, 3, 4, 5, 6])
 })
 
 test('merge 5', () => {
   const array = [1]
-  merge(array, 0, 0)
+  merge(array, 0, 0, 0)
   expect(array).toEqual([1])
 })
 
 test('merge 6', () => {
   const array = [2, 1]
-  merge(array, 0, 1)
+  merge(array, 0, 1, 0)
   expect(array).toEqual([1, 2])
 })
 
 test('merge 7', () => {
   const array = [1, 2]
-  merge(array, 0, 1)
+  merge(array, 0, 1, 0)
   expect(array).toEqual([1, 2])
 })
 

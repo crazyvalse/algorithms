@@ -37,6 +37,7 @@ const merge = function (a) {
   const result = [a[0]]
   for (let i = 1; i < n; i++) {
     const last = result[result.length - 1]
+    // 右节点 大于 数组左节点： 吞并；查看右节点
     if (last[r] >= a[i][l]) {
       last[r] = Math.max(last[r], a[i][r])
     } else {

@@ -12,22 +12,21 @@
  * 快慢指针
  * l = 指向0
  * r = index
- * if(ar !=== 0) {
- *   swap
+ *
+ * if(al !== 0){
  *   l++
+ * } else if(ar !== 0){
+ *   swap(a, l, r)
  * }
- *
- * r++
- * ar === 0
- * continue
- *
  *
  * @param {number[]} a
  * @return nums Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function (a) {
-  let [l, r] = [0, 0]
-  while (r < a.length) {
+  const n = a.length
+  let l = 0
+  let r = 0
+  while (r < n) {
     if (a[r] !== 0) {
       swap(a, l, r)
       l++

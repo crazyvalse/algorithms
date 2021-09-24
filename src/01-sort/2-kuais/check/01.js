@@ -9,16 +9,22 @@ function swap(array, a, b) {
  * pivot
  */
 function sortAndFindPivot(array, l, r) {
+  // 1. 以第一个l为base
   const base = array[l]
+  // 2. 设置pivot
   let pivot = l + 1
   let index = pivot
   while (index <= r) {
+    // 3. 与 base 比，大的话就调换位置
     if (array[index] < base) {
+      // 4. pivot 下移
       swap(array, index, pivot++)
     }
     index++
   }
+  // 5. 调整 base的位置
   swap(array, l, pivot - 1)
+  // 6. pivot 是base的下一位
   return pivot
 }
 
@@ -33,15 +39,19 @@ function sort(array) {
     return array
   }
 
+  // 分治
   const walk = function (l, r) {
     if (l >= r) {
       return
     }
+    // 1. 排序后 base 的位置
     const pivot = sortAndFindPivot(array, l, r)
-
+    // 2. 一分为2 继续
     walk(l, pivot - 1)
+    //
     walk(pivot, r)
   }
+  // 调用
   walk(0, array.length - 1)
   return array
 }

@@ -53,9 +53,11 @@ var sortColors = function (a) {
   let p1 = 0
 
   while (p1 <= p2) {
+    // 1. 先判断 2，
     if (a[p1] === 2) {
-      swap(a, p1--, p2--)
+      swap(a, p1, p2--)
     }
+    // 2. 再判断 0
     if (a[p1] === 0) {
       swap(a, p0++, p1)
     }

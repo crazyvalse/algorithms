@@ -9,36 +9,25 @@
 尽量减少操作次数。
  */
 /**
- * 快慢指针
- * l = 指向0
- * r = index
- * if(ar !=== 0) {
- *   swap
- *   l++
- * }
+ * 双指针
+ * A[l] !== 0 l++
+ * A[l] === 0 && A[r] !== 0 swap
+ * r
  *
- * r++
- * ar === 0
- * continue
- *
- *
- * @param {number[]} a
+ * @param {number[]} A
  * @return nums Do not return anything, modify nums in-place instead.
  */
-var moveZeroes = function (a) {
-  let [l, r] = [0, 0]
-  while (r < a.length) {
-    if (a[r] !== 0) {
-      swap(a, l, r)
+var moveZeroes = function (A) {
+  let l = 0
+  let r = 0
+  while (r < A.length) {
+    if (A[r] !== 0) {
+      ;[A[l], A[r]] = [A[r], A[l]]
       l++
     }
     r++
   }
-  return a
-}
-
-function swap(array, a, b) {
-  ;[array[a], array[b]] = [array[b], array[a]]
+  return A
 }
 
 module.exports = moveZeroes

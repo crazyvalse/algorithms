@@ -8,7 +8,6 @@
 const hasCycle = (head) => {
   let set = new Set()
   let p = head
-  debugger
   while (p) {
     if (set.has(p)) {
       return true

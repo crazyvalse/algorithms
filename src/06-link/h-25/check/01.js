@@ -54,7 +54,7 @@ var reverseKGroup = function (head, k = 0) {
   }
   return hair.next
 }
-
+// 1. 获得长度
 function getLength(head) {
   let counter = 0
   while (head) {

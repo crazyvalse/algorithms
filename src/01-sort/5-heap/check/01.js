@@ -1,13 +1,15 @@
 /**
  * 1. 构建最大堆
  * 2. 交换头尾两个节点，长度 - 1，currentIndex = 0 继续构建最大堆
- * @param array
+ * @param a
  */
 function sort(a) {
   if (a.length < 2) {
     return a
   }
+  // 1. 初始化堆
   initHeap(a)
+  // 2. 开始排序
   doSort(a)
   return a
 }
@@ -27,7 +29,9 @@ function doSort(a) {
   // 4. 把 length 减小
   const n = a.length
   for (let length = n - 1; length > 0; length--) {
+    // 交换最后一个
     swap(a, 0, length)
+    // 从 0 开始重新构建最大堆
     heapify(a, 0, length)
   }
 }
@@ -41,7 +45,7 @@ function doSort(a) {
 function initHeap(a) {
   // 从最后一个父节点开始构建
   const n = a.length
-  const lastParentIndex = Math.ceil(n / 2) - 1
+  const lastParentIndex = (n - 1) >> 1 // Math.ceil(n / 2) - 1
   for (let i = lastParentIndex; i >= 0; i--) {
     heapify(a, i, n)
   }
@@ -72,10 +76,11 @@ function heapify(a, current, length) {
 
   // 2. 判断节点大小
   let c = current
+  // 有子节点 且 大
   if (l < length && a[c] < a[l]) {
     c = l
   }
-
+  // 有子节点 且 大
   if (r < length && a[c] < a[r]) {
     c = r
   }

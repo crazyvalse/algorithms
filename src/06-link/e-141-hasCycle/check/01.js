@@ -38,6 +38,7 @@ function ListNode(val, next) {
 var hasCycle = function (head) {
   let l = head
   let r = head
+  // XXX 这里是核心
   while (r && r.next) {
     l = l.next
     r = r.next.next

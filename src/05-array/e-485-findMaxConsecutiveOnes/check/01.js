@@ -26,10 +26,12 @@
 var findMaxConsecutiveOnes = function (a) {
   const n = a.length
   const f = Array(n + 1).fill(0)
+  let max = 0
   for (let i = 1; i <= n; i++) {
     f[i] = a[i - 1] === 0 ? 0 : f[i - 1] + 1
+    max = Math.max(max, f[i])
   }
-  return f[n]
+  return max
 }
 
 module.exports = findMaxConsecutiveOnes

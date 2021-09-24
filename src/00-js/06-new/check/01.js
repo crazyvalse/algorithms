@@ -3,6 +3,7 @@
  * 2. 把方法的 this 指向给 obj
  * 3. 定义 __proto__
  * @param fn
+ * @param args
  */
 module.exports = function ObjectFactory(fn, ...args) {
   const obj = {

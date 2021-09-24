@@ -5,6 +5,7 @@
  * 3. 删除fn
  * 4. 返回结果
  * @param context
+ * @param args
  */
 Function.prototype.myCall = function (context, ...args) {
   // 兼容

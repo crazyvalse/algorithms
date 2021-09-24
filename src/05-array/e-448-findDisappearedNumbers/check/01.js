@@ -18,6 +18,7 @@
 const findDisappearedNumbers = function (a) {
   const result = []
   const n = a.length
+  // 给每一个都加上 n
   for (let i = 0; i < n; i++) {
     const index = (a[i] - 1) % n
     a[index] += n

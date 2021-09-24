@@ -29,9 +29,7 @@ function deepClone(target) {
     // 1. 基础类型，直接赋值，其他类型交于deepClone继续处理
     // 兼容 symbol key
     Reflect.ownKeys(target).forEach((key) => {
-      if (target.hasOwnProperty(key)) {
-        result[key] = isObject(target[key]) ? walk(target[key]) : target[key]
-      }
+      result[key] = isObject(target[key]) ? walk(target[key]) : target[key]
     })
     return result
   }

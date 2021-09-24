@@ -27,10 +27,13 @@
  * @param a
  */
 function removeDuplicates(a) {
-  let [l, r] = [0, 0]
-  while (r < a.length) {
-    if (a[r] !== a[l]) {
-      ;[a[++l], a[r]] = [a[r], a[l]]
+  const n = a.length
+  let l = 0
+  let r = 0
+  while (r < n) {
+    if (a[l] < a[r]) {
+      l++
+      ;[a[l], a[r]] = [a[r], a[l]]
     }
     r++
   }

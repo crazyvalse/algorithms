@@ -40,21 +40,26 @@ k是一个正整数，它的值小于或等于链表的长度。
  * 2. 返回什么？ head
  * 3. 每一个场景 逆序
  *
+ * 1.
  *
  * @param {ListNode} head
  * @param {number} k
  * @return {ListNode}
  */
 var reverseKGroup = function (head, k = 0) {
+  let length = Math.min(getLength(head), k)
   let [p, c, n] = [null, head, null]
-  while (c && --k >= 0) {
-    n = c.next
-    c.next = p
-    p = c
-    c = n
+
+  while (c && k-- > 0) {}
+}
+
+function getLength(head) {
+  let counter = 0
+  while (head) {
+    counter++
+    head = head.next
   }
-  head.next = c
-  return p
+  return counter
 }
 
 function ListNode(val, next) {

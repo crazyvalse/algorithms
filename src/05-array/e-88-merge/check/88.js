@@ -49,6 +49,7 @@ const merge = function (A, m, B, n) {
     l--
   }
 
+  // 如果 第二组还有剩余的，放到第一组中
   while (n >= 0) {
     A[n] = B[n]
     n--

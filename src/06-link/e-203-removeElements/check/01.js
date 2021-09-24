@@ -49,6 +49,7 @@ var removeElements = function (head, val) {
     n = c.next
     if (c.val === val) {
       p.next = n
+      // 可加可不加
       c.next = null
     } else {
       p = c

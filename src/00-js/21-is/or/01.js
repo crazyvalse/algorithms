@@ -24,6 +24,7 @@ bject.is() 方法判断两个值是否为同一个值。如果满足以下条件
  */
 const is = function (x, y) {
   // SameValue algorithm
+  // 相等后，判断是否为0，如果不为0返回true，为0判断正负
   if (x === y) {
     // Steps 1-5, 7-10
     // Steps 6.b-6.e: +0 != -0
@@ -33,6 +34,8 @@ const is = function (x, y) {
     return x !== x && y !== y
   }
 }
+
+console.info(NaN !== NaN)
 
 // console.info(0 === -0)
 
