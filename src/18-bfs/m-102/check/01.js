@@ -41,7 +41,29 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
-var levelOrder = function (root) {}
+var levelOrder = function (root) {
+  if (!root) {
+    return root
+  }
+  const result = []
+  const queue = [root]
+  while (queue.length) {
+    let length = queue.length
+    const sub = []
+    for (let i = 0; i < length; i++) {
+      root = queue.shift()
+      sub.push(root.val)
+      if (root.left) {
+        queue.push(root.left)
+      }
+      if (root.right) {
+        queue.push(root.right)
+      }
+    }
+    result.push(sub)
+  }
+  return result
+}
 
 function TreeNode(val, left, right) {
   this.val = val === undefined ? 0 : val

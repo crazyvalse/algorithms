@@ -63,7 +63,7 @@ var connect = function (root) {
   while (queue.length) {
     let length = queue.length
     // 最后一个不处理
-    while (length-- > 0) {
+    while (--length) {
       node = queue.shift()
       // XXX 点睛之笔啊
       if (length > 0) {

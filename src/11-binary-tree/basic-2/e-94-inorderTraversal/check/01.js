@@ -48,24 +48,29 @@
  * }
  */
 /**
+ * 1. 先push left，后处理 然后是 right
  * @param {TreeNode} root
  * @return {number[]}
  */
 var inorderTraversal = function (root) {
+  if (!root) {
+    return []
+  }
   const result = []
   const stack = []
+
   while (root || stack.length) {
     while (root) {
       stack.push(root)
       root = root.left
     }
-    // 处理节点
+
     root = stack.pop()
     result.push(root.val)
 
-    // 下一轮
     root = root.right
   }
+
   return result
 }
 

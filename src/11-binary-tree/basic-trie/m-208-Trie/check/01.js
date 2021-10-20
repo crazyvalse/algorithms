@@ -6,8 +6,8 @@ Trie（发音类似 "try"）或者说 前缀树 是一种树形数据结构，�
 Trie() 初始化前缀树对象。
 void insert(String word) 向前缀树中插入字符串 word 。
 boolean search(String word) 如果字符串 word 在前缀树中，返回 true（即，在检索之前已经插入）；否则，返回 false 。
-boolean startsWith(String prefix) 如果之前已经插入的字符串 word 的前缀之一为 prefix ，返回 true ；否则，返回 false 。
- 
+boolean startsWith(String prefix) 如果之前已经插入的字符串word 的前缀之一为 prefix ，返回 true ；否则，返回 false 。
+
 
 示例：
 
@@ -25,7 +25,7 @@ trie.search("app");     // 返回 False
 trie.startsWith("app"); // 返回 True
 trie.insert("app");
 trie.search("app");     // 返回 True
- 
+
 
 提示：
 
@@ -48,6 +48,7 @@ class Trie {
    */
   insert(word) {
     let node = this.children
+    // 不断做 children
     for (let char of word) {
       node[char] = node[char] || {}
       node = node[char]
@@ -68,10 +69,12 @@ class Trie {
    */
   searchPrefix(word) {
     let node = this.children
+    // 1. for
     for (let char of word) {
       if (!node[char]) {
         return false
       }
+      // 2. node = node[char]
       node = node[char]
     }
     return node

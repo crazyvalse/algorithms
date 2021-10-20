@@ -75,12 +75,15 @@ const { arrayToTreeNode, treeNodeToArray, TreeNode } = require('../../../utils')
  */
 var widthOfBinaryTree = function (root) {
   let [w, l, r] = [0, 0, 0]
+  // 队列中放数组 0 为值； 1 为索引；
   const queue = [[root, 1n]]
   while (queue.length) {
     let length = queue.length
+    // XXX 左边界
     l = queue[0][1]
     while (length-- > 0) {
       const [node, num] = queue.shift()
+      // 更新又边界
       r = num
       if (node) {
         // 不需要处理 null，非null的n是正确的

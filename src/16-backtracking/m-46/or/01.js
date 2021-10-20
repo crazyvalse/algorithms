@@ -49,6 +49,7 @@ var permute = function (nums) {
         continue
       }
       container.push(nums[i])
+      // XXX 坑的位置
       walk(bucketIndex + 1, container)
       container.pop()
     }

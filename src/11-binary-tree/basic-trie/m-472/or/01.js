@@ -1,10 +1,10 @@
 /*
 472. 连接词
-给定一个 不含重复 单词的字符串数组 words ，编写一个程序，返回 words 中的所有 连接词 。
+给定一个 不含重复 单词的字符串数组 words ，编写一个程序，返回words 中的所有 连接词 。
 
 连接词 的定义为：一个字符串完全是由至少两个给定数组中的单词组成的。
 
- 
+
 
 示例 1：
 
@@ -17,7 +17,7 @@
 
 输入：words = ["cat","dog","catdog"]
 输出：["catdog"]
- 
+
 
 提示：
 
@@ -109,6 +109,7 @@ Trie.prototype.search = function (word) {
 Trie.prototype.check = function (word) {
   const n = word.length
   let dict = this.children
+  // 去掉已经判断过的词
   const visited = Array(n).fill(false)
   // 有返回值的一般都是从下往上
   const walk = function (index, cart) {
@@ -123,6 +124,7 @@ Trie.prototype.check = function (word) {
     for (let i = index; i < n; i++) {
       char = word[i]
       node = node[char]
+      // 说明 该字符在组成词中没有
       if (!node) {
         return false
       }

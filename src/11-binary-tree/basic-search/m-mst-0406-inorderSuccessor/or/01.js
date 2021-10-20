@@ -58,22 +58,12 @@ var inorderSuccessor = function (root, p) {
     }
     root = queue.pop()
     if (root === p) {
-      return queue.pop()
+      const result = queue.pop()
+      return result || null
     }
     root = root.right
   }
   return null
-}
-
-function successor(root) {
-  if (!root) {
-    return null
-  }
-  root = root.right
-  while (root) {
-    root = root.left
-  }
-  return root
 }
 
 module.exports = inorderSuccessor

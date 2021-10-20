@@ -56,6 +56,7 @@ function merge(l, r) {
   return hair.next
 }
 
+// 找中点
 function findPivot(h) {
   const hair = new ListNode(null, h)
   let l = hair

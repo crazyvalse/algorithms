@@ -45,6 +45,7 @@ var combinationSum2 = function (a, target) {
       return
     }
     for (let i = index; i < a.length; i++) {
+      // 同一个位置上不需要再放同样的了
       if (i - 1 >= index && a[i] === a[i - 1]) {
         continue
       }

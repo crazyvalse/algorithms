@@ -67,7 +67,8 @@ var numDecodings = function (s) {
   }
   const f = Array(n + 1).fill(0)
   f[0] = 1
-  for (let i = 1; i <= n; i++) {
+  f[1] = 1
+  for (let i = 2; i <= n; i++) {
     const one = +s.substr(i - 1, 1)
     if (0 < one && one < 10) {
       f[i] += f[i - 1]

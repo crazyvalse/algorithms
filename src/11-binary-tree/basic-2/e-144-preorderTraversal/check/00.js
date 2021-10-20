@@ -54,30 +54,22 @@
  * @return {number[]}
  */
 var preorderTraversal = function (root) {
+  if (!root) {
+    return []
+  }
   const result = []
-  const stack = []
-  if (root) {
-    stack.push(root)
-  }
-
+  const stack = [root]
   while (stack.length) {
-    const node = stack.pop()
-    // 为null的话，添加到结果里
-    if (node === null) {
-      result.push(stack.pop().val)
-      continue
-    }
-    if (node.right) {
-      stack.push(node.right)
-    }
+    root = stack.pop()
+    result.push(root.val)
 
-    if (node.left) {
-      stack.push(node.left)
+    if (root.right) {
+      stack.push(root.right)
     }
-    stack.push(node)
-    stack.push(null)
+    if (root.left) {
+      stack.push(root.left)
+    }
   }
-
   return result
 }
 

@@ -62,6 +62,7 @@ var goodNodes = function (root) {
     if (!root) {
       return
     }
+    // 比上一个大
     if (root.val >= max) {
       result++
       max = root.val

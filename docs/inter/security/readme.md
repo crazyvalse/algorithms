@@ -44,7 +44,7 @@ http://interview.poetries.top/docs/excellent.html#_22-1-xss
 
 ## 防范 iframe
 
-防止 自己页面被别人iframe嵌套
+防止 自己页面被别人 iframe 嵌套
 
 - X-FRAME-OPTIONS SAMEORIGIN
 
@@ -64,3 +64,15 @@ http://interview.poetries.top/docs/excellent.html#_22-1-xss
 ## 鉴权
 
 - https://juejin.cn/post/7003147063542153224?utm_source=gold_browser_extension#heading-7
+
+## target="\_blank"
+
+存在问题：
+
+- 安全隐患：新打开的窗口可以通过 window.opener 获取到来源页面的 window 对象即使跨域也可以。某些属性的访问被拦截，是因为跨域安全策略的限制。 但是，比如修改 window.opener.location 的值，指向另外一个地址，这样新窗口有可能会把原来的网页地址改了并进行页面伪装来欺骗用户。
+- 新打开的窗口与原页面窗口共用一个进程，若是新页面有性能不好的代码也会影响原页面
+
+解决方案：
+
+- 尽量不用 target="\_blank"
+- 如果一定要用，需要加上 rel="noopener"或者 rel="noreferrer"。这样新窗口的 window.openner 就是 null 了，而且会让新窗口运行在独立的进程里，不会拖累原来页面的进程。(不过，有些浏览器对性能做了优化，即使不加这个属性，新窗口也会在独立进程打开。不过为了安全考虑，还是加上吧。)

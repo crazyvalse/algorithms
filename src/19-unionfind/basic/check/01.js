@@ -9,13 +9,6 @@ class UnionFind {
     this.counter = a.length
   }
 
-  // find(x) {
-  //   if (this.a[x] === x) {
-  //     return x
-  //   }
-  //   return (this.a[x] = this.find(this.a[x]))
-  // }
-
   find(x) {
     while (this.a[x] !== x) {
       // a[x] 不是根节点，那就压平它

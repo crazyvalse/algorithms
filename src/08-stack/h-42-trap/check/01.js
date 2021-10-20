@@ -26,6 +26,8 @@ n == height.length
  * | | | | |
  * ----------------------------->
  *
+ * 不知道什么时候能遇到 高的，所以先缓存，当遇到的时候。
+ *
  * 单调递减
  * 1. 遇到大的
  * 弹出每一个
@@ -48,15 +50,17 @@ var trap = function (a) {
       // stack pop index
       const spi = stack.pop()
 
-      // 如果第一个是小的
+      // 如果第一个是小的，不处理，下一个
       if (!stack.length) {
         break
       }
-      // stack top index
+      // stack top index，栈中左侧的那个
       const sti = stack[stack.length - 1]
+      // 宽
       const w = i - sti - 1
       sum += (Math.min(a[sti], a[i]) - a[spi]) * w
     }
+    // 放入新的节点
     stack.push(i)
   }
   return sum

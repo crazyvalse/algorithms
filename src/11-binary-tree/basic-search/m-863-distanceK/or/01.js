@@ -54,6 +54,7 @@ const { arrayToTreeNode, treeNodeToArray, TreeNode } = require('../../../utils')
  * @return {number[]}
  */
 var distanceK = function (root, target, k) {
+  // key 是 val；value 是 父节点
   const parents = new Map()
   const ans = []
 
@@ -89,12 +90,15 @@ var distanceK = function (root, target, k) {
       return
     }
 
+    // 左
     if (node.left !== from) {
       findAns(node.left, node, depth + 1, k)
     }
+    // 右
     if (node.right !== from) {
       findAns(node.right, node, depth + 1, k)
     }
+    // 上
     if (parents.get(node.val) !== from) {
       findAns(parents.get(node.val), node, depth + 1, k)
     }

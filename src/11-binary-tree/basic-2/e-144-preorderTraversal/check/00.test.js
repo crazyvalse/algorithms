@@ -1,32 +1,27 @@
 const preorderTraversal = require('./00')
-const { arrayToTreeNode, treeNodeToArray } = require('../../utils')
+const { arrayToTreeNode, arrayToTreeNode1, treeNodeToArray } = require('../../../utils')
 
 test('1', () => {
-  const root = arrayToTreeNode([1, null, 2, 3])
+  const root = arrayToTreeNode1([1, null, 2, 3])
   expect(preorderTraversal(root)).toEqual([1, 2, 3])
 })
 
 test('2', () => {
-  const root = arrayToTreeNode([])
+  const root = arrayToTreeNode1([])
   expect(preorderTraversal(root)).toEqual([])
 })
 
 test('3', () => {
-  const root = arrayToTreeNode([1])
+  const root = arrayToTreeNode1([1])
   expect(preorderTraversal(root)).toEqual([1])
 })
 
 test('4', () => {
-  const root = arrayToTreeNode([1, 2])
+  const root = arrayToTreeNode1([1, 2])
   expect(preorderTraversal(root)).toEqual([1, 2])
 })
 
 test('5', () => {
-  const root = arrayToTreeNode([1, null, 2])
+  const root = arrayToTreeNode1([1, null, 2])
   expect(preorderTraversal(root)).toEqual([1, 2])
-})
-
-test('6', () => {
-  const root = arrayToTreeNode([1, 2, 3, 4, 5, 6])
-  expect(preorderTraversal(root)).toEqual([1, 2, 4, 5, 3, 6])
 })

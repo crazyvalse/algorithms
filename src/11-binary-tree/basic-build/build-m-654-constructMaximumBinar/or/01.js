@@ -8,7 +8,7 @@
 右子树是通过数组中 最大值右边部分 递归构造出的最大二叉树。
 返回有给定数组 nums 构建的 最大二叉树 。
 
- 
+
 
 示例 1：
 
@@ -30,7 +30,7 @@
 
 输入：nums = [3,2,1]
 输出：[3,null,2,null,1]
- 
+
 
 提示：
 
@@ -62,7 +62,7 @@ var constructMaximumBinaryTree = function (a) {
   }
   const n = a.length
   const walk = function (l, r) {
-    // 为啥
+    // 为啥 临界点，也需要返回一个节点 null
     if (l > r) {
       return null
     }

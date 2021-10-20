@@ -60,13 +60,14 @@ var findTilt = function (root) {
   if (!root) {
     return 0
   }
-  // 计算和
+  // 计算和 - 每个节点
   const walk = function (root) {
     if (!root) {
       return 0
     }
     return walk(root.left) + walk(root.right) + root.val
   }
+  // 每个节点的坡度都要相加
   return Math.abs(walk(root.left) - walk(root.right)) + findTilt(root.left) + findTilt(root.right)
 }
 

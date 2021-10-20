@@ -11,7 +11,9 @@
 84
  */
 /**
- * 单调栈 放小于上一项的值，里面是单调递减的，实际上是递增栈 - 栈中放索引
+ *
+ * 由于不知道什么时候才能得到高气温，所以先放到栈中保存，一旦符合条件就弹出处理
+ * 单调栈
  *  - 如果小于前一项 放入栈中
  *  - 大于前一项，弹出前一个，计算结果，并加入新一项（索引）
  *
@@ -25,7 +27,7 @@ const dailyTemperatures = function (a) {
   const result = Array(n).fill(0)
   const stack = []
   for (let i = 0; i < n; i++) {
-    // 先处理前面的
+    // 先处理前面的，如果新值大于栈中，弹出处理
     while (stack.length && a[i] > a[stack[stack.length - 1]]) {
       const index = stack.pop()
       result[index] = i - index

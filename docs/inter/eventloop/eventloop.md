@@ -208,3 +208,4 @@ setTimeout(function () {
 - https://zh.javascript.info/event-loop
 - https://zh.javascript.info/microtask-queue
 - https://github.com/Troland/how-javascript-works/blob/master/event-loop.md
+- http://interview.poetries.top/docs/excellent.html#_12-3-%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%9A%84-event-loop

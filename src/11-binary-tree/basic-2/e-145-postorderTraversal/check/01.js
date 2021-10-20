@@ -43,14 +43,15 @@ var postorderTraversal = function (root) {
   while (stack.length) {
     root = stack.pop()
     result.push(root.val)
+
     if (root.left) {
       stack.push(root.left)
     }
+
     if (root.right) {
       stack.push(root.right)
     }
   }
-
   result.reverse()
   return result
 }

@@ -38,8 +38,8 @@ var trap = function (heights) {
   let result = 0
   let l = 0
   let r = heights.length - 1
-  let leftMax = [heights[0]]
-  let rightMax = [heights[heights.length - 1]]
+  let leftMax = heights[0]
+  let rightMax = heights[heights.length - 1]
 
   while (l <= r) {
     // 左边的小，就处理左边的

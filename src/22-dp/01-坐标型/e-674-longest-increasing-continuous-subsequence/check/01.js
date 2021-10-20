@@ -38,7 +38,7 @@ var findLengthOfLCIS = function (a) {
   if (n < 2) {
     return n
   }
-  let max = -Infinity
+  let max = 1
   const f = Array(n).fill(1)
   for (let i = 1; i < n; i++) {
     if (a[i] > a[i - 1]) {
@@ -46,7 +46,7 @@ var findLengthOfLCIS = function (a) {
       max = Math.max(max, f[i])
     }
   }
-  return max === -Infinity ? 1 : max
+  return max
 }
 
 module.exports = findLengthOfLCIS

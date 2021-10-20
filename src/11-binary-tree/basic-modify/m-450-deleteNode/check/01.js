@@ -91,11 +91,14 @@ var deleteNode = function (root, key) {
     // 找到了节点
     if (!root.left && !root.right) {
       root = null
+      // 有右节点，需要找到最左那个节点
     } else if (root.right) {
       // 找到后继节点
       root.val = successor(root)
+      // 处理最左边的那个节点
       root.right = deleteNode(root.right, root.val)
     } else {
+      // 最右边的节点
       root.val = pre(root)
       root.left = deleteNode(root.left, root.val)
     }

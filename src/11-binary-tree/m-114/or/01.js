@@ -48,8 +48,10 @@ var flatten = function (root) {
   if (!root) {
     return root
   }
+  // 1. 先做先序数组
   const a = pre(root)
   let c = null
+  // 2. 遍历处理每一项
   while (a.length > 1) {
     c = a.shift()
     c.left = null
@@ -58,6 +60,7 @@ var flatten = function (root) {
   return root
 }
 
+// 先做先序遍历的数组
 function pre(root) {
   const result = []
   const stack = [root]

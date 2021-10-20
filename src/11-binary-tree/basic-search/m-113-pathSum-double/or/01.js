@@ -79,6 +79,7 @@ var pathSum = function (root, target) {
       }
       return
     }
+    // 只有放了当前节点 才能继续往下走
     cart.push(node.val)
     walk(node.left, cart, sum + node.val)
     walk(node.right, cart, sum + node.val)

@@ -47,15 +47,17 @@ var isValid = function (s) {
   }
 
   for (let i = 0; i < s.length; i++) {
-    // 右括号
+    // 右括号的话 弹出对比
     if (map[s[i]]) {
       if (map[s[i]] !== stack.pop()) {
         return false
       }
     } else {
+      // 左括号，push
       stack.push(s[i])
     }
   }
+  // XXX 重点 stack 为空才证明 true
   return !stack.length
 }
 

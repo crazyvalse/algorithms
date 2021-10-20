@@ -10,7 +10,9 @@ test('1', () => {
   root.right = t2
   t2.left = t3
   t2.right = t4
-  expect(levelOrder(root)).toEqual([[3], [9, 20], [15, 7]])
+
+  const a = levelOrder(root)
+  expect(a).toEqual([[3], [9, 20], [15, 7]])
 })
 
 test('2', () => {

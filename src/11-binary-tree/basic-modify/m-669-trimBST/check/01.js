@@ -75,7 +75,7 @@ var trimBST = function (root, l, r) {
     if (!root) {
       return null
     }
-    // 说明是左边
+    // 说明是 l 的左边，但是他还有右节点
     if (root.val < l) {
       // 把也许存在的右节点返回
       return walk(root.right)
