@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script src="./01.js"></script>
+    <script>
+      // 初始化一个沙箱
+      const newSandBox = new Sandbox('app1')
+      const proxyWindow = newSandBox.proxy
+      proxyWindow.test = 1
+      console.log(window.test, proxyWindow.test) // 1 1;
+
+      // 关闭沙箱
+      newSandBox.inactive()
+      console.log(window.test, proxyWindow.test) // undefined undefined;
+
+      // 重启沙箱
+      newSandBox.active()
+      console.log(window.test, proxyWindow.test) // 1 1 ;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>proxy多应用沙箱实现示例（js沙箱）</title>
+</head>
+<body>
+
+</body>
+<script>
+  //proxy的demo
+  class ProxySandbox {
+    constructor() {
+      const rawWindow = window;
+      const fakeWindow = {}
+
+      this.proxy = new Proxy(fakeWindow, {
+        set(target, p, value) {
+          target[p] = value;
+          return true
+        },
+        get(target, p) {
+          return target[p] || rawWindow[p];
+        }
+      })
+    }
+  }
+  /**
+   * 原理：
+   * 1、利用Proxy实例化不同的window对象
+   * 2、不同的对之间互不干预。
+   * */
+  let sandbox1 = new ProxySandbox();
+  let sandbox2 = new ProxySandbox();
+  window.a = 1;
+  ((window) => {
+    window.a = 'hello';
+    console.log(window.a)
+  })(sandbox1.proxy);
+
+  ((window) => {
+    window.a = 'world';
+    console.log(window.a)
+  })(sandbox2.proxy);
+
+</script>
+</html>

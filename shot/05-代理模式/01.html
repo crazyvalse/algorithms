@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">{{msg}}</div>
+    <script src="vue.min.js"></script>
+    <script>
+      const options = {
+        el: '#app',
+        data: {
+          msg: 'Hello World'
+        },
+        methods: {
+          sayHi() {
+            console.info(this.msg)
+          }
+        }
+      }
+      //
+      const app = new Vue(options)
+
+      app.msg = 1234
+
+      console.info(options.data.msg)
+
+      options.data.msg = 4321
+      console.info(app.msg, app.$data.msg)
+
+      app.sayHi()
+    </script>
+  </body>
+</html>

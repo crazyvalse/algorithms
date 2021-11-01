@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      const code0 = `
+window.a = 123
+b = 456
+console.info(a, b)
+`
+
+      const code1 = `
+console.info(window.a, b)
+window.a = 321
+b = 654
+console.info(a, b)
+`
+      /*
+    1. 执行字符串
+      - eval(code)
+      - new Function()
+
+   */
+
+      function Foo() {
+        const password = '我的密码'
+        this.compile = function (code) {
+          const _code = `
+  with(sandbox) {
+    ${code}
+  }
+  `
+          const proxy = new Proxy({ console, Math }, { has: () => true })
+          return new Function('sandbox', _code)(proxy)
+        }
+      }
+
+      const f0 = new Foo()
+      const f1 = new Foo()
+
+      f0.compile('const a = "A"; console.info(1, a)')
+      // f0.compile('console.info(2, password)')
+      // TODO 仍然能访问全局变量
+      f0.compile('console.info(3, code0)')
+      f0.compile('console.info(4, Math.random())')
+    </script>
+  </body>
+</html>

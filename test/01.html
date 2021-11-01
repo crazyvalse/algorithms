@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>样式隔离演示</title>
+</head>
+<body>
+<div>
+  <p>fur</p>
+  <div id="shadow"></div>
+</div>
+<script>
+
+  let shadow = document.getElementById('shadow')  //可以省略
+  let shadowDOM = shadow.attachShadow({
+    mode: 'open'
+  }); //外界无法访间closed
+  let pElm = document.createElement('p');
+  pElm.innerHTML = "hello fur"
+  let styleElm = document.createElement("style");
+  styleElm.textContent = `p{color:red}`
+  // 添加样式
+  shadowDOM.appendChild(styleElm)
+  shadowDOM.appendChild(pElm)
+  document.body.appendChild(pElm)  // 添加到阴影外面，就无法控制其样式
+</script>
+
+</body>
+</html>

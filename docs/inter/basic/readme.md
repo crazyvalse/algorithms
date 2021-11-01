@@ -96,3 +96,7 @@ function isPromise(val) {
 - typeof null 为 object 原因是对象存在在计算机中，都是以 000 开始的二进制存储，所以检测出来的结果是对象
 - typeof 普通对象/数组对象/正则对象/日期对象 都是 object
 - typeof NaN === 'number'
+
+# 推荐：
+
+- https://juejin.cn/post/7022795467821940773?utm_source=gold_browser_extension

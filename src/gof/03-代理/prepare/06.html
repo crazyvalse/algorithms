@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      window.globalData = 'w'
+      const code0 = `
+window.a = 'a1'
+window.globalData = 'c1'
+console.info(a, globalData)
+setTimeout(() => {
+  console.info(a, globalData)
+}, 2000)
+`
+
+      const code1 = `
+window.a = 'a2'
+globalData = 'c2'
+console.info(a, globalData)
+`
+      /*
+    1. 执行字符串
+      - eval(code)
+      - new Function()
+   */
+
+      function Foo() {
+        const password = '我的密码'
+        this.compile = function (code) {
+          const _code = `
+  with(window) {
+    ${code}
+  }
+  `
+          const proxy = new Proxy(
+            {},
+            {
+              get(fakeWindow, propKey) {
+                if (window[propKey]) {
+                  return window[propKey]
+                }
+                if (typeof fakeWindow[propKey] === 'function') {
+                  return fakeWindow[propKey].bind(fakeWindow)
+                }
+                return fakeWindow[propKey]
+              },
+              set(fakeWindow, propKey, value) {
+                if (window[propKey] && window[propKey] !== 'window') {
+                  window[propKey] = value
+                }
+                fakeWindow[propKey] = value
+              }
+            }
+          )
+          return new Function('window', _code)(proxy)
+        }
+      }
+
+      const f0 = new Foo()
+      const f1 = new Foo()
+
+      // f0.compile('const a = "A"; console.info(1, a)')
+      // f0.compile('console.info(2, password)')
+      // TODO 仍然能访问全局变量
+      // f0.compile('console.info(3, code0)')
+      // f0.compile('console.info(4, Math.random())')
+      f0.compile(code0)
+      f0.compile(code1)
+    </script>
+  </body>
+</html>

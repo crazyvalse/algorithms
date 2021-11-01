@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function getWindowProxy () {
+    const _window = window
+    const fake = {}
+    return new Proxy(fake, {
+      get(target, key){
+        return target[key] || _window[key]
+      },
+      set (target, key, value) {
+        target[key] = value
+        return true
+      }
+    })
+  }
+
+  const win1 = getWindowProxy()
+  const win2 = getWindowProxy()
+
+  window.a = 1
+  win1.a = 2
+  console.info(win2.a)
+  win2.a = 3
+  console.info(win1.a);
+
+</script>
+</body>
+</html>

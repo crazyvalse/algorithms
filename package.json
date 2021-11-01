@@ -112,6 +112,7 @@
     "@babel/node": "^7.14.7",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-proposal-decorators": "^7.14.5",
+    "fastq": "^1.13.0",
     "promises-aplus-tests": "^2.1.2",
     "sequelize": "^6.7.0",
     "snabbdom": "^3.0.3",

@@ -94,3 +94,8 @@ JavaScript 会阻塞 DOM 生成，而样式文件又会阻塞 JavaScript 的执�
 css加载不会阻塞DOM树的解析;
 css加载会阻塞DOM树的渲染；
 css加载会阻塞后面js语句的执行
+
+
+### DomContentLoaded
+
+- https://juejin.cn/post/7022795467821940773?utm_source=gold_browser_extension#heading-70
