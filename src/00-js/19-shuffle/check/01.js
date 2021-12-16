@@ -3,20 +3,17 @@ module.exports = shuffle
 /**
  * 遍历，然后打乱
  * 从后面开始遍历
- * @param array
+ * @param a
  */
-function shuffle(array) {
-  if (!Array.isArray(array)) {
-    throw new Error()
+function shuffle(a) {
+  if (!Array.isArray(a)) {
+    throw new Error('非数组')
   }
-  for (let i = array.length; i > 0; i--) {
-    const next = Math.floor(Math.random() * i)
-    swap(array, i - 1, next)
-  }
-}
 
-function swap(array, a, b) {
-  ;[array[a], array[b]] = [array[b], array[a]]
+  for (let i = a.length - 1; i > 0; i--) {
+    const index = Math.floor(Math.random()) * (i - 1)
+    ;[a[i], a[index]] = [a[index], a[i]]
+  }
 }
 
 const array = [1, 2, 3, 4, 5]
